@@ -45,6 +45,11 @@
 		1AA07AAA1A762BA400722BEB /* WordFallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordFallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA07AAF1A762BA400722BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AA07AB01A762BA400722BEB /* WordFallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordFallTests.m; sourceTree = "<group>"; };
+		1AA07ABB1A76302A00722BEB /* create_db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = create_db.py; sourceTree = "<group>"; };
+		1AA07ABC1A76302A00722BEB /* data.adj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.adj; sourceTree = "<group>"; };
+		1AA07ABD1A76302A00722BEB /* data.adv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.adv; sourceTree = "<group>"; };
+		1AA07ABE1A76302A00722BEB /* data.noun */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.noun; sourceTree = "<group>"; };
+		1AA07ABF1A76302A00722BEB /* data.verb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.verb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,7 @@
 		1AA07A831A762BA400722BEB = {
 			isa = PBXGroup;
 			children = (
+				1AA07ABA1A76300D00722BEB /* DBScript */,
 				1AA07A8E1A762BA400722BEB /* WordFall */,
 				1AA07AAD1A762BA400722BEB /* WordFallTests */,
 				1AA07A8D1A762BA400722BEB /* Products */,
@@ -125,6 +131,18 @@
 				1AA07AAF1A762BA400722BEB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1AA07ABA1A76300D00722BEB /* DBScript */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07ABB1A76302A00722BEB /* create_db.py */,
+				1AA07ABC1A76302A00722BEB /* data.adj */,
+				1AA07ABD1A76302A00722BEB /* data.adv */,
+				1AA07ABE1A76302A00722BEB /* data.noun */,
+				1AA07ABF1A76302A00722BEB /* data.verb */,
+			);
+			path = DBScript;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -343,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -356,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WordFall/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -366,6 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WordFall/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -424,6 +444,7 @@
 				1AA07AB61A762BA400722BEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AA07AB71A762BA400722BEB /* Build configuration list for PBXNativeTarget "WordFallTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +453,7 @@
 				1AA07AB91A762BA400722BEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
