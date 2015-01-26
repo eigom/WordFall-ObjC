@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1AA07A921A762BA400722BEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A911A762BA400722BEB /* main.m */; };
+		1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A941A762BA400722BEB /* AppDelegate.m */; };
+		1AA07A981A762BA400722BEB /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A971A762BA400722BEB /* GameScene.m */; };
+		1AA07A9A1A762BA400722BEB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07A991A762BA400722BEB /* GameScene.sks */; };
+		1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A9C1A762BA400722BEB /* GameViewController.m */; };
+		1AA07AA01A762BA400722BEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07A9E1A762BA400722BEB /* Main.storyboard */; };
+		1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07AA11A762BA400722BEB /* Images.xcassets */; };
+		1AA07AA51A762BA400722BEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07AA31A762BA400722BEB /* LaunchScreen.xib */; };
+		1AA07AB11A762BA400722BEB /* WordFallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07AB01A762BA400722BEB /* WordFallTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1AA07AAB1A762BA400722BEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1AA07A841A762BA400722BEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1AA07A8B1A762BA400722BEB;
+			remoteInfo = WordFall;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1AA07A8C1A762BA400722BEB /* WordFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AA07A901A762BA400722BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AA07A911A762BA400722BEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1AA07A931A762BA400722BEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1AA07A941A762BA400722BEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1AA07A961A762BA400722BEB /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		1AA07A971A762BA400722BEB /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		1AA07A991A762BA400722BEB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		1AA07A9B1A762BA400722BEB /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		1AA07A9C1A762BA400722BEB /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		1AA07A9F1A762BA400722BEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1AA07AA11A762BA400722BEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1AA07AA41A762BA400722BEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		1AA07AAA1A762BA400722BEB /* WordFallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordFallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AA07AAF1A762BA400722BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AA07AB01A762BA400722BEB /* WordFallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordFallTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AA07A891A762BA400722BEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AA07AA71A762BA400722BEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AA07A831A762BA400722BEB = {
+			isa = PBXGroup;
+			children = (
+				1AA07A8E1A762BA400722BEB /* WordFall */,
+				1AA07AAD1A762BA400722BEB /* WordFallTests */,
+				1AA07A8D1A762BA400722BEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1AA07A8D1A762BA400722BEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07A8C1A762BA400722BEB /* WordFall.app */,
+				1AA07AAA1A762BA400722BEB /* WordFallTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AA07A8E1A762BA400722BEB /* WordFall */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07A931A762BA400722BEB /* AppDelegate.h */,
+				1AA07A941A762BA400722BEB /* AppDelegate.m */,
+				1AA07A961A762BA400722BEB /* GameScene.h */,
+				1AA07A971A762BA400722BEB /* GameScene.m */,
+				1AA07A991A762BA400722BEB /* GameScene.sks */,
+				1AA07A9B1A762BA400722BEB /* GameViewController.h */,
+				1AA07A9C1A762BA400722BEB /* GameViewController.m */,
+				1AA07A9E1A762BA400722BEB /* Main.storyboard */,
+				1AA07AA11A762BA400722BEB /* Images.xcassets */,
+				1AA07AA31A762BA400722BEB /* LaunchScreen.xib */,
+				1AA07A8F1A762BA400722BEB /* Supporting Files */,
+			);
+			path = WordFall;
+			sourceTree = "<group>";
+		};
+		1AA07A8F1A762BA400722BEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07A901A762BA400722BEB /* Info.plist */,
+				1AA07A911A762BA400722BEB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1AA07AAD1A762BA400722BEB /* WordFallTests */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07AB01A762BA400722BEB /* WordFallTests.m */,
+				1AA07AAE1A762BA400722BEB /* Supporting Files */,
+			);
+			path = WordFallTests;
+			sourceTree = "<group>";
+		};
+		1AA07AAE1A762BA400722BEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AA07AAF1A762BA400722BEB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AA07A8B1A762BA400722BEB /* WordFall */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AA07AB41A762BA400722BEB /* Build configuration list for PBXNativeTarget "WordFall" */;
+			buildPhases = (
+				1AA07A881A762BA400722BEB /* Sources */,
+				1AA07A891A762BA400722BEB /* Frameworks */,
+				1AA07A8A1A762BA400722BEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordFall;
+			productName = WordFall;
+			productReference = 1AA07A8C1A762BA400722BEB /* WordFall.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1AA07AA91A762BA400722BEB /* WordFallTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AA07AB71A762BA400722BEB /* Build configuration list for PBXNativeTarget "WordFallTests" */;
+			buildPhases = (
+				1AA07AA61A762BA400722BEB /* Sources */,
+				1AA07AA71A762BA400722BEB /* Frameworks */,
+				1AA07AA81A762BA400722BEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1AA07AAC1A762BA400722BEB /* PBXTargetDependency */,
+			);
+			name = WordFallTests;
+			productName = WordFallTests;
+			productReference = 1AA07AAA1A762BA400722BEB /* WordFallTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AA07A841A762BA400722BEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = eigo;
+				TargetAttributes = {
+					1AA07A8B1A762BA400722BEB = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					1AA07AA91A762BA400722BEB = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 1AA07A8B1A762BA400722BEB;
+					};
+				};
+			};
+			buildConfigurationList = 1AA07A871A762BA400722BEB /* Build configuration list for PBXProject "WordFall" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AA07A831A762BA400722BEB;
+			productRefGroup = 1AA07A8D1A762BA400722BEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AA07A8B1A762BA400722BEB /* WordFall */,
+				1AA07AA91A762BA400722BEB /* WordFallTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AA07A8A1A762BA400722BEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AA07AA51A762BA400722BEB /* LaunchScreen.xib in Resources */,
+				1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */,
+				1AA07A9A1A762BA400722BEB /* GameScene.sks in Resources */,
+				1AA07AA01A762BA400722BEB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AA07AA81A762BA400722BEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AA07A881A762BA400722BEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
+				1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */,
+				1AA07A981A762BA400722BEB /* GameScene.m in Sources */,
+				1AA07A921A762BA400722BEB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AA07AA61A762BA400722BEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AA07AB11A762BA400722BEB /* WordFallTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1AA07AAC1A762BA400722BEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1AA07A8B1A762BA400722BEB /* WordFall */;
+			targetProxy = 1AA07AAB1A762BA400722BEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1AA07A9E1A762BA400722BEB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AA07A9F1A762BA400722BEB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1AA07AA31A762BA400722BEB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AA07AA41A762BA400722BEB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AA07AB21A762BA400722BEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1AA07AB31A762BA400722BEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AA07AB51A762BA400722BEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WordFall/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1AA07AB61A762BA400722BEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WordFall/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1AA07AB81A762BA400722BEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WordFallTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WordFall.app/WordFall";
+			};
+			name = Debug;
+		};
+		1AA07AB91A762BA400722BEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WordFallTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WordFall.app/WordFall";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AA07A871A762BA400722BEB /* Build configuration list for PBXProject "WordFall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AA07AB21A762BA400722BEB /* Debug */,
+				1AA07AB31A762BA400722BEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AA07AB41A762BA400722BEB /* Build configuration list for PBXNativeTarget "WordFall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AA07AB51A762BA400722BEB /* Debug */,
+				1AA07AB61A762BA400722BEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1AA07AB71A762BA400722BEB /* Build configuration list for PBXNativeTarget "WordFallTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AA07AB81A762BA400722BEB /* Debug */,
+				1AA07AB91A762BA400722BEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AA07A841A762BA400722BEB /* Project object */;
+}
