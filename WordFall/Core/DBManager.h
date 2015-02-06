@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DBManager : NSObject
+@class FMDatabaseQueue;
+@class MWWord;
+
+@interface DBManager : NSObject {
+@private
+    FMDatabaseQueue *dbQueue;
+}
+
++ (DBManager *)sharedManager;
+
+- (MWWord *)wordWithID:(NSNumber *)wordID;
+- (NSUInteger)wordCount;
 
 @end

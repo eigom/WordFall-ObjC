@@ -10,4 +10,13 @@
 
 @implementation MWObject
 
+- (id)initFromResultSet:(FMResultSet *)rs
+{
+    if ((self = [super init])) {
+        
+    }
+    
+    return self;
+}
+
 @end

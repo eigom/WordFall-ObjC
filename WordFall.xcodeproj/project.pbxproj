@@ -15,7 +15,6 @@
 		1A6E2F201A84BABD00725FCF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */; };
 		1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F241A84BC3500725FCF /* MWObject.m */; };
 		1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F271A84BC5A00725FCF /* DBManager.m */; };
-		1A6E2F2B1A84BC6B00725FCF /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F2A1A84BC6B00725FCF /* WordManager.m */; };
 		1AA07A921A762BA400722BEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A911A762BA400722BEB /* main.m */; };
 		1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A941A762BA400722BEB /* AppDelegate.m */; };
 		1AA07A981A762BA400722BEB /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A971A762BA400722BEB /* GameScene.m */; };
@@ -25,6 +24,13 @@
 		1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07AA11A762BA400722BEB /* Images.xcassets */; };
 		1AA07AA51A762BA400722BEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA07AA31A762BA400722BEB /* LaunchScreen.xib */; };
 		1AA07AB11A762BA400722BEB /* WordFallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07AB01A762BA400722BEB /* WordFallTests.m */; };
+		1AA0B3101A8507F70040FCE6 /* MWWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B30F1A8507F70040FCE6 /* MWWord.m */; };
+		1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3121A85080B0040FCE6 /* MWObjects.m */; };
+		1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3151A8508320040FCE6 /* MWWords.m */; };
+		1AA0B3191A85099A0040FCE6 /* MWDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3181A85099A0040FCE6 /* MWDefinition.m */; };
+		1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */; };
+		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
+		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +60,6 @@
 		1A6E2F241A84BC3500725FCF /* MWObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWObject.m; sourceTree = "<group>"; };
 		1A6E2F261A84BC5A00725FCF /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		1A6E2F271A84BC5A00725FCF /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		1A6E2F291A84BC6B00725FCF /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
-		1A6E2F2A1A84BC6B00725FCF /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
 		1AA07A8C1A762BA400722BEB /* WordFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA07A901A762BA400722BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AA07A911A762BA400722BEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,6 +81,20 @@
 		1AA07ABD1A76302A00722BEB /* data.adv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.adv; sourceTree = "<group>"; };
 		1AA07ABE1A76302A00722BEB /* data.noun */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.noun; sourceTree = "<group>"; };
 		1AA07ABF1A76302A00722BEB /* data.verb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.verb; sourceTree = "<group>"; };
+		1AA0B30E1A8507F70040FCE6 /* MWWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWord.h; sourceTree = "<group>"; };
+		1AA0B30F1A8507F70040FCE6 /* MWWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWord.m; sourceTree = "<group>"; };
+		1AA0B3111A85080B0040FCE6 /* MWObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWObjects.h; sourceTree = "<group>"; };
+		1AA0B3121A85080B0040FCE6 /* MWObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWObjects.m; sourceTree = "<group>"; };
+		1AA0B3141A8508320040FCE6 /* MWWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWords.h; sourceTree = "<group>"; };
+		1AA0B3151A8508320040FCE6 /* MWWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWords.m; sourceTree = "<group>"; };
+		1AA0B3171A85099A0040FCE6 /* MWDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinition.h; sourceTree = "<group>"; };
+		1AA0B3181A85099A0040FCE6 /* MWDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinition.m; sourceTree = "<group>"; };
+		1AA0B31A1A8509AA0040FCE6 /* MWDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinitions.h; sourceTree = "<group>"; };
+		1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinitions.m; sourceTree = "<group>"; };
+		1AA0B31D1A8509CF0040FCE6 /* MWManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWManager.h; sourceTree = "<group>"; };
+		1AA0B31E1A8509CF0040FCE6 /* MWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWManager.m; sourceTree = "<group>"; };
+		1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWordManager.h; sourceTree = "<group>"; };
+		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +155,10 @@
 			children = (
 				1A6E2F261A84BC5A00725FCF /* DBManager.h */,
 				1A6E2F271A84BC5A00725FCF /* DBManager.m */,
-				1A6E2F291A84BC6B00725FCF /* WordManager.h */,
-				1A6E2F2A1A84BC6B00725FCF /* WordManager.m */,
+				1AA0B31D1A8509CF0040FCE6 /* MWManager.h */,
+				1AA0B31E1A8509CF0040FCE6 /* MWManager.m */,
+				1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */,
+				1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -146,8 +166,18 @@
 		1A6E2F221A84BBF800725FCF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1AA0B3171A85099A0040FCE6 /* MWDefinition.h */,
+				1AA0B3181A85099A0040FCE6 /* MWDefinition.m */,
+				1AA0B31A1A8509AA0040FCE6 /* MWDefinitions.h */,
+				1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */,
 				1A6E2F231A84BC3500725FCF /* MWObject.h */,
 				1A6E2F241A84BC3500725FCF /* MWObject.m */,
+				1AA0B3111A85080B0040FCE6 /* MWObjects.h */,
+				1AA0B3121A85080B0040FCE6 /* MWObjects.m */,
+				1AA0B30E1A8507F70040FCE6 /* MWWord.h */,
+				1AA0B30F1A8507F70040FCE6 /* MWWord.m */,
+				1AA0B3141A8508320040FCE6 /* MWWords.h */,
+				1AA0B3151A8508320040FCE6 /* MWWords.m */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -335,12 +365,18 @@
 				1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */,
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
-				1A6E2F2B1A84BC6B00725FCF /* WordManager.m in Sources */,
+				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,
+				1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */,
+				1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */,
 				1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */,
+				1AA0B3191A85099A0040FCE6 /* MWDefinition.m in Sources */,
 				1AA07A981A762BA400722BEB /* GameScene.m in Sources */,
+				1AA0B3101A8507F70040FCE6 /* MWWord.m in Sources */,
 				1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */,
 				1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */,
 				1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */,
+				1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */,
+				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,
 				1AA07A921A762BA400722BEB /* main.m in Sources */,
 				1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */,

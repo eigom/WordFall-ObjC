@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMResultSet.h"
 
 @interface MWObject : NSObject
+
+- (id)initFromResultSet:(FMResultSet *)rs;
 
 @end
