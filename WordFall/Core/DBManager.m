@@ -85,7 +85,7 @@ static NSString * const kDBName = @"words.sqlite";
     __block MWDefinitions *definitions = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *rs = [db executeQuery:@"select * from definition where id = ?", word.wordID];
+        FMResultSet *rs = [db executeQuery:@"SELECT * from definition inner join word_definition ON definition.id = word_definition.definition_id AND word_definition.word_id = ?", word.wordID];
         definitions = [[MWDefinitions alloc] initFromResultSet:rs];
     }];
     
