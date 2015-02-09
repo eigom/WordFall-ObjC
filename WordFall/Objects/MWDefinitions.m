@@ -7,6 +7,7 @@
 //
 
 #import "MWDefinitions.h"
+#import "MWDefinition.h"
 
 @implementation MWDefinitions
 

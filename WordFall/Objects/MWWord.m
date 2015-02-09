@@ -29,7 +29,7 @@
 - (id)initFromResultSet:(FMResultSet *)rs
 {
     if ((self = [super initFromResultSet:rs])) {
-        wordID = [rs unsignedLongLongIntForColumn:@"id"];
+        wordID = [NSNumber numberWithLongLong:[rs unsignedLongLongIntForColumn:@"id"]];
         word = [rs stringForColumn:@"word"];
     }
     

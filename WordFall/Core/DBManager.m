@@ -15,7 +15,7 @@
 #import "MWDefinitions.h"
 #import "MWDefinition.h"
 
-static NSString * const kDBName = @"words.sqlite";
+static NSString * const kDBName = @"words";
 
 @implementation DBManager
 
@@ -45,22 +45,24 @@ static NSString * const kDBName = @"words.sqlite";
     __block MWWord *word = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *rs = [db executeQuery:@"select * from word where wordID = ?", wordID];
+        FMResultSet *rs = [db executeQuery:@"select * from word where id = ?", wordID];
         
         if ([rs next]) {
             word = [[MWWord alloc] initFromResultSet:rs];
-            
-            //
-            // get definitions
-            //
-            word.definitions = [self definitionsForWord:word];
-            
-            //
-            // get alternative words
-            //
-            word.alternativeWords = [self altWordsForWord:word];
         }
     }];
+    
+    if (word) {
+        //
+        // get definitions
+        //
+        word.definitions = [self definitionsForWord:word];
+        
+        //
+        // get alternative words
+        //
+        word.alternativeWords = [self altWordsForWord:word];
+    }
     
     return word;
 }
@@ -85,7 +87,7 @@ static NSString * const kDBName = @"words.sqlite";
     __block MWDefinitions *definitions = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *rs = [db executeQuery:@"SELECT * from definition inner join word_definition ON definition.id = word_definition.definition_id AND word_definition.word_id = ?", word.wordID];
+        FMResultSet *rs = [db executeQuery:@"SELECT * from definition inner join word_definition ON definition.id = word_definition.definition_id WHERE word_definition.word_id = ?", word.wordID];
         definitions = [[MWDefinitions alloc] initFromResultSet:rs];
     }];
     
@@ -97,7 +99,7 @@ static NSString * const kDBName = @"words.sqlite";
     __block MWWords *words = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *rs = [db executeQuery:@"select * from word inner join alt_word on word.id = alt_word.word_id AND alt_word.word_id = ?", word.wordID];
+        FMResultSet *rs = [db executeQuery:@"select * from word inner join alt_word on word.id = alt_word.word_id WHERE alt_word.word_id = ?", word.wordID];
         words = [[MWWords alloc] initFromResultSet:rs];
     }];
     
@@ -113,7 +115,8 @@ static NSString * const kDBName = @"words.sqlite";
 
 - (NSString *)dbPath
 {
-    return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kDBName];
+    return [[NSBundle mainBundle] pathForResource:kDBName ofType:@"sqlite"];
+    //return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kDBName];
 }
 
 @end

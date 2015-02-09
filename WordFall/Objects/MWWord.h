@@ -13,13 +13,13 @@
 
 @interface MWWord : MWObject {
 @private
-    NSUInteger wordID;
+    NSNumber *wordID;
     NSString *word;
     MWWords *alternativeWords;
     MWDefinitions *definitions;
 }
 
-@property (nonatomic, readonly) NSUInteger wordID;
+@property (nonatomic, readonly) NSNumber *wordID;
 @property (nonatomic, readonly) NSString *word;
 @property (nonatomic, strong) MWWords *alternativeWords;
 @property (nonatomic, strong) MWDefinitions *definitions;

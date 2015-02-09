@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4AB29A1A88FB92008B9F6E /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1A4AB2991A88FB92008B9F6E /* words.sqlite */; };
 		1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */; };
 		1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F101A84BA4100725FCF /* FMDatabaseAdditions.m */; };
 		1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F121A84BA4100725FCF /* FMDatabasePool.m */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A4AB2991A88FB92008B9F6E /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = words.sqlite; sourceTree = "<group>"; };
 		1A6E2F0D1A84BA4100725FCF /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		1A6E2F0F1A84BA4100725FCF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				1AA07A991A762BA400722BEB /* GameScene.sks */,
 				1AA07A9B1A762BA400722BEB /* GameViewController.h */,
 				1AA07A9C1A762BA400722BEB /* GameViewController.m */,
+				1A4AB2991A88FB92008B9F6E /* words.sqlite */,
 				1AA07A9E1A762BA400722BEB /* Main.storyboard */,
 				1AA07AA11A762BA400722BEB /* Images.xcassets */,
 				1AA07AA31A762BA400722BEB /* LaunchScreen.xib */,
@@ -345,6 +348,7 @@
 				1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */,
 				1AA07A9A1A762BA400722BEB /* GameScene.sks in Resources */,
 				1AA07AA01A762BA400722BEB /* Main.storyboard in Resources */,
+				1A4AB29A1A88FB92008B9F6E /* words.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

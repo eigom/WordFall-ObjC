@@ -16,7 +16,7 @@
 - (id)initFromResultSet:(FMResultSet *)rs
 {
     if ((self = [super initFromResultSet:rs])) {
-        definitionID = [rs unsignedLongLongIntForColumn:@"id"];
+        definitionID = [NSNumber numberWithLongLong:[rs unsignedLongLongIntForColumn:@"id"]];
         definition = [rs stringForColumn:@"definition"];
     }
     

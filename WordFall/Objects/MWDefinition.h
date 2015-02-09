@@ -10,11 +10,11 @@
 
 @interface MWDefinition : MWObject {
 @private
-    NSUInteger definitionID;
+    NSNumber *definitionID;
     NSString *definition;
 }
 
-@property (nonatomic, readonly) NSUInteger definitionID;
+@property (nonatomic, readonly) NSNumber *definitionID;
 @property (nonatomic, readonly) NSString *definition;
 
 @end

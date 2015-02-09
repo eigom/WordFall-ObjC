@@ -21,6 +21,15 @@
     return self;
 }
 
+- (id)initFromResultSet:(FMResultSet *)rs
+{
+    if ((self = [self init])) {
+        ;
+    }
+    
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if ((self = [self init])) {

@@ -7,10 +7,16 @@
 //
 
 #import "GameScene.h"
+#import "MWWordManager.h"
+#import "MWWord.h"
 
 @implementation GameScene
 
--(void)didMoveToView:(SKView *)view {
+- (void)didMoveToView:(SKView *)view
+{
+    MWWord *word = [[MWWordManager sharedManager] nextWord];
+    
+    
     /* Setup your scene here */
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
