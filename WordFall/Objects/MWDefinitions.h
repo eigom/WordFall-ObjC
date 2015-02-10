@@ -10,4 +10,6 @@
 
 @interface MWDefinitions : MWObjects
 
+- (NSAttributedString *)combinedDefinitionTexts;
+
 @end

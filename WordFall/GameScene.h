@@ -8,6 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface GameScene : SKScene
+@class MWWord;
+
+@interface GameScene : SKScene {
+@private
+    MWWord *word;
+    UILabel *definitionLabel;
+}
 
 @end

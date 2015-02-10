@@ -22,4 +22,18 @@
     return self;
 }
 
+- (NSAttributedString *)combinedDefinitionTexts
+{
+    NSMutableAttributedString *texts = [[NSMutableAttributedString alloc] init];
+    
+    for (MWDefinition *definition in items) {
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:definition.definition];
+        [texts appendAttributedString:attributedText];
+        
+        [texts appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+    }
+    
+    return texts;
+}
+
 @end

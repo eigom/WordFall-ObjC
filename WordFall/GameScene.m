@@ -14,21 +14,21 @@
 
 - (void)didMoveToView:(SKView *)view
 {
-    MWWord *word = [[MWWordManager sharedManager] nextWord];
-    
-    
     /* Setup your scene here */
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
-    myLabel.text = @"Hello, World!";
+    myLabel.text = word.word;
     myLabel.fontSize = 65;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
     
     [self addChild:myLabel];
+    
+    // add definitions label
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     /* Called when a touch begins */
     
     for (UITouch *touch in touches) {
@@ -48,8 +48,24 @@
     }
 }
 
--(void)update:(CFTimeInterval)currentTime {
+-(void)update:(CFTimeInterval)currentTime
+{
     /* Called before each frame is rendered */
+}
+
+- (void)playWithNextWordAnimated:(BOOL)animated
+{
+    word = [[MWWordManager sharedManager] nextWord];
+}
+
+- (void)showDefinitionAnimated:(BOOL)animated
+{
+    
+}
+
+- (void)hideDefinitionAnimated:(BOOL)animated
+{
+    
 }
 
 @end
