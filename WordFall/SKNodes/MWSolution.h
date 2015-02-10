@@ -21,6 +21,8 @@ typedef void (^MWSolutionWordFormed)(NSString *solutionWord);
 @property (nonatomic, readonly) MWWord *word;
 @property (nonatomic, copy) MWSolutionWordFormed wordFormed;
 
+- (id)initWithMaxLetters:(NSUInteger)maxLetters;
+
 - (void)setWord:(MWWord *)word animated:(BOOL)animated;
 - (void)revealLetter:(NSString *)letter animated:(BOOL)animated;
 

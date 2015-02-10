@@ -14,5 +14,6 @@
 
 - (void)setLetter:(NSString *)letter animated:(BOOL)animated;
 - (void)clearLetterAnimated:(BOOL)animated;
+- (void)setVisible:(BOOL)visible animated:(BOOL)animated;
 
 @end

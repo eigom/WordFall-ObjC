@@ -14,7 +14,11 @@
 
 @property (nonatomic, readonly) NSString *word;
 
++ (MWSolutionLetters *)solutionLettersOfCount:(NSUInteger)count;
+
 - (MWSolutionLetter *)nextAvailableLetter;
 - (BOOL)hasMoreLetters;
+
+- (void)clearAllLettersAnimated:(BOOL)animated;
 
 @end

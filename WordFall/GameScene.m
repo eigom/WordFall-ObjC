@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "MWWordManager.h"
 #import "MWWord.h"
+#import "MWSolution.h"
 
 @implementation GameScene
 
@@ -25,6 +26,8 @@
     [self addChild:myLabel];
     
     // add definitions label
+    // determine solution node width and max letters it can hold,
+    // skip words that won't fit there
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -56,6 +59,8 @@
 - (void)playWithNextWordAnimated:(BOOL)animated
 {
     word = [[MWWordManager sharedManager] nextWord];
+    
+    [solution setWord:word animated:YES];
 }
 
 - (void)showDefinitionAnimated:(BOOL)animated

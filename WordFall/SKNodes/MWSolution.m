@@ -12,10 +12,10 @@
 
 @implementation MWSolution
 
-- (id)init
+- (id)initWithMaxLetters:(NSUInteger)maxLetters
 {
     if ((self = [super init])) {
-        letters = [[MWSolutionLetters alloc] init];
+        letters = [MWSolutionLetters solutionLettersOfCount:maxLetters];
     }
     
     return self;
@@ -25,7 +25,9 @@
 {
     _word = word;
     
-    // add or remove letter boxes to/from existing (beginning or end), clear existing boxes
+    [letters clearAllLettersAnimated:animated];
+    
+    // show/hide boxes from beginning/end to accomodate new word length
 }
 
 - (void)revealLetter:(NSString *)letter animated:(BOOL)animated

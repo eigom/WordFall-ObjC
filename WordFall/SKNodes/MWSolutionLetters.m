@@ -11,6 +11,17 @@
 
 @implementation MWSolutionLetters
 
++ (MWSolutionLetters *)solutionLettersOfCount:(NSUInteger)count
+{
+    MWSolutionLetters *letters = [[MWSolutionLetters alloc] init];
+    
+    for (int i = 0; i < count; i++) {
+        [letters addItem:[[MWSolutionLetter alloc] init]];
+    }
+    
+    return letters;
+}
+
 - (MWSolutionLetter *)nextAvailableLetter
 {
     MWSolutionLetter *nextLetter = nil;
@@ -37,6 +48,13 @@
     }
     
     return has;
+}
+
+- (void)clearAllLettersAnimated:(BOOL)animated
+{
+    for (MWSolutionLetter *letter in items) {
+        [letter clearLetterAnimated:animated];
+    }
 }
 
 - (NSString *)word
