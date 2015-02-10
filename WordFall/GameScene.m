@@ -48,7 +48,7 @@
     }
 }
 
--(void)update:(CFTimeInterval)currentTime
+- (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
 }
