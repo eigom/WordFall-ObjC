@@ -34,6 +34,8 @@
 		1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */; };
 		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
 		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
+		1AA34B001A8AA8E20036AE8A /* MWSolutionLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */; };
+		1AA34B031A8AA9160036AE8A /* MWSolutionLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,10 @@
 		1AA0B31E1A8509CF0040FCE6 /* MWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWManager.m; sourceTree = "<group>"; };
 		1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWordManager.h; sourceTree = "<group>"; };
 		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
+		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetter.h; sourceTree = "<group>"; };
+		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetter.m; sourceTree = "<group>"; };
+		1AA34B011A8AA9160036AE8A /* MWSolutionLetters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetters.h; sourceTree = "<group>"; };
+		1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetters.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,10 @@
 				1A4AB29D1A8A0E17008B9F6E /* MWStream.m */,
 				1A4AB29F1A8A0E8B008B9F6E /* MWSolution.h */,
 				1A4AB2A01A8A0E8B008B9F6E /* MWSolution.m */,
+				1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetter.h */,
+				1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */,
+				1AA34B011A8AA9160036AE8A /* MWSolutionLetters.h */,
+				1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -388,6 +398,7 @@
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
 				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,
+				1AA34B031A8AA9160036AE8A /* MWSolutionLetters.m in Sources */,
 				1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */,
 				1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */,
 				1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */,
@@ -402,6 +413,7 @@
 				1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */,
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,
+				1AA34B001A8AA8E20036AE8A /* MWSolutionLetter.m in Sources */,
 				1AA07A921A762BA400722BEB /* main.m in Sources */,
 				1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */,
 			);

@@ -1,14 +1,13 @@
 //
-//  MWStream.m
+//  MWSolutionLetters.h
 //  WordFall
 //
 //  Created by eigo on 10/02/15.
 //  Copyright (c) 2015 eigo. All rights reserved.
 //
 
-#import "MWStream.h"
+#import "MWObjects.h"
 
-@implementation MWStream
-
+@interface MWSolutionLetters : MWObjects
 
 @end

@@ -8,6 +8,17 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MWSolution : SKNode
+@class MWWord;
+@class MWSolutionLetters;
+
+@interface MWSolution : SKNode {
+@private
+    MWSolutionLetters *letters;
+}
+
+@property (nonatomic, readonly) MWWord *word;
+
+- (void)setWord:(MWWord *)word animated:(BOOL)animated;
+- (void)revealLetter:(NSString *)letter animated:(BOOL)animated;
 
 @end

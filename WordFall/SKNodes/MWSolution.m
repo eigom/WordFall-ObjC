@@ -7,7 +7,29 @@
 //
 
 #import "MWSolution.h"
+#import "MWSolutionLetters.h"
 
 @implementation MWSolution
+
+- (id)init
+{
+    if ((self = [super init])) {
+        letters = [[MWSolutionLetters alloc] init];
+    }
+    
+    return self;
+}
+
+- (void)setWord:(MWWord *)word animated:(BOOL)animated
+{
+    _word = word;
+    
+    // add or remove letter boxes to/from existing (beginning or end), clear existing boxes
+}
+
+- (void)revealLetter:(NSString *)letter animated:(BOOL)animated
+{
+    
+}
 
 @end
