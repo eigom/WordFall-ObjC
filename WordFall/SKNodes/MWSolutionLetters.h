@@ -8,6 +8,13 @@
 
 #import "MWObjects.h"
 
+@class MWSolutionLetter;
+
 @interface MWSolutionLetters : MWObjects
+
+@property (nonatomic, readonly) NSString *word;
+
+- (MWSolutionLetter *)nextAvailableLetter;
+- (BOOL)hasMoreLetters;
 
 @end

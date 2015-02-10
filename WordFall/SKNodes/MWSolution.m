@@ -7,6 +7,7 @@
 //
 
 #import "MWSolution.h"
+#import "MWSolutionLetter.h"
 #import "MWSolutionLetters.h"
 
 @implementation MWSolution
@@ -29,7 +30,15 @@
 
 - (void)revealLetter:(NSString *)letter animated:(BOOL)animated
 {
+    MWSolutionLetter *nextLetter = [letters nextAvailableLetter];
+    [nextLetter setLetter:letter animated:animated];
     
+    //
+    // check if word formed
+    //
+    if (![letters hasMoreLetters]) {
+        self.wordFormed(letters.word);
+    }
 }
 
 @end

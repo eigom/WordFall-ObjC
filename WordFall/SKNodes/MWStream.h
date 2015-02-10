@@ -11,10 +11,12 @@
 @class MWStream;
 
 typedef void (^MWStreamMaxDistanceReached)(MWStream *stream);
+typedef void (^MWStreamLetterTouched)(MWStream *stream);
 
 @interface MWStream : SKNode
 
 @property (nonatomic, strong) NSString *letter;
+@property (nonatomic, copy) MWStreamLetterTouched letterTouched;
 @property (nonatomic, copy) MWStreamMaxDistanceReached maxDistanceReached;
 
 - (id)initWithLetter:(NSString *)letter;
