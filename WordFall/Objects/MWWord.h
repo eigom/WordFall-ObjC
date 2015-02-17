@@ -17,6 +17,9 @@
     NSString *word;
     MWWords *alternativeWords;
     MWDefinitions *definitions;
+    
+    NSMutableString *solution;
+    BOOL isSolution;
 }
 
 @property (nonatomic, readonly) NSNumber *wordID;
@@ -26,7 +29,11 @@
 
 - (id)initWithString:(NSString *)word;
 
-- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter;
+- (void)revealLetter:(NSString *)letter;
+//- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter;
+- (BOOL)isPartialSolution:(NSString *)aSolution;
+- (BOOL)canAppendSolutionLetter:(NSString *)letter;
+- (void)appendSolutionLetter:(NSString *)letter;
 - (BOOL)hasWord:(NSString *)word;
 - (MWWord *)wordForWord:(NSString *)word;
 
