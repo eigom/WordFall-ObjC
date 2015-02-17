@@ -34,6 +34,8 @@
 - (BOOL)isPartialSolution:(NSString *)aSolution;
 - (BOOL)canAppendSolutionLetter:(NSString *)letter;
 - (void)appendSolutionLetter:(NSString *)letter;
+- (BOOL)isSolved;
+- (MWWord *)solutionWord;
 - (BOOL)hasWord:(NSString *)word;
 - (MWWord *)wordForWord:(NSString *)word;
 

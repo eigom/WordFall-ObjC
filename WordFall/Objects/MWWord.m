@@ -115,6 +115,16 @@ static NSString *kPlaceholder = @"*";
     return index;
 }
 
+- (BOOL)isSolved
+{
+    return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
+}
+
+- (MWWord *)solutionWord
+{
+    return [[self partialSolutions] firstObject];
+}
+
 /*- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter
 {
     return [self hasWord:[partialWord stringByAppendingString:letter]];
