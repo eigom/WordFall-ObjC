@@ -12,7 +12,7 @@
 
 @implementation MWSolutionNode
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super init])) {
         letterNodes = [[MWObjects alloc] init];

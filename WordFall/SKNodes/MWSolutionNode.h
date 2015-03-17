@@ -16,6 +16,8 @@
     MWObjects *letterNodes;
 }
 
+- (id)initWithFrame:(CGRect)frame;
+
 - (void)setupForWordWithLetterCount:(NSInteger)letterCount animated:(BOOL)animated;
 - (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index animated:(BOOL)animated;
 
