@@ -1,14 +1,14 @@
 //
-//  MWSolutionLetter.m
+//  MWSolutionLetterNode.m
 //  WordFall
 //
 //  Created by eigo on 10/02/15.
 //  Copyright (c) 2015 eigo. All rights reserved.
 //
 
-#import "MWSolutionLetter.h"
+#import "MWSolutionLetterNode.h"
 
-@implementation MWSolutionLetter
+@implementation MWSolutionLetterNode
 
 - (void)setLetter:(NSString *)letter animated:(BOOL)animated
 {

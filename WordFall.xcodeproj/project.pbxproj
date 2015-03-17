@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A4AB29A1A88FB92008B9F6E /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1A4AB2991A88FB92008B9F6E /* words.sqlite */; };
-		1A4AB29E1A8A0E17008B9F6E /* MWStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB29D1A8A0E17008B9F6E /* MWStream.m */; };
-		1A4AB2A11A8A0E8B008B9F6E /* MWSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB2A01A8A0E8B008B9F6E /* MWSolution.m */; };
+		1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */; };
+		1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */; };
 		1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */; };
 		1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F101A84BA4100725FCF /* FMDatabaseAdditions.m */; };
 		1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F121A84BA4100725FCF /* FMDatabasePool.m */; };
@@ -34,8 +34,7 @@
 		1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */; };
 		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
 		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
-		1AA34B001A8AA8E20036AE8A /* MWSolutionLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */; };
-		1AA34B031A8AA9160036AE8A /* MWSolutionLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */; };
+		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,10 +49,10 @@
 
 /* Begin PBXFileReference section */
 		1A4AB2991A88FB92008B9F6E /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = words.sqlite; sourceTree = "<group>"; };
-		1A4AB29C1A8A0E17008B9F6E /* MWStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWStream.h; sourceTree = "<group>"; };
-		1A4AB29D1A8A0E17008B9F6E /* MWStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWStream.m; sourceTree = "<group>"; };
-		1A4AB29F1A8A0E8B008B9F6E /* MWSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolution.h; sourceTree = "<group>"; };
-		1A4AB2A01A8A0E8B008B9F6E /* MWSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolution.m; sourceTree = "<group>"; };
+		1A4AB29C1A8A0E17008B9F6E /* MWStreamNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWStreamNode.h; sourceTree = "<group>"; };
+		1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWStreamNode.m; sourceTree = "<group>"; };
+		1A4AB29F1A8A0E8B008B9F6E /* MWSolutionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionNode.h; sourceTree = "<group>"; };
+		1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionNode.m; sourceTree = "<group>"; };
 		1A6E2F0D1A84BA4100725FCF /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		1A6E2F0F1A84BA4100725FCF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -105,10 +104,8 @@
 		1AA0B31E1A8509CF0040FCE6 /* MWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWManager.m; sourceTree = "<group>"; };
 		1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWordManager.h; sourceTree = "<group>"; };
 		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
-		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetter.h; sourceTree = "<group>"; };
-		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetter.m; sourceTree = "<group>"; };
-		1AA34B011A8AA9160036AE8A /* MWSolutionLetters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetters.h; sourceTree = "<group>"; };
-		1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetters.m; sourceTree = "<group>"; };
+		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetterNode.h; sourceTree = "<group>"; };
+		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetterNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,14 +130,12 @@
 		1A4AB29B1A8A0888008B9F6E /* SKNodes */ = {
 			isa = PBXGroup;
 			children = (
-				1A4AB29C1A8A0E17008B9F6E /* MWStream.h */,
-				1A4AB29D1A8A0E17008B9F6E /* MWStream.m */,
-				1A4AB29F1A8A0E8B008B9F6E /* MWSolution.h */,
-				1A4AB2A01A8A0E8B008B9F6E /* MWSolution.m */,
-				1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetter.h */,
-				1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetter.m */,
-				1AA34B011A8AA9160036AE8A /* MWSolutionLetters.h */,
-				1AA34B021A8AA9160036AE8A /* MWSolutionLetters.m */,
+				1A4AB29C1A8A0E17008B9F6E /* MWStreamNode.h */,
+				1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */,
+				1A4AB29F1A8A0E8B008B9F6E /* MWSolutionNode.h */,
+				1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */,
+				1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */,
+				1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -398,7 +393,6 @@
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
 				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,
-				1AA34B031A8AA9160036AE8A /* MWSolutionLetters.m in Sources */,
 				1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */,
 				1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */,
 				1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */,
@@ -407,13 +401,13 @@
 				1AA0B3101A8507F70040FCE6 /* MWWord.m in Sources */,
 				1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */,
 				1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */,
-				1A4AB2A11A8A0E8B008B9F6E /* MWSolution.m in Sources */,
-				1A4AB29E1A8A0E17008B9F6E /* MWStream.m in Sources */,
+				1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */,
+				1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */,
 				1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */,
 				1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */,
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,
-				1AA34B001A8AA8E20036AE8A /* MWSolutionLetter.m in Sources */,
+				1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */,
 				1AA07A921A762BA400722BEB /* main.m in Sources */,
 				1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */,
 			);

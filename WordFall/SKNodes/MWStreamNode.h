@@ -1,5 +1,5 @@
 //
-//  MWStream.h
+//  MWStreamNode.h
 //  WordFall
 //
 //  Created by eigo on 10/02/15.
@@ -8,12 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@class MWStream;
+@class MWStreamNode;
 
-typedef void (^MWStreamMaxDistanceReached)(MWStream *stream);
-typedef void (^MWStreamLetterTouched)(MWStream *stream);
+typedef void (^MWStreamMaxDistanceReached)(MWStreamNode *stream);
+typedef void (^MWStreamLetterTouched)(MWStreamNode *stream);
 
-@interface MWStream : SKNode
+@interface MWStreamNode : SKNode
 
 @property (nonatomic, strong) NSString *letter;
 @property (nonatomic, copy) MWStreamLetterTouched letterTouched;

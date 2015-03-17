@@ -9,13 +9,17 @@
 #import "GameScene.h"
 #import "MWWordManager.h"
 #import "MWWord.h"
-#import "MWSolution.h"
+#import "MWSolutionNode.h"
 
 @implementation GameScene
 
 - (void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
+    
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    [self addChild:background];
+    
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
     myLabel.text = word.word;

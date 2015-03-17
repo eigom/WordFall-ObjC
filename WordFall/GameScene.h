@@ -9,12 +9,12 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class MWWord;
-@class MWSolution;
+@class MWSolutionNode;
 
 @interface GameScene : SKScene {
 @private
     MWWord *word;
-    MWSolution *solution;
+    MWSolutionNode *solution;
     UILabel *definitionLabel;
 }
 

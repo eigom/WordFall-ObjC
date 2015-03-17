@@ -1,5 +1,5 @@
 //
-//  MWSolutionLetter.h
+//  MWSolutionLetterNode.h
 //  WordFall
 //
 //  Created by eigo on 10/02/15.
@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MWSolutionLetter : SKNode
+@interface MWSolutionLetterNode : SKNode
 
 @property (nonatomic, readonly) NSString *letter;
 
