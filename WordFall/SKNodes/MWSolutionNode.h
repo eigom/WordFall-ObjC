@@ -18,7 +18,8 @@
 
 - (id)initWithFrame:(CGRect)frame;
 
-- (void)setupForWordWithLetterCount:(NSInteger)letterCount animated:(BOOL)animated;
-- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)setupForWordWithLetterCount:(NSInteger)letterCount duration:(CFTimeInterval)duration;
+- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index duration:(CFTimeInterval)duration;
+- (void)clearWithDuration:(CFTimeInterval)duration;
 
 @end

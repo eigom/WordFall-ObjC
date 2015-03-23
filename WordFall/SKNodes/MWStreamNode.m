@@ -28,7 +28,7 @@
 
 - (void)pullbackWithDuration:(CFTimeInterval)duration
 {
-    
+    // stop current animations
 }
 
 - (void)removeWithDuration:(CFTimeInterval)duration

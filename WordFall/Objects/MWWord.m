@@ -153,4 +153,9 @@ static NSString *kPlaceholder = @"*";
     return foundWord;
 }
 
+- (NSUInteger)letterCount
+{
+    return word.length;
+}
+
 @end

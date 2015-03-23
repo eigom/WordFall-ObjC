@@ -10,4 +10,7 @@
 
 @interface MWDefinitionNode : SKNode
 
+- (void)presentWithDuration:(CFTimeInterval)duration;
+- (void)dismissWithDuration:(CFTimeInterval)duration;
+
 @end

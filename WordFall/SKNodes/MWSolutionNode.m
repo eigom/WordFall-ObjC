@@ -21,17 +21,22 @@
     return self;
 }
 
-- (void)setupForWordWithLetterCount:(NSInteger)letterCount animated:(BOOL)animated
+- (void)setupForWordWithLetterCount:(NSInteger)letterCount duration:(CFTimeInterval)duration
 {
     // TODO
     // clear boxes
     // show/hide boxes from beginning/end to accommodate new word length
 }
 
-- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index animated:(BOOL)animated
+- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index duration:(CFTimeInterval)duration
 {
     MWSolutionLetterNode *nextLetter = [letterNodes itemAtIndex:index];
-    [nextLetter setLetter:letter animated:animated];
+    //[nextLetter setLetter:letter animated:animated];
+}
+
+- (void)clearWithDuration:(CFTimeInterval)duration
+{
+    
 }
 
 @end

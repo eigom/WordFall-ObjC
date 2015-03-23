@@ -10,4 +10,14 @@
 
 @implementation MWDefinitionNode
 
+- (void)presentWithDuration:(CFTimeInterval)duration
+{
+    
+}
+
+- (void)dismissWithDuration:(CFTimeInterval)duration
+{
+    
+}
+
 @end

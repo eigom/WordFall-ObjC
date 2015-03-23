@@ -30,6 +30,7 @@
 - (id)initWithString:(NSString *)word;
 
 - (NSArray *)shuffledLetters;
+- (NSUInteger)letterCount;
 - (void)revealLetter:(NSString *)letter;
 //- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter;
 - (BOOL)isPartialSolution:(NSString *)aSolution;

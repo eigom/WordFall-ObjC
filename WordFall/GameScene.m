@@ -11,6 +11,7 @@
 #import "MWWord.h"
 #import "MWSolutionNode.h"
 #import "MWStreamNode.h"
+#import "MWDefinitionNode.h"
 
 static NSTimeInterval const kSolvingTime = 60.0;
 static NSTimeInterval const kPullbackStreamsDuration = 1.5;
@@ -43,7 +44,6 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     //
     // setup scene with new word
     //
-    SKAction *delay = [SKAction waitForDuration:kPullbackStreamsDuration];
     SKAction *setupWithNextWord = [SKAction runBlock:^{
         word = [[MWWordManager sharedManager] nextWord];
         
@@ -51,7 +51,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
     }];
     
-    [self runAction:[SKAction sequence:@[delay, setupWithNextWord]]];
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamsDuration], setupWithNextWord]]];
 }
 
 #pragma Streams
@@ -97,24 +97,34 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    
+    [[self definition] presentWithDuration:duration];
 }
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration
 {
-    
+    [[self definition] dismissWithDuration:duration];
+}
+
+- (MWDefinitionNode *)definition
+{
+    return (MWDefinitionNode *)[self childNodeWithName:@"definition"];
 }
 
 #pragma Solution
 
 - (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
-    
+    [[self solution] setupForWordWithLetterCount:word.letterCount duration:duration];
 }
 
 - (void)clearSolutionWithDuration:(CFTimeInterval)duration
 {
-    
+    [[self solution] clearWithDuration:duration];
+}
+
+- (MWSolutionNode *)solution
+{
+    return (MWSolutionNode *)[self childNodeWithName:@"solution"];
 }
 
 #pragma Scene
@@ -140,9 +150,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     //
     maxStreamDistance = (self.frame.origin.y - self.frame.size.height) * 0.7;
     
-    // add definitions label
-    // determine solution node width and max letters it can hold,
-    // skip words that won't fit there
+    // TODO init scene nodes
 }
 
 /*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
