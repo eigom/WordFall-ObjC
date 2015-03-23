@@ -18,6 +18,8 @@ static NSString * const kFallActionKey = @"fallAction";
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame
 {
     if ((self = [super init])) {
+        self.position = CGPointMake(self.position.x, 0.0);
+        
         // create nodes
     }
     
@@ -26,8 +28,26 @@ static NSString * const kFallActionKey = @"fallAction";
 
 - (void)startFall
 {
-    // startup velocity for distance D, normal velocity after that
-    // max distance M - if reached then call block
+    SKAction *startupMovement = [SKAction moveBy:CGVectorMake(0.0, _startupMovementDistance) duration:_startupMovementDuration];
+    startupMovement.timingMode = SKActionTimingEaseInEaseOut;
+    
+    SKAction *normalMovement = [SKAction moveBy:CGVectorMake(0.0, _normalMovementDistance) duration:_normalMovementDuration];
+    normalMovement.timingMode = SKActionTimingLinear;
+    
+    SKAction *endReached = [SKAction runBlock:^{
+        if (_streamEndReached) {
+            _streamEndReached(self);
+        }
+    }];
+    
+    [self runAction:[SKAction sequence:@[startupMovement, normalMovement, endReached]]];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (_streamTouched) {
+        _streamTouched(self);
+    }
 }
 
 - (void)pullbackWithDuration:(CFTimeInterval)duration

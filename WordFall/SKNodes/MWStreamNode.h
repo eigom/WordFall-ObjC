@@ -20,10 +20,10 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 }
 
 @property (nonatomic, strong) NSString *letter;
-@property (nonatomic, assign) CGFloat startupVelocity;
-@property (nonatomic, assign) CGFloat startupDistance;
-@property (nonatomic, assign) CGFloat normalVelocity;
-@property (nonatomic, assign) CGFloat normalVelocityDistance;
+@property (nonatomic, assign) CGFloat startupMovementDistance;
+@property (nonatomic, assign) CGFloat startupMovementDuration;
+@property (nonatomic, assign) CGFloat normalMovementDistance;
+@property (nonatomic, assign) CGFloat normalMovementDuration;
 @property (nonatomic, copy) MWStreamTouched streamTouched;
 @property (nonatomic, copy) MWStreamEndReached streamEndReached;
 
