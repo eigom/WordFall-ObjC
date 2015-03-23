@@ -79,6 +79,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
         //
         [node setStreamTouched:^(MWStreamNode *node){
             //TODO
+            // check if next word, reveal it, check solved
         }];
         
         //
@@ -86,6 +87,9 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
         //
         [node setStreamEndReached:^(MWStreamNode *node){
             //TODO
+            // reveal letter
+            // check if need to reveal definition
+            // check if word solved
         }];
         
         [node startFall];
