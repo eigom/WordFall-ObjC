@@ -11,7 +11,7 @@
 
 static NSString * const kAnimatedLetterNodeName = @"animatedLetterNode";
 static NSString * const kLetterNodeName = @"letterNode";
-static NSString * const kFallActionKey = @"fallAction";
+static NSString * const kMovementActionKey = @"movementAction";
 
 @implementation MWStreamNode
 
@@ -40,7 +40,7 @@ static NSString * const kFallActionKey = @"fallAction";
         }
     }];
     
-    [self runAction:[SKAction sequence:@[startupMovement, normalMovement, endReached]]];
+    [self runAction:[SKAction sequence:@[startupMovement, normalMovement, endReached]] withKey:kMovementActionKey];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -55,7 +55,7 @@ static NSString * const kFallActionKey = @"fallAction";
     //
     // stop current fall
     //
-    [self removeActionForKey:kFallActionKey];
+    [self removeActionForKey:kMovementActionKey];
     
     //
     // move back to starting position

@@ -12,6 +12,7 @@
 #import "MWSolutionNode.h"
 #import "MWStreamNode.h"
 #import "MWDefinitionNode.h"
+#import "Random.h"
 
 static NSTimeInterval const kSolvingTime = 60.0;
 static NSTimeInterval const kPullbackStreamsDuration = 1.5;
@@ -58,15 +59,31 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 - (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
 {
+    const CGFloat kMinStartupMovementDistance = distance * 0.1;
+    const CGFloat kMaxStartupMovementDistance = distance * 0.5;
+    
     for (NSString *letter in [word shuffledLetters]) {
-        MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero];
+        MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero]; //TODO frame
         
-        // TODO setup velocities/distances
+        //
+        // setup velocities/distances
+        //
+        node.startupMovementDistance = [Random randomFloatBetween:kMinStartupMovementDistance and:kMaxStartupMovementDistance];
+        node.normalMovementDistance = distance - node.startupMovementDistance;
         
+        node.startupMovementDuration = (node.startupMovementDistance / distance) * duration;
+        node.normalMovementDuration = (node.normalMovementDuration / distance) * duration;
+        
+        //
+        // handle stream touch
+        //
         [node setStreamTouched:^(MWStreamNode *node){
             //TODO
         }];
         
+        //
+        // handle stream end
+        //
         [node setStreamEndReached:^(MWStreamNode *node){
             //TODO
         }];
