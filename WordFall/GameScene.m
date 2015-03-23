@@ -21,6 +21,9 @@ static NSTimeInterval const kDismissDefinitionDuration = 1.0;
 static NSTimeInterval const kSetupSolutionDuration = 1.0;
 static NSTimeInterval const kClearSolutionDuration = 1.0;
 
+static NSUInteger const kPhoneLetterSize = 30.0;
+static NSUInteger const kPadLetterSize = 40.0;
+
 @implementation GameScene
 
 #pragma Game
@@ -66,7 +69,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
         MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero]; //TODO frame
         
         //
-        // setup velocities/distances
+        // setup distances and durations
         //
         node.startupMovementDistance = [Random randomFloatBetween:kMinStartupMovementDistance and:kMaxStartupMovementDistance];
         node.normalMovementDistance = distance - node.startupMovementDistance;
@@ -174,10 +177,10 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     //
     // max word lengths that can fit on screen
     //
-    maxWordLength = 12;
+    maxWordLength = floor(self.frame.size.width / kPhoneLetterSize) - 40.0;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        maxWordLength = 20;
+        maxWordLength = floor(self.frame.size.width / kPadLetterSize) - 60.0;
     }
     
     // TODO init scene nodes

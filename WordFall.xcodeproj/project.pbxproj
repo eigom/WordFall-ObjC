@@ -37,6 +37,7 @@
 		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
 		1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */; };
 		1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EE1AC0965D00B10E49 /* Random.m */; };
+		1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinitionNode.m; sourceTree = "<group>"; };
 		1AA8C7ED1AC0965D00B10E49 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		1AA8C7EE1AC0965D00B10E49 /* Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Random.m; sourceTree = "<group>"; };
+		1AA8C7F01AC0CE8100B10E49 /* MWNextWordNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWNextWordNode.h; sourceTree = "<group>"; };
+		1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWNextWordNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */,
 				1A4AB29C1A8A0E17008B9F6E /* MWStreamNode.h */,
 				1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */,
+				1AA8C7F01AC0CE8100B10E49 /* MWNextWordNode.h */,
+				1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */,
 				1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */,
 				1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */,
+				1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */,
 				1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */,
 				1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */,
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
