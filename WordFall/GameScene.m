@@ -114,7 +114,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 - (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
-    [[self solution] setupForWordWithLetterCount:word.letterCount duration:duration];
+    [[self solution] setupForWordWithLetterCount:word.letterCount withDuration:duration];
 }
 
 - (void)clearSolutionWithDuration:(CFTimeInterval)duration

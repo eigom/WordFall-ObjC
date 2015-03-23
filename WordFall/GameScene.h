@@ -14,7 +14,6 @@
 @interface GameScene : SKScene {
 @private
     MWWord *word;
-    MWSolutionNode *solution;
     CGFloat maxStreamDistance;
 }
 

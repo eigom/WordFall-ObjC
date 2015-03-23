@@ -10,21 +10,20 @@
 
 @implementation MWSolutionLetterNode
 
-- (void)setLetter:(NSString *)letter animated:(BOOL)animated
+- (void)setVisibleWithDuration:(CFTimeInterval)duration
+{
+    
+}
+
+- (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration
 {
     _letter = letter;
-    
 }
 
-- (void)clearLetterAnimated:(BOOL)animated
-{
-    _letter = nil;
-    
-}
-
-- (void)setVisible:(BOOL)visible animated:(BOOL)animated
+- (void)removeWithDuration:(CFTimeInterval)duration
 {
     
 }
+
 
 @end

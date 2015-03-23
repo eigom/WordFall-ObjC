@@ -12,8 +12,8 @@
 
 @property (nonatomic, readonly) NSString *letter;
 
-- (void)setLetter:(NSString *)letter animated:(BOOL)animated;
-- (void)clearLetterAnimated:(BOOL)animated;
-- (void)setVisible:(BOOL)visible animated:(BOOL)animated;
+- (void)setVisibleWithDuration:(CFTimeInterval)duration;
+- (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration;
+- (void)removeWithDuration:(CFTimeInterval)duration;
 
 @end

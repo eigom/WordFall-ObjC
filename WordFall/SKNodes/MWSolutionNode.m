@@ -15,28 +15,32 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super init])) {
-        letterNodes = [[MWObjects alloc] init];
+        
     }
     
     return self;
 }
 
-- (void)setupForWordWithLetterCount:(NSInteger)letterCount duration:(CFTimeInterval)duration
+- (void)setupForWordWithLetterCount:(NSInteger)letterCount withDuration:(CFTimeInterval)duration
 {
     // TODO
+    // create solution letter nodes, set name to letter index
     // clear boxes
     // show/hide boxes from beginning/end to accommodate new word length
 }
 
-- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index duration:(CFTimeInterval)duration
+- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration
 {
-    MWSolutionLetterNode *nextLetter = [letterNodes itemAtIndex:index];
-    //[nextLetter setLetter:letter animated:animated];
+    MWSolutionLetterNode *node = (MWSolutionLetterNode *)[self childNodeWithName:[NSString stringWithFormat:@"%d", index]];
+    [node setLetter:letter withDuration:duration];
 }
 
 - (void)clearWithDuration:(CFTimeInterval)duration
 {
-    
+    [self enumerateChildNodesWithName:@"*" usingBlock:^(SKNode *node, BOOL *stop) {
+        MWSolutionLetterNode *letterNode = (MWSolutionLetterNode *)node;
+        [letterNode removeWithDuration:duration];
+    }];
 }
 
 @end
