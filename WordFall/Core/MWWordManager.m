@@ -35,14 +35,9 @@
     return self;
 }
 
-- (MWWord *)nextWord
+- (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength
 {
-    // TODO check different from current word
-    
-    NSNumber *nextWordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform(wordCount)];
-    MWWord *word = [[DBManager sharedManager] wordWithID:nextWordID];
-    
-    return word;
+    return [[DBManager sharedManager] wordWithMaxLength:maxLength andMaxWordID:wordCount];
 }
 
 @end

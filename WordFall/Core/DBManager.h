@@ -18,7 +18,7 @@
 
 + (DBManager *)sharedManager;
 
-- (MWWord *)wordWithID:(NSNumber *)wordID;
+- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength andMaxWordID:(NSUInteger)maxWordID;
 - (NSUInteger)wordCount;
 
 @end

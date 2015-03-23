@@ -19,6 +19,6 @@
 
 + (MWWordManager *)sharedManager;
 
-- (MWWord *)nextWord;
+- (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength;
 
 @end

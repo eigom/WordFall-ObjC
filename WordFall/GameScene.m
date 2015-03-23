@@ -45,7 +45,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     // setup scene with new word
     //
     SKAction *setupWithNextWord = [SKAction runBlock:^{
-        word = [[MWWordManager sharedManager] nextWord];
+        word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxWordLength];
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
@@ -149,6 +149,15 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     // max falling distance, letter reveal level
     //
     maxStreamDistance = (self.frame.origin.y - self.frame.size.height) * 0.7;
+    
+    //
+    // max word lengths that can fit on screen
+    //
+    maxWordLength = 12;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        maxWordLength = 20;
+    }
     
     // TODO init scene nodes
 }

@@ -40,6 +40,38 @@ static NSString * const kDBName = @"words";
     return self;
 }
 
+- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength andMaxWordID:(NSUInteger)maxWordID
+{
+    __block MWWord *word = nil;
+    
+    [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        while (YES) {
+            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform(maxWordID)];
+            
+            FMResultSet *rs = [db executeQuery:@"select * from word where id = ? and length(word.word) <= ?", wordID, [NSNumber numberWithInt:maxLength]];
+            
+            if ([rs next]) {
+                word = [[MWWord alloc] initFromResultSet:rs];
+                break;
+            }
+        }
+    }];
+    
+    if (word) {
+        //
+        // get definitions
+        //
+        word.definitions = [self definitionsForWord:word];
+        
+        //
+        // get alternative words
+        //
+        word.alternativeWords = [self altWordsForWord:word];
+    }
+    
+    return word;
+}
+
 - (MWWord *)wordWithID:(NSNumber *)wordID
 {
     __block MWWord *word = nil;
