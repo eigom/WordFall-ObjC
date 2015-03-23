@@ -15,6 +15,7 @@
 @private
     MWWord *word;
     MWSolutionNode *solution;
+    CGFloat maxStreamDistance;
 }
 
 @end

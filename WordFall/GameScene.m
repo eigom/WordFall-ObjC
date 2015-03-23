@@ -48,7 +48,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
         word = [[MWWordManager sharedManager] nextWord];
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
-        [self startStreamsWithDuration:kSolvingTime];
+        [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
     }];
     
     [self runAction:[SKAction sequence:@[delay, setupWithNextWord]]];
@@ -56,12 +56,26 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 #pragma Streams
 
-- (void)startStreamsWithDuration:(NSTimeInterval)duration
+- (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
 {
-    
+    for (NSString *letter in [word shuffledLetters]) {
+        MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero];
+        
+        // TODO setup velocities/distances
+        
+        [node setStreamTouched:^(MWStreamNode *node){
+            //TODO
+        }];
+        
+        [node setStreamEndReached:^(MWStreamNode *node){
+            //TODO
+        }];
+        
+        [node startFall];
+    }
 }
 
-- (void)pullbackStreamsWithDuration:(NSTimeInterval)duration
+- (void)pullbackStreamsWithDuration:(CFTimeInterval)duration
 {
     for (MWStreamNode *node in [self streams]) {
         [node pullbackWithDuration:duration];
@@ -81,24 +95,24 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 #pragma Definition
 
-- (void)presentDefinitionWithDuration:(NSTimeInterval)duration
+- (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
     
 }
 
-- (void)dismissDefinitionWithDuration:(NSTimeInterval)duration
+- (void)dismissDefinitionWithDuration:(CFTimeInterval)duration
 {
     
 }
 
 #pragma Solution
 
-- (void)setupSolutionWithDuration:(NSTimeInterval)duration
+- (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
     
 }
 
-- (void)clearSolutionWithDuration:(NSTimeInterval)duration
+- (void)clearSolutionWithDuration:(CFTimeInterval)duration
 {
     
 }
@@ -107,7 +121,7 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 - (void)didMoveToView:(SKView *)view
 {
-    /* Setup your scene here */
+    /* Setup scene */
     
     SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
     [self addChild:background];
@@ -121,31 +135,23 @@ static NSTimeInterval const kClearSolutionDuration = 1.0;
     
     [self addChild:myLabel];
     
+    //
+    // max falling distance, letter reveal level
+    //
+    maxStreamDistance = (self.frame.origin.y - self.frame.size.height) * 0.7;
+    
     // add definitions label
     // determine solution node width and max letters it can hold,
     // skip words that won't fit there
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+/*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /* Called when a touch begins */
-    
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.xScale = 0.5;
-        sprite.yScale = 0.5;
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
     }
-}
+}*/
 
 - (void)update:(CFTimeInterval)currentTime
 {

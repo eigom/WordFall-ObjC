@@ -20,10 +20,20 @@
     return self;
 }
 
-- (void)startFallWithVelocity:(CGFloat)startupVelocity forDistance:(CGFloat)startupDistance normalVelocity:(CGFloat)normalVelocity forDistance:(CGFloat)normalVelocityDistance
+- (void)startFall
 {
     // startup velocity for distance D, normal velocity after that
     // max distance M - if reached then call block
+}
+
+- (void)pullbackWithDuration:(CFTimeInterval)duration
+{
+    
+}
+
+- (void)removeWithDuration:(CFTimeInterval)duration
+{
+    
 }
 
 - (void)pause

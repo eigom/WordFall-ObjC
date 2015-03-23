@@ -29,6 +29,7 @@
 
 - (id)initWithString:(NSString *)word;
 
+- (NSArray *)shuffledLetters;
 - (void)revealLetter:(NSString *)letter;
 //- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter;
 - (BOOL)isPartialSolution:(NSString *)aSolution;
