@@ -15,7 +15,6 @@
 @private
     MWWord *word;
     MWSolutionNode *solution;
-    UILabel *definitionLabel;
 }
 
 @end

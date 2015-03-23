@@ -11,8 +11,8 @@
 @class MWStreamNode;
 @class MWObjects;
 
-typedef void (^MWStreamMaxDistanceReached)(MWStreamNode *stream);
-typedef void (^MWStreamLetterTouched)(MWStreamNode *stream);
+typedef void (^MWStreamEndReached)(MWStreamNode *stream);
+typedef void (^MWStreamTouched)(MWStreamNode *stream);
 
 @interface MWStreamNode : SKNode {
 @private
@@ -21,11 +21,14 @@ typedef void (^MWStreamLetterTouched)(MWStreamNode *stream);
 }
 
 @property (nonatomic, strong) NSString *letter;
-@property (nonatomic, copy) MWStreamLetterTouched letterTouched;
-@property (nonatomic, copy) MWStreamMaxDistanceReached maxDistanceReached;
+@property (nonatomic, copy) MWStreamTouched streamTouched;
+@property (nonatomic, copy) MWStreamEndReached streamEndReached;
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame;
 
 - (void)startFallWithVelocity:(CGFloat)startupVelocity forDistance:(CGFloat)startupDistance normalVelocity:(CGFloat)normalVelocity forDistance:(CGFloat)normalVelocityDistance;
+
+- (void)pullbackWithDuration:(NSTimeInterval)duration;
+- (void)removeAnimated:(BOOL)animated;
 
 @end

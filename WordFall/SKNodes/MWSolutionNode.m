@@ -23,7 +23,9 @@
 
 - (void)setupForWordWithLetterCount:(NSInteger)letterCount animated:(BOOL)animated
 {
-    // TODO show/hide boxes from beginning/end to accommodate new word length
+    // TODO
+    // clear boxes
+    // show/hide boxes from beginning/end to accommodate new word length
 }
 
 - (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index animated:(BOOL)animated

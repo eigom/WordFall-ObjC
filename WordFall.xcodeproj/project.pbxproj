@@ -35,6 +35,7 @@
 		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
 		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
 		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
+		1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
 		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetterNode.h; sourceTree = "<group>"; };
 		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetterNode.m; sourceTree = "<group>"; };
+		1AA8C7E91AC0576100B10E49 /* MWDefinitionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinitionNode.h; sourceTree = "<group>"; };
+		1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinitionNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +133,14 @@
 		1A4AB29B1A8A0888008B9F6E /* SKNodes */ = {
 			isa = PBXGroup;
 			children = (
-				1A4AB29C1A8A0E17008B9F6E /* MWStreamNode.h */,
-				1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */,
-				1A4AB29F1A8A0E8B008B9F6E /* MWSolutionNode.h */,
-				1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */,
+				1AA8C7E91AC0576100B10E49 /* MWDefinitionNode.h */,
+				1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */,
 				1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */,
 				1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */,
+				1A4AB29F1A8A0E8B008B9F6E /* MWSolutionNode.h */,
+				1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */,
+				1A4AB29C1A8A0E17008B9F6E /* MWStreamNode.h */,
+				1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */,
 				1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */,
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,

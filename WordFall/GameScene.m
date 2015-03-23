@@ -10,8 +10,100 @@
 #import "MWWordManager.h"
 #import "MWWord.h"
 #import "MWSolutionNode.h"
+#import "MWStreamNode.h"
+
+static NSTimeInterval const kSolvingTime = 60.0;
+static NSTimeInterval const kPullbackStreamsDuration = 1.5;
+static NSTimeInterval const kPresentDefinitionDuration = 1.0;
+static NSTimeInterval const kDismissDefinitionDuration = 1.0;
+static NSTimeInterval const kSetupSolutionDuration = 1.0;
+static NSTimeInterval const kClearSolutionDuration = 1.0;
 
 @implementation GameScene
+
+#pragma Game
+
+- (void)playWithNextWordAnimated:(BOOL)animated
+{
+    //
+    // pullback active streams
+    //
+    [self pullbackStreamsWithDuration:kPullbackStreamsDuration];
+    
+    //
+    // dismiss definition
+    //
+    [self dismissDefinitionWithDuration:kDismissDefinitionDuration];
+    
+    //
+    // clear solution
+    //
+    [self clearSolutionWithDuration:kClearSolutionDuration];
+    
+    //
+    // setup scene with new word
+    //
+    SKAction *delay = [SKAction waitForDuration:kPullbackStreamsDuration];
+    SKAction *setupWithNextWord = [SKAction runBlock:^{
+        word = [[MWWordManager sharedManager] nextWord];
+        
+        [self setupSolutionWithDuration:kSetupSolutionDuration];
+        [self startStreamsWithDuration:kSolvingTime];
+    }];
+    
+    [self runAction:[SKAction sequence:@[delay, setupWithNextWord]]];
+}
+
+#pragma Streams
+
+- (void)startStreamsWithDuration:(NSTimeInterval)duration
+{
+    
+}
+
+- (void)pullbackStreamsWithDuration:(NSTimeInterval)duration
+{
+    for (MWStreamNode *node in [self streams]) {
+        [node pullbackWithDuration:duration];
+    }
+}
+
+- (NSArray *)streams
+{
+    NSMutableArray *nodes = [NSMutableArray array];
+    
+    [self enumerateChildNodesWithName:@"stream" usingBlock:^(SKNode *node, BOOL *stop) {
+        [nodes addObject:node];
+    }];
+    
+    return nodes;
+}
+
+#pragma Definition
+
+- (void)presentDefinitionWithDuration:(NSTimeInterval)duration
+{
+    
+}
+
+- (void)dismissDefinitionWithDuration:(NSTimeInterval)duration
+{
+    
+}
+
+#pragma Solution
+
+- (void)setupSolutionWithDuration:(NSTimeInterval)duration
+{
+    
+}
+
+- (void)clearSolutionWithDuration:(NSTimeInterval)duration
+{
+    
+}
+
+#pragma Scene
 
 - (void)didMoveToView:(SKView *)view
 {
@@ -58,23 +150,6 @@
 - (void)update:(CFTimeInterval)currentTime
 {
     /* Called before each frame is rendered */
-}
-
-- (void)playWithNextWordAnimated:(BOOL)animated
-{
-    word = [[MWWordManager sharedManager] nextWord];
-    
-    [solution setWord:word animated:YES];
-}
-
-- (void)showDefinitionAnimated:(BOOL)animated
-{
-    
-}
-
-- (void)hideDefinitionAnimated:(BOOL)animated
-{
-    
 }
 
 @end
