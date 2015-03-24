@@ -64,8 +64,8 @@ static NSUInteger const kPadLetterSize = 40.0;
 
 - (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
 {
-    const CGFloat kMinStartupMovementDistance = distance * 0.1;
-    const CGFloat kMaxStartupMovementDistance = distance * 0.5;
+    const CGFloat kMinStartupMovementDistance = self.frame.size.height - (distance * 0.1);
+    const CGFloat kMaxStartupMovementDistance = self.frame.size.height - (distance * 0.5);
     
     for (NSString *letter in [word shuffledLetters]) {
         MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero]; //TODO frame
@@ -186,35 +186,55 @@ static NSUInteger const kPadLetterSize = 40.0;
 
 - (void)didMoveToView:(SKView *)view
 {
-    /* Setup scene */
-    
+    //
+    // add background image
+    //
     SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
-    [self addChild:background];
-    
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    
-    myLabel.text = word.word;
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
-    
-    [self addChild:myLabel];
+    //[self addChild:background];
     
     //
     // max falling distance, letter reveal level
     //
-    maxStreamDistance = (self.frame.origin.y - self.frame.size.height) * 0.7;
+    maxStreamDistance = self.frame.size.height * 0.6;
     
     //
     // max word lengths that can fit on screen
     //
-    maxWordLength = floor(self.frame.size.width / kPhoneLetterSize) - 40.0;
-    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         maxWordLength = floor(self.frame.size.width / kPadLetterSize) - 60.0;
+    } else {
+        maxWordLength = floor(self.frame.size.width / kPhoneLetterSize) - 40.0;
     }
     
+    //
+    // draw reveal line
+    //
+    [self drawRevealLine];
+    
     // TODO init scene nodes
+}
+
+- (void)drawRevealLine
+{
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance);
+    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance);
+    [path moveToPoint:point1];
+    [path addLineToPoint:point2];
+    
+    CGFloat pattern[2];
+    pattern[0] = 6.0;
+    pattern[1] = 6.0;
+    CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
+    
+    SKShapeNode *node = [SKShapeNode node];
+    node.path = dashed;
+    node.fillColor = [UIColor yellowColor];
+    node.lineWidth = 1.0;
+    //node.glowWidth = 0.5;
+    [self addChild:node];
+    
+    CGPathRelease(dashed);
 }
 
 /*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

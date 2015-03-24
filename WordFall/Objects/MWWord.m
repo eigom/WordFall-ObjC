@@ -115,10 +115,13 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 - (NSUInteger)revealLetter:(NSString *)letter
 {
+    NSUInteger index = 0;
     
     revealedLetterCount++;
     
     [self filterSolutions];
+    
+    return index;
 }
 
 - (BOOL)isSolved
@@ -145,7 +148,7 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 - (void)filterSolutions
 {
-    
+    //TODO
 }
 
 - (NSArray *)solutionWords
