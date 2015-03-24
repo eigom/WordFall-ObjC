@@ -45,7 +45,17 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 - (NSArray *)shuffledLetters
 {
+    NSMutableString *shuffledLetters = [[NSMutableString alloc] initWithString:self.word];
     
+    for (int i = 0; i < shuffledLetters.length; i++) {
+        NSUInteger j = arc4random_uniform(shuffledLetters.length);
+        
+        NSString *temp = [shuffledLetters substringWithRange:NSMakeRange(i, 1)];
+        [shuffledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffledLetters substringWithRange:NSMakeRange(j, 1)]];
+        [shuffledLetters replaceCharactersInRange:NSMakeRange(j, 1) withString:temp];
+    }
+    
+    return [shuffledLetters componentsSeparatedByString:@""];
 }
 
 - (NSUInteger)letterCount
