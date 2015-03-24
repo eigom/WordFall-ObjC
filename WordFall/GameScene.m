@@ -12,6 +12,7 @@
 #import "MWSolutionNode.h"
 #import "MWStreamNode.h"
 #import "MWDefinitionNode.h"
+#import "MWNextWordNode.h"
 #import "Random.h"
 
 static CFTimeInterval const kSolvingTime = 60.0;
@@ -211,7 +212,14 @@ static NSUInteger const kPadLetterSize = 40.0;
     //
     [self drawRevealLine];
     
-    // TODO init scene nodes
+    //
+    // next word
+    //
+    MWNextWordNode *nextWord = [[MWNextWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
+    [nextWord setNodeTouched:^(MWNextWordNode *node){
+        NSLog(@"Next word");
+    }];
+    [self addChild:nextWord];
 }
 
 - (void)drawRevealLine

@@ -10,10 +10,12 @@
 
 @class MWNextWordNode;
 
-typedef void (^MWNextWordNodeTouched)(MWNextWordNode *stream);
+typedef void (^MWNextWordNodeTouched)(MWNextWordNode *node);
 
 @interface MWNextWordNode : SKNode
 
 @property (nonatomic, copy) MWNextWordNodeTouched nodeTouched;
+
+- (id)initWithFrame:(CGRect)frame;
 
 @end

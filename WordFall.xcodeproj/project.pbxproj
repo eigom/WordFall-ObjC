@@ -34,6 +34,8 @@
 		1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */; };
 		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
 		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
+		1AA33E4D1AC1FB56002B29B5 /* MWPurchaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */; };
+		1AA33E501AC1FB69002B29B5 /* MWSolveWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */; };
 		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
 		1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */; };
 		1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EE1AC0965D00B10E49 /* Random.m */; };
@@ -107,6 +109,10 @@
 		1AA0B31E1A8509CF0040FCE6 /* MWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWManager.m; sourceTree = "<group>"; };
 		1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWordManager.h; sourceTree = "<group>"; };
 		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
+		1AA33E4B1AC1FB56002B29B5 /* MWPurchaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPurchaseNode.h; sourceTree = "<group>"; };
+		1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPurchaseNode.m; sourceTree = "<group>"; };
+		1AA33E4E1AC1FB69002B29B5 /* MWSolveWordNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolveWordNode.h; sourceTree = "<group>"; };
+		1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolveWordNode.m; sourceTree = "<group>"; };
 		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetterNode.h; sourceTree = "<group>"; };
 		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetterNode.m; sourceTree = "<group>"; };
 		1AA8C7E91AC0576100B10E49 /* MWDefinitionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinitionNode.h; sourceTree = "<group>"; };
@@ -149,6 +155,10 @@
 				1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */,
 				1AA8C7F01AC0CE8100B10E49 /* MWNextWordNode.h */,
 				1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */,
+				1AA33E4B1AC1FB56002B29B5 /* MWPurchaseNode.h */,
+				1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */,
+				1AA33E4E1AC1FB69002B29B5 /* MWSolveWordNode.h */,
+				1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -415,6 +425,7 @@
 				1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */,
 				1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */,
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
+				1AA33E501AC1FB69002B29B5 /* MWSolveWordNode.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
 				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,
 				1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */,
@@ -423,6 +434,7 @@
 				1AA0B3191A85099A0040FCE6 /* MWDefinition.m in Sources */,
 				1AA07A981A762BA400722BEB /* GameScene.m in Sources */,
 				1AA0B3101A8507F70040FCE6 /* MWWord.m in Sources */,
+				1AA33E4D1AC1FB56002B29B5 /* MWPurchaseNode.m in Sources */,
 				1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */,
 				1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */,
 				1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */,
