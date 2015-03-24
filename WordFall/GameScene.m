@@ -14,12 +14,14 @@
 #import "MWDefinitionNode.h"
 #import "Random.h"
 
-static NSTimeInterval const kSolvingTime = 60.0;
-static NSTimeInterval const kPullbackStreamsDuration = 1.5;
-static NSTimeInterval const kPresentDefinitionDuration = 1.0;
-static NSTimeInterval const kDismissDefinitionDuration = 1.0;
-static NSTimeInterval const kSetupSolutionDuration = 1.0;
-static NSTimeInterval const kClearSolutionDuration = 1.0;
+static CFTimeInterval const kSolvingTime = 60.0;
+static CFTimeInterval const kPullbackStreamDuration = 1.5;
+static CFTimeInterval const kRemoveStreamDuration = 1.5;
+static CFTimeInterval const kPresentDefinitionDuration = 1.0;
+static CFTimeInterval const kDismissDefinitionDuration = 1.0;
+static CFTimeInterval const kSetupSolutionDuration = 1.0;
+static CFTimeInterval const kClearSolutionDuration = 1.0;
+static CFTimeInterval const kRevealLetterDuration = 1.0;
 
 static NSUInteger const kPhoneLetterSize = 30.0;
 static NSUInteger const kPadLetterSize = 40.0;
@@ -33,7 +35,7 @@ static NSUInteger const kPadLetterSize = 40.0;
     //
     // pullback active streams
     //
-    [self pullbackStreamsWithDuration:kPullbackStreamsDuration];
+    [self pullbackStreamsWithDuration:kPullbackStreamDuration];
     
     //
     // dismiss definition
@@ -55,7 +57,7 @@ static NSUInteger const kPadLetterSize = 40.0;
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
     }];
     
-    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamsDuration], setupWithNextWord]]];
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord]]];
 }
 
 #pragma Streams
@@ -81,18 +83,45 @@ static NSUInteger const kPadLetterSize = 40.0;
         // handle stream touch
         //
         [node setStreamTouched:^(MWStreamNode *node){
-            //TODO
-            // check if next word, reveal it, check solved
+            //
+            // check if next word
+            //
+            if ([word isNextLetter:node.letter]) {
+                //
+                // set letter
+                //
+                NSUInteger index = [word setNextLetter:node.letter];
+                [[self solution] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+                
+                //
+                // remove stream
+                //
+                [node removeWithDuration:kRemoveStreamDuration];
+            }
         }];
         
         //
         // handle stream end
         //
         [node setStreamEndReached:^(MWStreamNode *node){
-            //TODO
+            //
             // reveal letter
+            //
+             NSUInteger index = [word revealLetter:node.letter];
+            [[self solution] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+            
+            //
             // check if need to reveal definition
-            // check if word solved
+            //
+            if (word.shouldRevealDefinition) {
+                [word keepFirstSolution]; // pick first partially matching word as solution
+                [self presentDefinitionWithDuration:kPresentDefinitionDuration];
+            }
+            
+            //
+            // remove stream
+            //
+            [node removeWithDuration:kRemoveStreamDuration];
         }];
         
         [node startFall];
@@ -121,7 +150,7 @@ static NSUInteger const kPadLetterSize = 40.0;
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    [[self definition] presentWithDuration:duration];
+    [[self definition] presentDefinitionOfWord:word.solvedWord withDuration:duration];
 }
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration

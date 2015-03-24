@@ -8,9 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+@class MWWord;
+
 @interface MWDefinitionNode : SKNode
 
-- (void)presentWithDuration:(CFTimeInterval)duration;
+- (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration;
 - (void)dismissWithDuration:(CFTimeInterval)duration;
 
 @end

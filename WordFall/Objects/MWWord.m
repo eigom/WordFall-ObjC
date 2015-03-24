@@ -26,6 +26,8 @@ static NSString *kPlaceholder = @"*";
         
         solution = [NSMutableString stringWithString:[@"" stringByPaddingToLength:word.length withString:kPlaceholder startingAtIndex:0]];
         isSolution = YES;
+        
+        revealedLetterCount = 0;
     }
     
     return self;
@@ -40,14 +42,60 @@ static NSString *kPlaceholder = @"*";
     return self;
 }
 
-- (void)revealLetter:(NSString *)letter
+- (NSArray *)shuffledLetters
 {
-    for (MWWord *aWord in [self partialSolutions]) {
-        
-    }
+    
 }
 
-- (NSArray *)partialSolutions
+- (NSUInteger)letterCount
+{
+    return word.length;
+}
+
+- (BOOL)isNextLetter:(NSString *)letter
+{
+    
+}
+
+- (NSUInteger)setNextLetter:(NSString *)letter
+{
+    
+}
+
+- (BOOL)shouldRevealDefinition
+{
+    
+}
+
+- (void)keepFirstSolution
+{
+    
+}
+
+- (NSUInteger)revealLetter:(NSString *)letter
+{
+    
+    revealedLetterCount++;
+    
+    [self filterSolutions];
+}
+
+- (BOOL)isSolved
+{
+    return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
+}
+
+- (MWWord *)solvedWord
+{
+    
+}
+
+- (void)filterSolutions
+{
+    
+}
+
+/*- (NSArray *)partialSolutions
 {
     NSMutableArray *solutions = [NSMutableArray array];
     
@@ -125,11 +173,6 @@ static NSString *kPlaceholder = @"*";
     return [[self partialSolutions] firstObject];
 }
 
-/*- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter
-{
-    return [self hasWord:[partialWord stringByAppendingString:letter]];
-}*/
-
 - (BOOL)hasWord:(NSString *)aWord
 {
     return ([self wordForWord:aWord] != nil);
@@ -156,6 +199,6 @@ static NSString *kPlaceholder = @"*";
 - (NSUInteger)letterCount
 {
     return word.length;
-}
+}*/
 
 @end

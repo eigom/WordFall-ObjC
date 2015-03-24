@@ -10,7 +10,7 @@
 
 @implementation MWDefinitionNode
 
-- (void)presentWithDuration:(CFTimeInterval)duration
+- (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration
 {
     
 }

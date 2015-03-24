@@ -18,6 +18,7 @@
     MWWords *alternativeWords;
     MWDefinitions *definitions;
     
+    NSUInteger revealedLetterCount;
     NSMutableString *solution;
     BOOL isSolution;
 }
@@ -31,14 +32,13 @@
 
 - (NSArray *)shuffledLetters;
 - (NSUInteger)letterCount;
-- (void)revealLetter:(NSString *)letter;
-//- (BOOL)hasWord:(NSString *)partialWord withAppendedLetter:(NSString *)letter;
-- (BOOL)isPartialSolution:(NSString *)aSolution;
-- (BOOL)canAppendSolutionLetter:(NSString *)letter;
-- (void)appendSolutionLetter:(NSString *)letter;
+- (NSUInteger)revealLetter:(NSString *)letter;
+- (BOOL)isNextLetter:(NSString *)letter;
+- (NSUInteger)setNextLetter:(NSString *)letter;
+- (BOOL)shouldRevealDefinition;
+- (void)keepFirstSolution;
 - (BOOL)isSolved;
-- (MWWord *)solutionWord;
-- (BOOL)hasWord:(NSString *)word;
-- (MWWord *)wordForWord:(NSString *)word;
+- (MWWord *)solvedWord;
+
 
 @end
