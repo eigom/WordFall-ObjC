@@ -193,8 +193,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     //
     // add background image
     //
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
-    //[self addChild:background];
+    //[self addBackgroundNode];
     
     //
     // max falling distance, letter reveal level
@@ -232,6 +231,12 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     // next word
     //
     [self addNextWordNode];
+}
+
+- (void)addBackgroundNode
+{
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    [self addChild:background];
 }
 
 - (void)addSolutionArea
