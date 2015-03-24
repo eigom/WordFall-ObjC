@@ -54,7 +54,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     // setup scene with new word
     //
     SKAction *setupWithNextWord = [SKAction runBlock:^{
-        word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxWordLength];
+        word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxLetterCount];
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
@@ -201,13 +201,17 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     maxStreamDistance = self.frame.size.height * 0.6;
     
     //
+    // solution area
+    //
+    CGFloat solutionAreaWidth = floor(self.frame.size.width / [self solutionLetterSize]) * [self solutionLetterSize] - 4*[self solutionLetterSize]; // left/right gap of 4 letter sizes
+    CGRect solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
+    MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
+    [self addChild:solutionNode];
+    
+    //
     // max word lengths that can fit on screen
     //
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        maxWordLength = floor(self.frame.size.width / kPadSolutionLetterSize) - 60.0;
-    } else {
-        maxWordLength = floor(self.frame.size.width / kPhoneSolutionLetterSize) - 40.0;
-    }
+    maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize];
     
     //
     // draw reveal line
@@ -220,7 +224,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     if ([MWPurchaseManager sharedManager].isPurchased) {
         
     } else {
-        MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
+        MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
         [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
             
         }];
@@ -230,11 +234,11 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     //
     // next word
     //
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
         [self playWithNextWord];
     }];
-    //[self addChild:nextWordNode];
+    [self addChild:nextWordNode];
 }
 
 - (void)drawRevealLine
@@ -258,6 +262,15 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     [self addChild:node];
     
     CGPathRelease(dashed);
+}
+
+- (CGFloat)solutionLetterSize
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadSolutionLetterSize;
+    } else {
+        return kPhoneSolutionLetterSize;
+    }
 }
 
 /*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -17,7 +17,7 @@
         
         SKLabelNode *label1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
         label1.text = @"Auto-solve words";
-        label1.fontSize = 14.0;
+        label1.fontSize = 13.0;
         label1.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         label1.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label1.userInteractionEnabled = NO;
@@ -27,7 +27,7 @@
         
         SKLabelNode *label2 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
         label2.text = @"+ remove ads";
-        label2.fontSize = 12.0;
+        label2.fontSize = 11.0;
         label2.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         label2.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label2.userInteractionEnabled = NO;

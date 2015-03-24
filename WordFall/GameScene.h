@@ -15,7 +15,7 @@
 @private
     MWWord *word;
     CGFloat maxStreamDistance;
-    NSUInteger maxWordLength;
+    NSUInteger maxLetterCount;
 }
 
 @end
