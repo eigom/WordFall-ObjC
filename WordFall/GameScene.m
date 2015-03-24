@@ -13,7 +13,9 @@
 #import "MWStreamNode.h"
 #import "MWDefinitionNode.h"
 #import "MWNextWordNode.h"
+#import "MWPurchaseNode.h"
 #import "Random.h"
+#import "MWPurchaseManager.h"
 
 static CFTimeInterval const kSolvingTime = 60.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
@@ -24,14 +26,14 @@ static CFTimeInterval const kSetupSolutionDuration = 1.0;
 static CFTimeInterval const kClearSolutionDuration = 1.0;
 static CFTimeInterval const kRevealLetterDuration = 1.0;
 
-static NSUInteger const kPhoneLetterSize = 30.0;
-static NSUInteger const kPadLetterSize = 40.0;
+static NSUInteger const kPhoneSolutionLetterSize = 30.0;
+static NSUInteger const kPadSolutionLetterSize = 40.0;
 
 @implementation GameScene
 
 #pragma Game
 
-- (void)playWithNextWordAnimated:(BOOL)animated
+- (void)playWithNextWord
 {
     //
     // pullback active streams
@@ -202,9 +204,9 @@ static NSUInteger const kPadLetterSize = 40.0;
     // max word lengths that can fit on screen
     //
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        maxWordLength = floor(self.frame.size.width / kPadLetterSize) - 60.0;
+        maxWordLength = floor(self.frame.size.width / kPadSolutionLetterSize) - 60.0;
     } else {
-        maxWordLength = floor(self.frame.size.width / kPhoneLetterSize) - 40.0;
+        maxWordLength = floor(self.frame.size.width / kPhoneSolutionLetterSize) - 40.0;
     }
     
     //
@@ -213,13 +215,26 @@ static NSUInteger const kPadLetterSize = 40.0;
     [self drawRevealLine];
     
     //
+    // purchase/solve node
+    //
+    if ([MWPurchaseManager sharedManager].isPurchased) {
+        
+    } else {
+        MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
+        [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
+            
+        }];
+        [self addChild:purchaseNode];
+    }
+    
+    //
     // next word
     //
-    MWNextWordNode *nextWord = [[MWNextWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
-    [nextWord setNodeTouched:^(MWNextWordNode *node){
-        NSLog(@"Next word");
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 50.0)];
+    [nextWordNode setNodeTouched:^(MWNextWordNode *node){
+        [self playWithNextWord];
     }];
-    [self addChild:nextWord];
+    //[self addChild:nextWordNode];
 }
 
 - (void)drawRevealLine
