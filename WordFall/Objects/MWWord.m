@@ -11,6 +11,7 @@
 #import "MWDefinitions.h"
 
 static NSString *kPlaceholder = @"*";
+static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 @implementation MWWord
 
@@ -25,7 +26,7 @@ static NSString *kPlaceholder = @"*";
         word = aWord;
         
         solution = [NSMutableString stringWithString:[@"" stringByPaddingToLength:word.length withString:kPlaceholder startingAtIndex:0]];
-        isSolution = YES;
+        _isSolution = YES;
         
         revealedLetterCount = 0;
     }
@@ -54,22 +55,52 @@ static NSString *kPlaceholder = @"*";
 
 - (BOOL)isNextLetter:(NSString *)letter
 {
+    BOOL isNext = NO;
+    NSUInteger index = [solution rangeOfString:kPlaceholder].location;
     
+    for (MWWord *aWord in [self solutionWords]) {
+        if ([[aWord.word substringWithRange:NSMakeRange(index, 0)] isEqualToString:letter]) {
+            isNext = YES;
+            break;
+        }
+    }
+    
+    return isNext;
 }
 
 - (NSUInteger)setNextLetter:(NSString *)letter
 {
+    NSUInteger index = [solution rangeOfString:kPlaceholder].location;
+    [solution replaceCharactersInRange:NSMakeRange(index, 1) withString:letter];
     
+    [self filterSolutions];
+    
+    return index;
 }
 
 - (BOOL)shouldRevealDefinition
 {
-    
+    return (1.0 / self.letterCount) * revealedLetterCount >= kRevealDefinitionLevel;
 }
 
 - (void)keepFirstSolution
 {
+    BOOL found = NO;
+    NSArray *solutionWords = [self solutionWords];
     
+    //
+    // set first partially matching word as solution, clear remaining
+    //
+    for (int i = 0; i <= [solutionWords count]; i++) {
+        MWWord *aWord = [solutionWords objectAtIndex:i];
+        
+        if (!found && aWord.isSolution) {
+            [solution setString:aWord.word];
+            found = YES;
+        } else {
+            aWord.isSolution = NO;
+        }
+    }
 }
 
 - (NSUInteger)revealLetter:(NSString *)letter
@@ -85,14 +116,43 @@ static NSString *kPlaceholder = @"*";
     return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
 }
 
-- (MWWord *)solvedWord
+- (MWWord *)solutionWord
 {
+    MWWord *solutionWord = nil;
     
+    //
+    // find first solution
+    //
+    for (MWWord *aWord in [self solutionWords]) {
+        if (aWord.isSolution) {
+            solutionWord = aWord;
+            break;
+        }
+    }
+    
+    return solutionWord;
 }
 
 - (void)filterSolutions
 {
     
+}
+
+- (NSArray *)solutionWords
+{
+    NSMutableArray *solutions = [NSMutableArray array];
+    
+    if (self.isSolution) {
+        [solutions addObject:self];
+    }
+    
+    for (MWWord *aWord in alternativeWords.items) {
+        if (aWord.isSolution) {
+            [solutions addObject:aWord];
+        }
+    }
+    
+    return solutions;
 }
 
 /*- (NSArray *)partialSolutions

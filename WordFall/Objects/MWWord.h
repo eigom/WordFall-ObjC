@@ -20,13 +20,13 @@
     
     NSUInteger revealedLetterCount;
     NSMutableString *solution;
-    BOOL isSolution;
 }
 
 @property (nonatomic, readonly) NSNumber *wordID;
 @property (nonatomic, readonly) NSString *word;
 @property (nonatomic, strong) MWWords *alternativeWords;
 @property (nonatomic, strong) MWDefinitions *definitions;
+@property (nonatomic, assign) BOOL isSolution;
 
 - (id)initWithString:(NSString *)word;
 
@@ -38,7 +38,7 @@
 - (BOOL)shouldRevealDefinition;
 - (void)keepFirstSolution;
 - (BOOL)isSolved;
-- (MWWord *)solvedWord;
+- (MWWord *)solutionWord;
 
 
 @end

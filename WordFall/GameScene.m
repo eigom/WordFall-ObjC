@@ -150,7 +150,9 @@ static NSUInteger const kPadLetterSize = 40.0;
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    [[self definition] presentDefinitionOfWord:word.solvedWord withDuration:duration];
+    if (![self definition].isDefinitionPresented) {
+        [[self definition] presentDefinitionOfWord:word.solutionWord withDuration:duration];
+    }
 }
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration

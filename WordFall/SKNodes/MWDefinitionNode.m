@@ -13,6 +13,7 @@
 - (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration
 {
     
+    _isDefinitionPresented = YES;
 }
 
 - (void)dismissWithDuration:(CFTimeInterval)duration

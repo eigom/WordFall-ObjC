@@ -12,6 +12,8 @@
 
 @interface MWDefinitionNode : SKNode
 
+@property (nonatomic, readonly) BOOL isDefinitionPresented;
+
 - (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration;
 - (void)dismissWithDuration:(CFTimeInterval)duration;
 
