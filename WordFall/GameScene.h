@@ -16,6 +16,7 @@
     MWWord *word;
     CGFloat maxStreamDistance;
     NSUInteger maxLetterCount;
+    CGRect solutionAreaFrame;
 }
 
 @end

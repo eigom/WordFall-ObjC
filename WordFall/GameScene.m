@@ -14,6 +14,7 @@
 #import "MWDefinitionNode.h"
 #import "MWNextWordNode.h"
 #import "MWPurchaseNode.h"
+#import "MWSolveWordNode.h"
 #import "Random.h"
 #import "MWPurchaseManager.h"
 
@@ -204,9 +205,9 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     // solution area
     //
     CGFloat solutionAreaWidth = floor(self.frame.size.width / [self solutionLetterSize]) * [self solutionLetterSize] - 4*[self solutionLetterSize]; // left/right gap of 4 letter sizes
-    CGRect solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
-    MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
-    [self addChild:solutionNode];
+    solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
+    
+    [self addSolutionArea];
     
     //
     // max word lengths that can fit on screen
@@ -216,24 +217,49 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     //
     // draw reveal line
     //
-    [self drawRevealLine];
+    [self addRevealLineNode];
     
     //
     // purchase/solve node
     //
     if ([MWPurchaseManager sharedManager].isPurchased) {
-        
+        [self addSolveNode];
     } else {
-        MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
-        [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
-            
-        }];
-        [self addChild:purchaseNode];
+        [self addPurchaseNode];
     }
     
     //
     // next word
     //
+    [self addNextWordNode];
+}
+
+- (void)addSolutionArea
+{
+    MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
+    [self addChild:solutionNode];
+}
+
+- (void)addPurchaseNode
+{
+    MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
+        
+    }];
+    [self addChild:purchaseNode];
+}
+
+- (void)addSolveNode
+{
+    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    [solveNode setNodeTouched:^(MWSolveWordNode *node){
+        
+    }];
+    [self addChild:solveNode];
+}
+
+- (void)addNextWordNode
+{
     MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
         [self playWithNextWord];
@@ -241,7 +267,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     [self addChild:nextWordNode];
 }
 
-- (void)drawRevealLine
+- (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
     CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance);
