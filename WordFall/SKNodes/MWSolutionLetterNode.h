@@ -11,9 +11,10 @@
 @interface MWSolutionLetterNode : SKNode
 
 @property (nonatomic, readonly) NSString *letter;
+@property (nonatomic, readonly) BOOL visible;
 
-- (void)setVisibleWithDuration:(CFTimeInterval)duration;
+- (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration;
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration;
-- (void)removeWithDuration:(CFTimeInterval)duration;
+- (void)clearLetterWithDuration:(CFTimeInterval)duration;
 
 @end

@@ -47,11 +47,6 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     [self dismissDefinitionWithDuration:kDismissDefinitionDuration];
     
     //
-    // clear solution
-    //
-    [self clearSolutionWithDuration:kClearSolutionDuration];
-    
-    //
     // setup scene with new word
     //
     SKAction *setupWithNextWord = [SKAction runBlock:^{
@@ -174,11 +169,6 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 - (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
     [[self solution] setupForWordWithLetterCount:word.letterCount withDuration:duration];
-}
-
-- (void)clearSolutionWithDuration:(CFTimeInterval)duration
-{
-    [[self solution] clearWithDuration:duration];
 }
 
 - (MWSolutionNode *)solution

@@ -13,13 +13,14 @@
 
 @interface MWSolutionNode : SKNode {
 @private
-    
+    NSMutableArray *letterNodes;
+    NSMutableArray *visibleLetterNodes;
 }
 
 - (id)initWithFrame:(CGRect)frame;
 
 - (void)setupForWordWithLetterCount:(NSInteger)letterCount withDuration:(CFTimeInterval)duration;
 - (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration;
-- (void)clearWithDuration:(CFTimeInterval)duration;
+//- (void)clearWithDuration:(CFTimeInterval)duration;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation MWSolutionLetterNode
 
-- (void)setVisibleWithDuration:(CFTimeInterval)duration
+- (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
 {
     
 }
@@ -20,7 +20,7 @@
     _letter = letter;
 }
 
-- (void)removeWithDuration:(CFTimeInterval)duration
+- (void)clearLetterWithDuration:(CFTimeInterval)duration
 {
     
 }
