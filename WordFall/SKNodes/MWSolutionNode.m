@@ -8,7 +8,6 @@
 
 #import "MWSolutionNode.h"
 #import "MWSolutionLetterNode.h"
-#import "MWObjects.h"
 
 @implementation MWSolutionNode
 
@@ -52,9 +51,26 @@
     }
 }
 
+- (void)setupWithPartialSolution:(NSString *)solution placeholder:(NSString *)placeholder withDuration:(CFTimeInterval)duration
+{
+    [self setupForWordWithLetterCount:solution.length withDuration:duration];
+    
+    SKAction *wait = [SKAction waitForDuration:duration];
+    SKAction *setLetters = [SKAction runBlock:^{
+        for (int i = 0; i < solution.length; i++) {
+            NSString *letter = [solution substringWithRange:NSMakeRange(i, 1)];
+            MWSolutionLetterNode *letterNode = [visibleLetterNodes objectAtIndex:i];
+            
+            [letterNode setLetter:letter withDuration:duration];
+        }
+    }];
+    
+    [self runAction:[SKAction sequence:@[wait, setLetters]]];
+}
+
 - (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration
 {
-    MWSolutionLetterNode *node = (MWSolutionLetterNode *)[self childNodeWithName:[NSString stringWithFormat:@"%d", index]];
+    MWSolutionLetterNode *node = [visibleLetterNodes objectAtIndex:index];
     [node setLetter:letter withDuration:duration];
 }
 
