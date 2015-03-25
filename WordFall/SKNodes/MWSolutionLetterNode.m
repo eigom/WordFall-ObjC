@@ -10,6 +10,15 @@
 
 @implementation MWSolutionLetterNode
 
+- (id)initWithFrame:(CGRect)frame
+{
+    if ((self = [super init])) {
+        
+    }
+    
+    return self;
+}
+
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
 {
     
@@ -22,7 +31,7 @@
 
 - (void)clearLetterWithDuration:(CFTimeInterval)duration
 {
-    
+    _letter = nil;
 }
 
 

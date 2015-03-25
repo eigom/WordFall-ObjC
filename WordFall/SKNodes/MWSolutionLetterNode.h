@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSString *letter;
 @property (nonatomic, readonly) BOOL visible;
 
+- (id)initWithFrame:(CGRect)frame;
+
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration;
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration;
 - (void)clearLetterWithDuration:(CFTimeInterval)duration;
