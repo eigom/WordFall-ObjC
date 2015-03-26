@@ -46,9 +46,9 @@ static NSString * const kDBName = @"words";
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         while (YES) {
-            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform(maxWordID)];
+            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform((u_int32_t)maxWordID)];
             
-            FMResultSet *rs = [db executeQuery:@"select * from word where id = ? and length(word.word) <= ?", wordID, [NSNumber numberWithInt:maxLength]];
+            FMResultSet *rs = [db executeQuery:@"select * from word where id = ? and length(word.word) <= ?", wordID, [NSNumber numberWithUnsignedInteger:maxLength]];
             
             if ([rs next]) {
                 word = [[MWWord alloc] initFromResultSet:rs];

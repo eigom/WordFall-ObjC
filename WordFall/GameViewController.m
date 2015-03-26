@@ -42,8 +42,8 @@
     SKView *skView = (SKView *)self.view;
     
     if (!skView.scene) {
-        skView.showsFPS = YES;
-        skView.showsNodeCount = YES;
+        skView.showsFPS = NO;
+        skView.showsNodeCount = NO;
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = YES;
         

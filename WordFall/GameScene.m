@@ -24,7 +24,6 @@ static CFTimeInterval const kRemoveStreamDuration = 1.5;
 static CFTimeInterval const kPresentDefinitionDuration = 1.0;
 static CFTimeInterval const kDismissDefinitionDuration = 1.0;
 static CFTimeInterval const kSetupSolutionDuration = 1.0;
-static CFTimeInterval const kClearSolutionDuration = 1.0;
 static CFTimeInterval const kRevealLetterDuration = 1.0;
 
 static NSUInteger const kPhoneSolutionLetterSize = 30.0;
@@ -196,6 +195,9 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
     CGFloat solutionAreaWidth = floor(self.frame.size.width / [self solutionLetterSize]) * [self solutionLetterSize] - 4*[self solutionLetterSize]; // left/right gap of 4 letter sizes
     solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
     
+    //
+    // add solution area
+    //
     [self addSolutionArea];
     
     //
@@ -233,6 +235,8 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 {
     MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
     [self addChild:solutionNode];
+    
+    [solutionNode setupWithPartialSolution:@"Word Guru" placeholder:[MWWord placeholder] withDuration:0.0];
 }
 
 - (void)addPurchaseNode

@@ -20,6 +20,11 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 @synthesize alternativeWords;
 @synthesize definitions;
 
++ (NSString *)placeholder
+{
+    return kPlaceholder;
+}
+
 - (id)initWithString:(NSString *)aWord
 {
     if ((self = [super init])) {
@@ -48,7 +53,7 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     NSMutableString *shuffledLetters = [[NSMutableString alloc] initWithString:self.word];
     
     for (int i = 0; i < shuffledLetters.length; i++) {
-        NSUInteger j = arc4random_uniform(shuffledLetters.length);
+        u_int32_t j = arc4random_uniform((u_int32_t)shuffledLetters.length);
         
         NSString *temp = [shuffledLetters substringWithRange:NSMakeRange(i, 1)];
         [shuffledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffledLetters substringWithRange:NSMakeRange(j, 1)]];
@@ -148,7 +153,9 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 - (void)filterSolutions
 {
-    //TODO
+    for (MWWord *solutionWord in [self solutionWords]) {
+        solutionWord.isSolution = [solutionWord matchesSolution:solution];
+    }
 }
 
 - (NSArray *)solutionWords
@@ -168,110 +175,24 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     return solutions;
 }
 
-/*- (NSArray *)partialSolutions
+- (BOOL)matchesSolution:(NSString *)aSolution
 {
-    NSMutableArray *solutions = [NSMutableArray array];
+    BOOL matches = YES;
     
-    if ([self isPartialSolution:solution]) {
-        [solutions addObject:self];
-    }
-    
-    for (MWWord *aWord in alternativeWords.items) {
-        if ([aWord isPartialSolution:solution]) {
-            [solutions addObject:aWord];
-        }
-    }
-    
-    return solutions;
-}
-
-- (BOOL)isPartialSolution:(NSString *)aSolution
-{
-    BOOL isPartialSolution = YES;
-    
-    for (int i = 0; i < solution.length; i++) {
-        if (![[aSolution substringWithRange:NSMakeRange(i, 1)] isEqualToString:kPlaceholder]) {
-            if (![[aSolution substringWithRange:NSMakeRange(i, 1)] isEqualToString:[self.word substringWithRange:NSMakeRange(i, 1)]]) {
-                isPartialSolution = NO;
+    for (int i = 0; i < aSolution.length; i++) {
+        NSString *solutionLetter = [solution substringWithRange:NSMakeRange(i, 1)];
+        
+        if (![solutionLetter isEqualToString:kPlaceholder]) {
+            NSString *wordLetter = [word substringWithRange:NSMakeRange(i, 1)];
+            
+            if (![solutionLetter isEqualToString:wordLetter]) {
+                matches = NO;
                 break;
             }
         }
     }
     
-    return isPartialSolution;
+    return matches;
 }
-
-- (BOOL)canAppendSolutionLetter:(NSString *)letter
-{
-    BOOL canAppend = NO;
-    
-    NSInteger nextIndex = [self nextAvailableSolutionLetterIndex];
-    
-    for (MWWord *aWord in [self partialSolutions]) {
-        if ([[aWord.word substringWithRange:NSMakeRange(nextIndex, 1)] isEqualToString:letter]) {
-            canAppend = YES;
-            break;
-        }
-    }
-    
-    return canAppend;
-}
-
-- (void)appendSolutionLetter:(NSString *)letter
-{
-    [solution replaceCharactersInRange:NSMakeRange([self nextAvailableSolutionLetterIndex], 1) withString:letter];
-}
-
-- (NSInteger)nextAvailableSolutionLetterIndex
-{
-    NSInteger index = -1;
-    
-    for (int i = 0; i < solution.length; i++) {
-        if ([[solution substringWithRange:NSMakeRange(i, 0)] isEqualToString:kPlaceholder]) {
-            index = i;
-            break;
-        }
-    }
-    
-    return index;
-}
-
-- (BOOL)isSolved
-{
-    return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
-}
-
-- (MWWord *)solutionWord
-{
-    return [[self partialSolutions] firstObject];
-}
-
-- (BOOL)hasWord:(NSString *)aWord
-{
-    return ([self wordForWord:aWord] != nil);
-}
-
-- (MWWord *)wordForWord:(NSString *)aWord
-{
-    MWWord *foundWord = nil;
-    
-    if ([word.lowercaseString isEqual:aWord.lowercaseString]) {
-        foundWord = self;
-    } else {
-        for (MWWord *altWord in alternativeWords.items) {
-            if ([altWord.word.lowercaseString isEqual:aWord.lowercaseString]) {
-                foundWord = altWord;
-                break;
-            }
-        }
-    }
-    
-    return foundWord;
-}
-
-- (NSUInteger)letterCount
-{
-    return word.length;
-}*/
 
 @end

@@ -28,6 +28,8 @@
 @property (nonatomic, strong) MWDefinitions *definitions;
 @property (nonatomic, assign) BOOL isSolution;
 
++ (NSString *)placeholder;
+
 - (id)initWithString:(NSString *)word;
 
 - (NSArray *)shuffledLetters;

@@ -8,7 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MWSolutionLetterNode : SKNode
+@interface MWSolutionLetterNode : SKNode {
+@private
+    CGRect _frame;
+}
 
 @property (nonatomic, readonly) NSString *letter;
 @property (nonatomic, readonly) BOOL visible;
