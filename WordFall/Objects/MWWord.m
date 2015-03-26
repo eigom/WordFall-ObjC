@@ -112,7 +112,7 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     //
     // set first partially matching word as solution, clear remaining
     //
-    for (int i = 0; i <= [solutionWords count]; i++) {
+    for (int i = 0; i < [solutionWords count]; i++) {
         MWWord *aWord = [solutionWords objectAtIndex:i];
         
         if (!found && aWord.isSolution) {

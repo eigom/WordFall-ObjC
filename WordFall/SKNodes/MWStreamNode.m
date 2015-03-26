@@ -20,6 +20,7 @@ static NSString * const kMovementActionKey = @"movementAction";
     if ((self = [super init])) {
         _letter = letter;
         
+        self.userInteractionEnabled = YES;
         self.position = CGPointMake(self.position.x, 0.0);
         
         //TODO create nodes
@@ -30,7 +31,7 @@ static NSString * const kMovementActionKey = @"movementAction";
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
         label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label.userInteractionEnabled = NO;
-        label.position = CGPointMake(CGRectGetMidX(frame), frame.origin.y + frame.size.width);
+        label.position = CGPointMake(CGRectGetMidX(frame), frame.origin.y);
         [self addChild:label];
     }
     
@@ -40,7 +41,7 @@ static NSString * const kMovementActionKey = @"movementAction";
 - (void)startFall
 {
     SKAction *startupMovement = [SKAction moveBy:CGVectorMake(0.0, -_startupMovementDistance) duration:_startupMovementDuration];
-    startupMovement.timingMode = SKActionTimingEaseInEaseOut;
+    startupMovement.timingMode = SKActionTimingEaseOut;
     
     SKAction *normalMovement = [SKAction moveBy:CGVectorMake(0.0, -_normalMovementDistance) duration:_normalMovementDuration];
     normalMovement.timingMode = SKActionTimingLinear;
