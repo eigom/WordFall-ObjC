@@ -18,9 +18,20 @@ static NSString * const kMovementActionKey = @"movementAction";
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame
 {
     if ((self = [super init])) {
+        _letter = letter;
+        
         self.position = CGPointMake(self.position.x, 0.0);
         
-        // create nodes
+        //TODO create nodes
+        
+        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+        label.text = _letter;
+        label.fontSize = 15.0;
+        label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
+        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        label.userInteractionEnabled = NO;
+        label.position = CGPointMake(CGRectGetMidX(frame), frame.origin.y + frame.size.width);
+        [self addChild:label];
     }
     
     return self;
@@ -28,10 +39,10 @@ static NSString * const kMovementActionKey = @"movementAction";
 
 - (void)startFall
 {
-    SKAction *startupMovement = [SKAction moveBy:CGVectorMake(0.0, _startupMovementDistance) duration:_startupMovementDuration];
+    SKAction *startupMovement = [SKAction moveBy:CGVectorMake(0.0, -_startupMovementDistance) duration:_startupMovementDuration];
     startupMovement.timingMode = SKActionTimingEaseInEaseOut;
     
-    SKAction *normalMovement = [SKAction moveBy:CGVectorMake(0.0, _normalMovementDistance) duration:_normalMovementDuration];
+    SKAction *normalMovement = [SKAction moveBy:CGVectorMake(0.0, -_normalMovementDistance) duration:_normalMovementDuration];
     normalMovement.timingMode = SKActionTimingLinear;
     
     SKAction *endReached = [SKAction runBlock:^{

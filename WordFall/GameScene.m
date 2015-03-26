@@ -62,25 +62,35 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 
 - (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
 {
+    NSArray *shuffeledLetters = [word shuffledLetters];
+    
+    const CGFloat kEdgeGap = 20.0;
     const CGFloat kMinStartupMovementDistance = self.frame.size.height - (distance * 0.1);
     const CGFloat kMaxStartupMovementDistance = self.frame.size.height - (distance * 0.5);
+    const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);
+    const CGFloat kStreamHeight = maxStreamDistance;
     
-    for (NSString *letter in [word shuffledLetters]) {
-        MWStreamNode *node = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectZero]; //TODO frame
+    CGFloat xOrigin = floor(kEdgeGap + ((shuffeledLetters.count * kStreamWidth) - (shuffeledLetters.count * kStreamWidth)) / 2.0);
+    
+    for (NSString *letter in shuffeledLetters) {
+        //
+        // position stream on top of scene
+        //
+        MWStreamNode *streamNode = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectMake(xOrigin, self.frame.size.height-100, kStreamWidth, kStreamHeight)];
         
         //
         // setup distances and durations
         //
-        node.startupMovementDistance = [Random randomFloatBetween:kMinStartupMovementDistance and:kMaxStartupMovementDistance];
-        node.normalMovementDistance = distance - node.startupMovementDistance;
+        streamNode.startupMovementDistance = [Random randomFloatBetween:kMinStartupMovementDistance and:kMaxStartupMovementDistance];
+        streamNode.normalMovementDistance = distance - streamNode.startupMovementDistance;
         
-        node.startupMovementDuration = (node.startupMovementDistance / distance) * duration;
-        node.normalMovementDuration = (node.normalMovementDuration / distance) * duration;
+        streamNode.startupMovementDuration = (streamNode.startupMovementDistance / distance) * duration;
+        streamNode.normalMovementDuration = (streamNode.normalMovementDuration / distance) * duration;
         
         //
         // handle stream touch
         //
-        [node setStreamTouched:^(MWStreamNode *node){
+        [streamNode setStreamTouched:^(MWStreamNode *node){
             //
             // check if next word
             //
@@ -101,7 +111,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
         //
         // handle stream end
         //
-        [node setStreamEndReached:^(MWStreamNode *node){
+        [streamNode setStreamEndReached:^(MWStreamNode *node){
             //
             // reveal letter
             //
@@ -122,7 +132,11 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
             [node removeWithDuration:kRemoveStreamDuration];
         }];
         
-        [node startFall];
+        [self addChild:streamNode];
+        
+        [streamNode startFall];
+        
+        xOrigin = xOrigin + kStreamWidth;
     }
 }
 

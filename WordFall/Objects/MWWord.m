@@ -50,17 +50,23 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 
 - (NSArray *)shuffledLetters
 {
-    NSMutableString *shuffledLetters = [[NSMutableString alloc] initWithString:self.word];
+    NSMutableString *shuffeledLetters = [[NSMutableString alloc] initWithString:self.word];
     
-    for (int i = 0; i < shuffledLetters.length; i++) {
-        u_int32_t j = arc4random_uniform((u_int32_t)shuffledLetters.length);
+    for (int i = 0; i < shuffeledLetters.length; i++) {
+        u_int32_t j = arc4random_uniform((u_int32_t)shuffeledLetters.length);
         
-        NSString *temp = [shuffledLetters substringWithRange:NSMakeRange(i, 1)];
-        [shuffledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffledLetters substringWithRange:NSMakeRange(j, 1)]];
-        [shuffledLetters replaceCharactersInRange:NSMakeRange(j, 1) withString:temp];
+        NSString *temp = [shuffeledLetters substringWithRange:NSMakeRange(i, 1)];
+        [shuffeledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffeledLetters substringWithRange:NSMakeRange(j, 1)]];
+        [shuffeledLetters replaceCharactersInRange:NSMakeRange(j, 1) withString:temp];
     }
     
-    return [shuffledLetters componentsSeparatedByString:@""];
+    NSMutableArray *shuffeledArray = [NSMutableArray array];
+    
+    for (int i = 0; i < shuffeledLetters.length; i++) {
+        [shuffeledArray addObject:[shuffeledLetters substringWithRange:NSMakeRange(i, 1)]];
+    }
+    
+    return shuffeledArray;
 }
 
 - (NSUInteger)letterCount

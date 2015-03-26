@@ -21,7 +21,7 @@
 
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
 {
-    
+    // TODO animate visible
 }
 
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration
@@ -37,11 +37,15 @@
     label.position = CGPointMake(CGRectGetMidX(_frame),
                                  CGRectGetMidY(_frame));
     [self addChild:label];
+    
+    // TODO flip to label side
 }
 
 - (void)clearLetterWithDuration:(CFTimeInterval)duration
 {
     _letter = nil;
+    
+    //TODO flip to empty side
 }
 
 
