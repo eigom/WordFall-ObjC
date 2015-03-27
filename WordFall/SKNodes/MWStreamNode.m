@@ -83,7 +83,7 @@ static NSString * const kMovementActionKey = @"movementAction";
 
 - (void)removeWithDuration:(CFTimeInterval)duration
 {
-    SKAction *disappear = [SKAction scaleTo:0.0 duration:duration];
+    SKAction *disappear = [SKAction fadeAlphaTo:0.0 duration:duration];
     SKAction *removeFromParent = [SKAction removeFromParent];
     
     [self runAction:[SKAction sequence:@[disappear, removeFromParent]]];

@@ -21,7 +21,7 @@
 static CFTimeInterval const kSolvingTime = 60.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
-static CFTimeInterval const kRemoveStreamDuration = 1.5;
+static CFTimeInterval const kRemoveStreamDuration = 0.5;
 static CFTimeInterval const kPresentDefinitionDuration = 1.0;
 static CFTimeInterval const kDismissDefinitionDuration = 1.0;
 static CFTimeInterval const kSetupSolutionDuration = 1.0;
