@@ -128,6 +128,8 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
 {
     NSUInteger index = 0;
     
+    //TODO
+    
     revealedLetterCount++;
     
     [self filterSolutions];

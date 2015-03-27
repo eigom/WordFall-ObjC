@@ -10,10 +10,14 @@
 
 @class MWWord;
 
-@interface MWDefinitionNode : SKNode
+@interface MWDefinitionNode : SKNode {
+@private
+    CGRect _frame;
+}
 
 @property (nonatomic, readonly) BOOL isDefinitionPresented;
 
+- (id)initWithFrame:(CGRect)frame;
 - (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration;
 - (void)dismissWithDuration:(CFTimeInterval)duration;
 

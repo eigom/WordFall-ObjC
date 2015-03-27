@@ -24,6 +24,7 @@ static NSString * const kLetterLabelNodeName = @"label";
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
 {
     // TODO animate visible - flip empty pentagon from nothing with particle effect
+    
 }
 
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration

@@ -10,6 +10,6 @@
 
 @interface NSString (Extensions)
 
-- (NSArray *)wrappedToLength:(NSUInteger)wrapLength;
+- (NSArray *)wrapToLength:(NSUInteger)wrapLength;
 
 @end

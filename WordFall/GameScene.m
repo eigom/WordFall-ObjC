@@ -58,6 +58,8 @@ static NSString * const kDefinitionNodeName = @"definition";
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
+        
+        [self presentDefinitionWithDuration:1];
     }];
     
     [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord]]];
@@ -109,7 +111,7 @@ static NSString * const kDefinitionNodeName = @"definition";
                 // set letter
                 //
                 NSUInteger index = [word setNextLetter:node.letter];
-                [[self solution] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+                [[self solutionNode] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
                 
                 //
                 // remove stream
@@ -128,7 +130,7 @@ static NSString * const kDefinitionNodeName = @"definition";
             // reveal letter
             //
              NSUInteger index = [word revealLetter:node.letter];
-            [[self solution] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+            [[self solutionNode] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
             
             //
             // check if need to reveal definition
@@ -154,12 +156,12 @@ static NSString * const kDefinitionNodeName = @"definition";
 
 - (void)pullbackStreamsWithDuration:(CFTimeInterval)duration
 {
-    for (MWStreamNode *node in [self streams]) {
+    for (MWStreamNode *node in [self streamNodes]) {
         [node pullbackWithDuration:duration];
     }
 }
 
-- (NSArray *)streams
+- (NSArray *)streamNodes
 {
     NSMutableArray *nodes = [NSMutableArray array];
     
@@ -174,17 +176,21 @@ static NSString * const kDefinitionNodeName = @"definition";
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    if (![self definition].isDefinitionPresented) {
-        [[self definition] presentDefinitionOfWord:word.solutionWord withDuration:duration];
+    if (![self definitionNode].isDefinitionPresented) {
+        MWDefinitionNode *definitionNode = [[MWDefinitionNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y+solutionAreaFrame.size.height, self.frame.size.width, solutionAreaFrame.origin.y+solutionAreaFrame.size.height+self.frame.size.height - maxStreamDistance)];
+        definitionNode.name = kDefinitionNodeName;
+        [self addChild:definitionNode];
+        
+        [[self definitionNode] presentDefinitionOfWord:word.solutionWord withDuration:duration];
     }
 }
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration
 {
-    [[self definition] dismissWithDuration:duration];
+    [[self definitionNode] dismissWithDuration:duration];
 }
 
-- (MWDefinitionNode *)definition
+- (MWDefinitionNode *)definitionNode
 {
     return (MWDefinitionNode *)[self childNodeWithName:kDefinitionNodeName];
 }
@@ -193,10 +199,10 @@ static NSString * const kDefinitionNodeName = @"definition";
 
 - (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
-    [[self solution] setupForWordWithLetterCount:word.letterCount withDuration:duration];
+    [[self solutionNode] setupForWordWithLetterCount:word.letterCount withDuration:duration];
 }
 
-- (MWSolutionNode *)solution
+- (MWSolutionNode *)solutionNode
 {
     return (MWSolutionNode *)[self childNodeWithName:kSolutionNodeName];
 }
