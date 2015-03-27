@@ -38,6 +38,7 @@
 		1AA33E531AC20C17002B29B5 /* MWPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA33E521AC20C17002B29B5 /* MWPurchaseManager.m */; };
 		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
 		1AA8079E1AC5930200A0DBC1 /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8079D1AC5930200A0DBC1 /* words.sqlite */; };
+		1AA807A01AC59A1300A0DBC1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */; };
 		1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */; };
 		1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EE1AC0965D00B10E49 /* Random.m */; };
 		1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */; };
@@ -118,6 +119,7 @@
 		1AA34AFE1A8AA8E20036AE8A /* MWSolutionLetterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionLetterNode.h; sourceTree = "<group>"; };
 		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetterNode.m; sourceTree = "<group>"; };
 		1AA8079D1AC5930200A0DBC1 /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = words.sqlite; path = ../DBScript/words.sqlite; sourceTree = "<group>"; };
+		1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1AA8C7E91AC0576100B10E49 /* MWDefinitionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinitionNode.h; sourceTree = "<group>"; };
 		1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinitionNode.m; sourceTree = "<group>"; };
 		1AA8C7ED1AC0965D00B10E49 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA807A01AC59A1300A0DBC1 /* StoreKit.framework in Frameworks */,
 				1A6E2F201A84BABD00725FCF /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +198,7 @@
 		1A6E2F1F1A84BA7800725FCF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */,
 				1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */,
 			);
 			name = Libraries;
