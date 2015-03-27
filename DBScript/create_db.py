@@ -88,6 +88,11 @@ def make_data():
         definitionid = definitionid + 1
 
     #
+    # sort words by length
+    #
+    data['words'] = sorted(data['words'], key=lambda w: len(w['word']))
+
+    #
     # alt words
     #
     print "Processing alternative words...", 
@@ -113,10 +118,16 @@ def make_sql(data):
     sql.append('CREATE TABLE definition(id INTEGER PRIMARY KEY NOT NULL, definition TEXT NOT NULL);\n')
     sql.append('CREATE TABLE word_definition(word_id INTEGER NOT NULL, definition_id INTEGER NOT NULL, type TEXT NOT NULL, FOREIGN KEY (word_id) REFERENCES word(id), FOREIGN KEY (definition_id) REFERENCES definition(id));\n')
     sql.append('CREATE TABLE alt_word(word_id INTEGER NOT NULL, altword_id INTEGER NOT NULL, FOREIGN KEY (word_id) REFERENCES word(id), FOREIGN KEY (altword_id) REFERENCES word(id));\n')
+    sql.append('CREATE TABLE word_length_max_id(length INTEGER NOT NULL, word_id INTEGER NOT NULL);\n')
     sql.append('CREATE TABLE word_count(count INTEGER NOT NULL);\n')
 
-    # words
+    word_length = 1
+    
     for word in data['words']:
+        if len(word['word']) > word_length:
+            sql.append( "INSERT INTO word_length_max_id(length, word_id) VALUES(%d, %d);\n" % (word_length, word['id']) )
+            word_length = len(word['word'])
+
         sql.append( "INSERT INTO word(id, word) VALUES(%d, '%s');\n" % (word['id'], word['word']) )
 
     for definition in data['definitions']:
