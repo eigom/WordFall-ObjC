@@ -80,7 +80,7 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     NSUInteger index = [solution rangeOfString:kPlaceholder].location;
     
     for (MWWord *aWord in [self solutionWords]) {
-        if ([[aWord.word substringWithRange:NSMakeRange(index, 0)] isEqualToString:letter]) {
+        if ([[aWord.word substringWithRange:NSMakeRange(index, 1)] isEqualToString:letter]) {
             isNext = YES;
             break;
         }

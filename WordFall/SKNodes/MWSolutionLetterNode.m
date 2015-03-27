@@ -8,6 +8,8 @@
 
 #import "MWSolutionLetterNode.h"
 
+static NSString * const kLetterLabelNodeName = @"label";
+
 @implementation MWSolutionLetterNode
 
 - (id)initWithFrame:(CGRect)frame
@@ -29,6 +31,7 @@
     _letter = letter;
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+    label.name = kLetterLabelNodeName;
     label.text = _letter;
     label.fontSize = 15.0;
     label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
@@ -44,6 +47,9 @@
 - (void)clearLetterWithDuration:(CFTimeInterval)duration
 {
     _letter = nil;
+    
+    SKLabelNode *labelNode = (SKLabelNode *)[self childNodeWithName:kLetterLabelNodeName];
+    [labelNode removeFromParent];
     
     //TODO flip to empty side
 }
