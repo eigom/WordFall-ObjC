@@ -76,7 +76,9 @@ static NSString * const kMovementActionKey = @"movementAction";
     SKAction *pullback = [SKAction moveToY:_frame.size.height duration:duration];
     pullback.timingMode = SKActionTimingEaseIn;
     
-    [self runAction:pullback];
+    SKAction *removeFromParent = [SKAction removeFromParent];
+    
+    [self runAction:[SKAction sequence:@[pullback, removeFromParent]]];
 }
 
 - (void)removeWithDuration:(CFTimeInterval)duration
