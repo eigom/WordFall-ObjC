@@ -19,6 +19,7 @@ static NSString * const kMovementActionKey = @"movementAction";
 {
     if ((self = [super init])) {
         _letter = letter;
+        _frame = frame;
         
         self.userInteractionEnabled = YES;
         self.position = CGPointMake(self.position.x, 0.0);
@@ -72,8 +73,8 @@ static NSString * const kMovementActionKey = @"movementAction";
     //
     // move back to starting position
     //
-    SKAction *pullback = [SKAction moveToY:0.0 duration:duration];
-    pullback.timingMode = SKActionTimingEaseInEaseOut;
+    SKAction *pullback = [SKAction moveToY:_frame.size.height duration:duration];
+    pullback.timingMode = SKActionTimingEaseIn;
     
     [self runAction:pullback];
 }

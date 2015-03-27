@@ -30,6 +30,10 @@ static CFTimeInterval const kRevealLetterDuration = 1.0;
 static NSUInteger const kPhoneSolutionLetterSize = 30.0;
 static NSUInteger const kPadSolutionLetterSize = 40.0;
 
+static NSString * const kStreamNodeName = @"stream";
+static NSString * const kSolutionNodeName = @"solution";
+static NSString * const kDefinitionNodeName = @"definition";
+
 @implementation GameScene
 
 #pragma Game
@@ -80,6 +84,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
         // position stream on top of scene
         //
         MWStreamNode *streamNode = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectMake(xOrigin, self.frame.size.height, kStreamWidth, kStreamHeight)];
+        streamNode.name = kStreamNodeName;
         
         //
         // setup distances and durations
@@ -158,7 +163,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 {
     NSMutableArray *nodes = [NSMutableArray array];
     
-    [self enumerateChildNodesWithName:@"stream" usingBlock:^(SKNode *node, BOOL *stop) {
+    [self enumerateChildNodesWithName:kStreamNodeName usingBlock:^(SKNode *node, BOOL *stop) {
         [nodes addObject:node];
     }];
     
@@ -181,7 +186,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 
 - (MWDefinitionNode *)definition
 {
-    return (MWDefinitionNode *)[self childNodeWithName:@"definition"];
+    return (MWDefinitionNode *)[self childNodeWithName:kDefinitionNodeName];
 }
 
 #pragma Solution
@@ -193,7 +198,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 
 - (MWSolutionNode *)solution
 {
-    return (MWSolutionNode *)[self childNodeWithName:@"solution"];
+    return (MWSolutionNode *)[self childNodeWithName:kSolutionNodeName];
 }
 
 #pragma Scene
@@ -255,6 +260,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 - (void)addSolutionArea
 {
     MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
+    solutionNode.name = kSolutionNodeName;
     [self addChild:solutionNode];
     
     [solutionNode setupWithPartialSolution:@"Word Guru" placeholder:[MWWord placeholder] withDuration:0.0];

@@ -16,7 +16,7 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 
 @interface MWStreamNode : SKNode {
 @private
-    
+    CGRect _frame;
 }
 
 @property (nonatomic, strong) NSString *letter;

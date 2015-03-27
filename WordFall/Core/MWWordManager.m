@@ -29,7 +29,7 @@
 - (id)init
 {
     if ((self = [super init])) {
-        wordCount = [[DBManager sharedManager] wordCount];
+        
     }
     
     return self;
@@ -37,7 +37,7 @@
 
 - (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength
 {
-    return [[DBManager sharedManager] wordWithMaxLength:maxLength andMaxWordID:wordCount];
+    return [[DBManager sharedManager] wordWithMaxLength:maxLength];
 }
 
 @end

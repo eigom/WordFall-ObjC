@@ -14,7 +14,6 @@
 @interface MWWordManager : MWManager {
 @private
     MWWord *currentWord;
-    NSUInteger wordCount;
 }
 
 + (MWWordManager *)sharedManager;
