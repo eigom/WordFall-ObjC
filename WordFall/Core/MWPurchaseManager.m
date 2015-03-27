@@ -84,9 +84,11 @@ static NSString * kProductIdentifier = @"";
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier
 {
     //TODO save receipt
-    [_purchasedProductIdentifiers addObject:productIdentifier];
+    
+    /*[_purchasedProductIdentifiers addObject:productIdentifier];
+    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] synchronize];*/
     
     if (_productPurchasedCompletion) {
         _productPurchasedCompletion(_product);
@@ -143,6 +145,7 @@ static NSString * kProductIdentifier = @"";
 - (BOOL)isPurchased
 {
     // check receipt not nil
+    return NO;
 }
 
 @end

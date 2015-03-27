@@ -39,6 +39,7 @@
 		1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */; };
 		1AA8079E1AC5930200A0DBC1 /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8079D1AC5930200A0DBC1 /* words.sqlite */; };
 		1AA807A01AC59A1300A0DBC1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */; };
+		1AA807A41AC5FAF100A0DBC1 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA807A31AC5FAF100A0DBC1 /* NSString+Extensions.m */; };
 		1AA8C7EB1AC0576100B10E49 /* MWDefinitionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */; };
 		1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EE1AC0965D00B10E49 /* Random.m */; };
 		1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */; };
@@ -120,6 +121,8 @@
 		1AA34AFF1A8AA8E20036AE8A /* MWSolutionLetterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionLetterNode.m; sourceTree = "<group>"; };
 		1AA8079D1AC5930200A0DBC1 /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = words.sqlite; path = ../DBScript/words.sqlite; sourceTree = "<group>"; };
 		1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1AA807A21AC5FAF100A0DBC1 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		1AA807A31AC5FAF100A0DBC1 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		1AA8C7E91AC0576100B10E49 /* MWDefinitionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDefinitionNode.h; sourceTree = "<group>"; };
 		1AA8C7EA1AC0576100B10E49 /* MWDefinitionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDefinitionNode.m; sourceTree = "<group>"; };
 		1AA8C7ED1AC0965D00B10E49 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 				1A6E2F221A84BBF800725FCF /* Objects */,
 				1A4AB29B1A8A0888008B9F6E /* SKNodes */,
 				1A6E2F0B1A84BA1100725FCF /* External */,
+				1AA807A11AC5FABF00A0DBC1 /* Extensions */,
 				1AA8C7EC1AC0961F00B10E49 /* Util */,
 				1AA07A931A762BA400722BEB /* AppDelegate.h */,
 				1AA07A941A762BA400722BEB /* AppDelegate.m */,
@@ -318,6 +322,15 @@
 				1AA07ABF1A76302A00722BEB /* data.verb */,
 			);
 			path = DBScript;
+			sourceTree = "<group>";
+		};
+		1AA807A11AC5FABF00A0DBC1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1AA807A21AC5FAF100A0DBC1 /* NSString+Extensions.h */,
+				1AA807A31AC5FAF100A0DBC1 /* NSString+Extensions.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1AA8C7EC1AC0961F00B10E49 /* Util */ = {
@@ -438,6 +451,7 @@
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
 				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,
 				1AA0B3161A8508320040FCE6 /* MWWords.m in Sources */,
+				1AA807A41AC5FAF100A0DBC1 /* NSString+Extensions.m in Sources */,
 				1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */,
 				1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */,
 				1AA0B3191A85099A0040FCE6 /* MWDefinition.m in Sources */,
