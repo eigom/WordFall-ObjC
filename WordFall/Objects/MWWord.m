@@ -11,7 +11,7 @@
 #import "MWDefinitions.h"
 
 static NSString *kPlaceholder = @"*";
-static const CGFloat kRevealDefinitionLevel = 0.5;
+static const float kRevealDefinitionLevel = 0.5;
 
 @implementation MWWord
 
@@ -158,7 +158,7 @@ static const CGFloat kRevealDefinitionLevel = 0.5;
 
 - (MWWord *)solutionWord
 {
-    MWWord *solutionWord = nil;
+    /*MWWord *solutionWord = nil;
     
     //
     // find first solution
@@ -170,7 +170,9 @@ static const CGFloat kRevealDefinitionLevel = 0.5;
         }
     }
     
-    return solutionWord;
+    return solutionWord;*/
+    
+    return [[self solutionWords] firstObject];
 }
 
 - (NSArray *)solutionWords
