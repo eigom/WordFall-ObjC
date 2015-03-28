@@ -45,20 +45,17 @@ static NSString * const kDBName = @"words";
     __block MWWord *word = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        while (YES) {
-            FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length <= ? order by length desc limit 1", [NSNumber numberWithUnsignedInteger:maxLength]];
+        FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length <= ? order by length desc limit 1", [NSNumber numberWithUnsignedInteger:maxLength]];
+        
+        if ([maxIDrs next]) {
+            NSInteger maxWordID = [maxIDrs intForColumn:@"word_id"];
             
-            if ([maxIDrs next]) {
-                NSInteger maxWordID = [maxIDrs intForColumn:@"word_id"];
-                
-                NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform((u_int32_t)maxWordID)];
-                
-                FMResultSet *rs = [db executeQuery:@"select * from word where id = ?", wordID];
-                
-                if ([rs next]) {
-                    word = [[MWWord alloc] initFromResultSet:rs];
-                    break;
-                }
+            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform((u_int32_t)maxWordID)];
+            
+            FMResultSet *rs = [db executeQuery:@"select * from word where id = ?", wordID];
+            
+            if ([rs next]) {
+                word = [[MWWord alloc] initFromResultSet:rs];
             }
         }
     }];
