@@ -38,7 +38,7 @@
 - (BOOL)isNextLetter:(NSString *)letter;
 - (NSUInteger)setNextLetter:(NSString *)letter;
 - (BOOL)shouldRevealDefinition;
-- (void)keepFirstSolution;
+//- (void)keepFirstSolution;
 - (BOOL)isSolved;
 - (MWWord *)solutionWord;
 

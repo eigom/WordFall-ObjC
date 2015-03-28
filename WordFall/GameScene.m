@@ -136,7 +136,7 @@ static NSString * const kDefinitionNodeName = @"definition";
             // check if need to reveal definition
             //
             if (word.shouldRevealDefinition) {
-                [word keepFirstSolution]; // pick first partially matching word as solution
+                //[word keepFirstSolution]; // pick first partially matching word as solution
                 [self presentDefinitionWithDuration:kPresentDefinitionDuration];
             }
             

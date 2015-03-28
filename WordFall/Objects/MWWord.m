@@ -11,7 +11,7 @@
 #import "MWDefinitions.h"
 
 static NSString *kPlaceholder = @"*";
-static NSUInteger const kRevealDefinitionLevel = 0.5;
+static const CGFloat kRevealDefinitionLevel = 0.5;
 
 @implementation MWWord
 
@@ -104,7 +104,7 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     return (1.0 / self.letterCount) * revealedLetterCount >= kRevealDefinitionLevel;
 }
 
-- (void)keepFirstSolution
+/*- (void)keepFirstSolution
 {
     BOOL found = NO;
     NSArray *solutionWords = [self solutionWords];
@@ -122,13 +122,27 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
             aWord.isSolution = NO;
         }
     }
-}
+}*/
 
 - (NSUInteger)revealLetter:(NSString *)letter
 {
     NSUInteger index = 0;
     
-    //TODO
+    //
+    // pick first word
+    //
+    MWWord *firstWord = [[self solutionWords] firstObject];
+    
+    for (int i = 0; i < solution.length; i++) {
+        NSString *wordLetter = [firstWord.word substringWithRange:NSMakeRange(i, 1)];
+        NSString *solutionLetter = [solution substringWithRange:NSMakeRange(i, 1)];
+        
+        if ([solutionLetter isEqualToString:kPlaceholder] && [wordLetter isEqualToString:letter]) {
+            [solution replaceCharactersInRange:NSMakeRange(i, 1) withString:letter];
+            index = i;
+            break;
+        }
+    }
     
     revealedLetterCount++;
     
@@ -159,13 +173,6 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     return solutionWord;
 }
 
-- (void)filterSolutions
-{
-    for (MWWord *solutionWord in [self solutionWords]) {
-        solutionWord.isSolution = [solutionWord matchesSolution:solution];
-    }
-}
-
 - (NSArray *)solutionWords
 {
     NSMutableArray *solutions = [NSMutableArray array];
@@ -181,6 +188,13 @@ static NSUInteger const kRevealDefinitionLevel = 0.5;
     }
     
     return solutions;
+}
+
+- (void)filterSolutions
+{
+    for (MWWord *solutionWord in [self solutionWords]) {
+        solutionWord.isSolution = [solutionWord matchesSolution:solution];
+    }
 }
 
 - (BOOL)matchesSolution:(NSString *)aSolution
