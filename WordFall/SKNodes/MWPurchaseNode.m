@@ -46,9 +46,9 @@
     }
 }
 
-- (void)removeWithDuration:(CFTimeInterval)duration
+- (void)remove
 {
-    SKAction *disappear = [SKAction fadeAlphaTo:0.0 duration:duration];
+    SKAction *disappear = [SKAction fadeAlphaTo:0.0 duration:0.5];
     SKAction *removeFromParent = [SKAction removeFromParent];
     
     [self runAction:[SKAction sequence:@[disappear, removeFromParent]]];

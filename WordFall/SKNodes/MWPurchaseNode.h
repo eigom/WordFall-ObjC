@@ -18,6 +18,6 @@ typedef void (^MWPurchaseNodeTouched)(MWPurchaseNode *node);
 
 - (id)initWithFrame:(CGRect)frame;
 
-- (void)removeWithDuration:(CFTimeInterval)duration;
+- (void)remove;
 
 @end

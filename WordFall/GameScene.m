@@ -33,6 +33,7 @@ static NSUInteger const kPadSolutionLetterSize = 40.0;
 static NSString * const kStreamNodeName = @"stream";
 static NSString * const kSolutionNodeName = @"solution";
 static NSString * const kDefinitionNodeName = @"definition";
+static NSString * const kPurchaseNodeName = @"purchase";
 
 @implementation GameScene
 
@@ -177,7 +178,7 @@ static NSString * const kDefinitionNodeName = @"definition";
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
     if (![self definitionNode].isDefinitionPresented) {
-        MWDefinitionNode *definitionNode = [[MWDefinitionNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y+solutionAreaFrame.size.height, self.frame.size.width, solutionAreaFrame.origin.y+solutionAreaFrame.size.height+self.frame.size.height - maxStreamDistance)];
+        MWDefinitionNode *definitionNode = [[MWDefinitionNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y+solutionAreaFrame.size.height, self.frame.size.width, self.frame.size.height - maxStreamDistance)];
         definitionNode.name = kDefinitionNodeName;
         [self addChild:definitionNode];
         
@@ -248,8 +249,17 @@ static NSString * const kDefinitionNodeName = @"definition";
     if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
     } else {
-        [self addPurchaseNode];
+        [[MWPurchaseManager sharedManager] requestProductWithCompletionHandler:^(BOOL success, SKProduct *product) {
+            if (success) {
+                [self addPurchaseNode];
+            }
+        }];
     }
+    
+    [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product) {
+        [[self purchaseNode] remove];
+        [self addSolveNode];
+    }];
     
     //
     // next word
@@ -275,10 +285,16 @@ static NSString * const kDefinitionNodeName = @"definition";
 - (void)addPurchaseNode
 {
     MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
-        
+        // TODO ask if want to purchase or restore
     }];
     [self addChild:purchaseNode];
+}
+
+- (MWPurchaseNode *)purchaseNode
+{
+    return (MWPurchaseNode *)[self childNodeWithName:kPurchaseNodeName];
 }
 
 - (void)addSolveNode

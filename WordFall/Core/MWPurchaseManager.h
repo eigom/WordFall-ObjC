@@ -24,7 +24,7 @@ typedef void (^MWPurchaseManagerProductPurchasedCompletion)(SKProduct *product);
 
 + (MWPurchaseManager *)sharedManager;
 
-- (void)requestProductsWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler;
+- (void)requestProductWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler;
 - (void)buy;
 
 @end

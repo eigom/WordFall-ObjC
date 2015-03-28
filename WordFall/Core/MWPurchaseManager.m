@@ -8,7 +8,8 @@
 
 #import "MWPurchaseManager.h"
 
-static NSString * kProductIdentifier = @"";
+static NSString * const kPurchasedKey = @"purchased";
+static NSString * const kProductIdentifier = @"";
 
 @implementation MWPurchaseManager
 
@@ -35,7 +36,7 @@ static NSString * kProductIdentifier = @"";
 
 #pragma Load Product
 
-- (void)requestProductsWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler
+- (void)requestProductWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler
 {
     _requestProductsCompletionHandler = [completionHandler copy];
     
@@ -83,12 +84,8 @@ static NSString * kProductIdentifier = @"";
 
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier
 {
-    //TODO save receipt
-    
-    /*[_purchasedProductIdentifiers addObject:productIdentifier];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] synchronize];*/
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPurchasedKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     if (_productPurchasedCompletion) {
         _productPurchasedCompletion(_product);
@@ -134,18 +131,16 @@ static NSString * kProductIdentifier = @"";
 {
     NSLog(@"failedTransaction...");
     
-    if (transaction.error.code != SKErrorPaymentCancelled)
-    {
+    if (transaction.error.code != SKErrorPaymentCancelled) {
         NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
     }
     
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 - (BOOL)isPurchased
 {
-    // check receipt not nil
-    return NO;
+    return ([[NSUserDefaults standardUserDefaults] objectForKey:kPurchasedKey] != nil);
 }
 
 @end
