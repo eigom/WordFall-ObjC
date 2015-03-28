@@ -51,7 +51,7 @@ static NSString * const kDBName = @"words";
             if ([maxIDrs next]) {
                 NSInteger maxWordID = [maxIDrs intForColumn:@"word_id"];
                 
-                NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform(maxWordID)];
+                NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform((u_int32_t)maxWordID)];
                 
                 FMResultSet *rs = [db executeQuery:@"select * from word where id = ?", wordID];
                 

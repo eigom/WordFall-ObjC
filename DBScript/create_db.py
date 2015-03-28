@@ -39,6 +39,82 @@ def is_alt_words(word1, word2):
     return (sorted(word1.lower()) == sorted(word2.lower()))
 
 def make_data():
+    word_dict = {}
+
+    #
+    # make dict of words and definitions 
+    #
+    for line in read_lines():
+        word_type = line['type']
+        word_data = extract_word_data(line['line'])
+
+        filtered_words = filter_words(word_data['words'])
+        definition = word_data['definition']
+
+        if len(filtered_words) == 0:
+            continue
+
+        #
+        # parse words and definitions, if word already parsed then add definition
+        #
+        for word in filtered_words:
+            if word in word_dict:
+                word_dict[word]['definitions'].append({'definition':definition, 'type':word_type})
+            else:
+                word_dict[word] = {'definitions':[{'definition':definition, 'type':word_type}]}
+
+    #
+    # make words list
+    #
+    words = []
+
+    for word in word_dict.keys():
+        words.append({'word':word, 'definitions':word_dict[word]['definitions']})
+
+    #
+    # sort words by length
+    #
+    words.sort(key=lambda word: len(word['word']))
+
+    #
+    # assign IDs
+    #
+    wordid = 0
+    definitionid = 0
+
+    for word in words:
+        word['id'] = wordid
+
+        for definition in word['definitions']:
+            definition['id'] = definitionid
+            definitionid = definitionid + 1
+
+        wordid = wordid + 1
+
+    #
+    # create alt words dict
+    #
+    alt_words = {}
+
+    for word in words:
+        sorted_word = ''.join(sorted(word['word'].lower()))
+
+        if sorted_word not in alt_words:
+            alt_words[sorted_word] = []
+        
+        alt_words[sorted_word].append(word['id'])
+
+    #
+    # assign alt word IDs to words
+    #
+    for word in words:
+        sorted_word = ''.join(sorted(word['word'].lower()))
+        word['alt_word_ids'] = [wordid for wordid in alt_words[sorted_word] if wordid != word['id']] # skip current word id
+
+    return words
+
+'''
+def make_data():
     data = {'words':[], 'definitions':[], 'word_definitions':[], 'alt_words':[]}
 
     all_words = {}
@@ -108,8 +184,9 @@ def make_data():
     print len(data['alt_words']), "words"
 
     return data
+'''
 
-def make_sql(data):
+def make_sql(words):
     print "Creating SQL..."
 
     sql = []
@@ -123,13 +200,24 @@ def make_sql(data):
 
     word_length = 1
     
-    for word in data['words']:
+    for word in words:
         if len(word['word']) > word_length:
             sql.append( "INSERT INTO word_length_max_id(length, word_id) VALUES(%d, %d);\n" % (word_length, word['id']) )
             word_length = len(word['word'])
 
+        # word
         sql.append( "INSERT INTO word(id, word) VALUES(%d, '%s');\n" % (word['id'], word['word']) )
 
+        # definitions
+        for definition in word['definitions']:
+            sql.append( "INSERT INTO definition(id, definition) VALUES(%d, '%s');\n" % (definition['id'], definition['definition'].replace("'", "''")) )
+            sql.append( "INSERT INTO word_definition(word_id, definition_id, type) VALUES(%d, %d, '%s');\n" % (word['id'], definition['id'], definition['type']) )
+
+        # alt words
+        for alt_word_id in word['alt_word_ids']:
+            sql.append( "INSERT INTO alt_word(word_id, altword_id) VALUES(%d, %d);\n" % (word['id'], alt_word_id) )
+
+    '''
     for definition in data['definitions']:
         sql.append( "INSERT INTO definition(id, definition) VALUES(%d, '%s');\n" % (definition['id'], definition['definition'].replace("'", "''")) )
 
@@ -138,6 +226,7 @@ def make_sql(data):
 
     for alt_word in data['alt_words']:
         sql.append( "INSERT INTO alt_word(word_id, altword_id) VALUES(%d, %d);\n" % (alt_word['word_id'], alt_word['altword_id']) )
+    '''
 
     sql.append('INSERT INTO word_count(count) SELECT count(*) FROM word;\n')
 
