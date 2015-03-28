@@ -63,7 +63,7 @@
     NSMutableArray *definitionNodes = [NSMutableArray array];
     
     for (MWDefinition *definition in word.definitions.items) {
-        SKNode *definitionNode = [self nodeWithText:definition.definition wrappedToLength:100];
+        SKNode *definitionNode = [self nodeWithText:definition.definition wrappedToLength:50];
         [definitionNodes addObject:definitionNode];
         height = height + [definitionNode calculateAccumulatedFrame].size.height;
     }
@@ -81,7 +81,8 @@
 - (void)presentDefinitionOfWord:(MWWord *)word withDuration:(CFTimeInterval)duration
 {
     SKNode *definitionsNode = [self nodeWithWordDefinitions:word];
-    definitionsNode.position = CGPointMake(CGRectGetMidX(_frame), CGRectGetMidY(_frame));
+    definitionsNode.position = CGPointMake(_frame.origin.x + (_frame.size.width - definitionsNode.calculateAccumulatedFrame.size.width) / 2.0,
+                                           _frame.origin.y + (_frame.size.height - definitionsNode.calculateAccumulatedFrame.size.height) / 2.0);
     [self addChild:definitionsNode];
     
     [self runAction:[SKAction fadeInWithDuration:duration]];

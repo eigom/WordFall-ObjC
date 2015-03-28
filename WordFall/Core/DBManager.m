@@ -46,7 +46,7 @@ static NSString * const kDBName = @"words";
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         while (YES) {
-            FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length <= ? order by length limit 1", [NSNumber numberWithUnsignedInteger:maxLength]];
+            FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length <= ? order by length desc limit 1", [NSNumber numberWithUnsignedInteger:maxLength]];
             
             if ([maxIDrs next]) {
                 NSInteger maxWordID = [maxIDrs intForColumn:@"word_id"];

@@ -198,12 +198,15 @@ def make_sql(words):
     sql.append('CREATE TABLE word_length_max_id(length INTEGER NOT NULL, word_id INTEGER NOT NULL);\n')
     sql.append('CREATE TABLE word_count(count INTEGER NOT NULL);\n')
 
-    word_length = 1
+    word_length = 0
     
     for word in words:
         if len(word['word']) > word_length:
-            sql.append( "INSERT INTO word_length_max_id(length, word_id) VALUES(%d, %d);\n" % (word_length, word['id']) )
-            word_length = len(word['word'])
+            if word_length == 0:
+                word_length = len(word['word'])
+            else:
+                sql.append( "INSERT INTO word_length_max_id(length, word_id) VALUES(%d, %d);\n" % (word_length, word['id']) )
+                word_length = len(word['word'])
 
         # word
         sql.append( "INSERT INTO word(id, word) VALUES(%d, '%s');\n" % (word['id'], word['word']) )
