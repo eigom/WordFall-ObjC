@@ -333,7 +333,7 @@ static NSString * const kProgressNodeName = @"progress";
         //
         // ask if want to purchase or restore
         //
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Unlock auto-solve" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Restore", @"Unlock", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Purchase auto-solving" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:[NSString stringWithFormat:@"Unlock for %@", [MWPurchaseManager sharedManager].product.formattedPrice], @"Restore", nil];
         [alertView show];
     }];
     [self addChild:purchaseNode];
@@ -342,11 +342,11 @@ static NSString * const kProgressNodeName = @"progress";
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [self presentProgressWithText:@"Restoring purchase..."];
-        [[MWPurchaseManager sharedManager] restore];
-    } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
         [self presentProgressWithText:@"Processing purchase..."];
         [[MWPurchaseManager sharedManager] buy];
+    } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
+        [self presentProgressWithText:@"Restoring purchase..."];
+        [[MWPurchaseManager sharedManager] restore];
     }
 }
 
