@@ -53,12 +53,17 @@ static NSString * const kProductIdentifier = @"";
     if ([response.products count] > 0) {
         NSLog(@"Loaded product");
         _product = [response.products firstObject];
+        
+        if (_requestProductsCompletionHandler) {
+            _requestProductsCompletionHandler(YES, _product);
+        }
+    } else {
+        if (_requestProductsCompletionHandler) {
+            _requestProductsCompletionHandler(NO, nil);
+        }
     }
     
-    if (_requestProductsCompletionHandler) {
-        _requestProductsCompletionHandler(YES, _product);
-        _requestProductsCompletionHandler = nil;
-    }
+    _requestProductsCompletionHandler = nil;
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error

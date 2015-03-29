@@ -44,7 +44,6 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)playWithNextWord
 {
-    [self presentProgressWithText:@"Loading..."];
     //
     // pullback active streams
     //
@@ -226,7 +225,7 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)presentProgressWithText:(NSString *)text
 {
-    MWProgressNode *progressNode = [[MWProgressNode alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
+    MWProgressNode *progressNode = [[MWProgressNode alloc] initWithFrame:self.frame];
     progressNode.name = kProgressNodeName;
     [self addChild:progressNode];
     

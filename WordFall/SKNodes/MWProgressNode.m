@@ -12,7 +12,7 @@ static NSString * const kBackgroundNodeName = @"background";
 static NSString * const kContentNodeName = @"content";
 
 static const CGFloat kPresentationDuration = 1.0;
-static const CGFloat kAnimationAreaSize = 30.0;
+static const CGFloat kAnimationAreaWidth = 10.0;
 
 @implementation MWProgressNode
 
@@ -33,7 +33,9 @@ static const CGFloat kAnimationAreaSize = 30.0;
     // semitransparent background in full frame
     //
     SKShapeNode *background = [SKShapeNode shapeNodeWithRect:_frame];
+    background.userInteractionEnabled = YES;
     background.name = kBackgroundNodeName;
+    background.zPosition = 100000000;
     background.userInteractionEnabled = YES;
     background.fillColor = [UIColor blackColor];
     background.alpha = 0.0;
@@ -44,24 +46,8 @@ static const CGFloat kAnimationAreaSize = 30.0;
     //
     SKNode *contentNode = [SKNode node];
     contentNode.name = kContentNodeName;
-    
-    // animation
-    SKShapeNode *rect = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0, 0.0, kAnimationAreaSize, kAnimationAreaSize)];
-    [contentNode addChild:rect];
-    
-    SKLabelNode *dot = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
-    dot.userInteractionEnabled = YES;
-    dot.text = @"●";
-    dot.fontSize = 15.0;
-    dot.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    dot.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    dot.position = CGPointMake(kAnimationAreaSize, 0.0);
-    [rect addChild:dot];
-    
-    SKAction *moveDot = [SKAction moveToX:kAnimationAreaSize duration:0.3];
-    SKAction *moveDotBack = [moveDot reversedAction];
-    SKAction *animation = [SKAction sequence:@[moveDot, moveDotBack]];
-    [dot runAction:[SKAction repeatActionForever:animation]];
+    contentNode.zPosition = 100000001;
+    contentNode.alpha = 0.0;
     
     // text
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
@@ -70,18 +56,34 @@ static const CGFloat kAnimationAreaSize = 30.0;
     label.fontSize = 15.0;
     label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    label.position = CGPointMake(kAnimationAreaSize, 0.0);
+    label.position = CGPointMake(kAnimationAreaWidth+10, 0.0);
     [contentNode addChild:label];
     
-    contentNode.position = CGPointMake(CGRectGetMidX(_frame)-contentNode.frame.size.width/2.0,
-                                       CGRectGetMidY(_frame)-contentNode.frame.size.height/2.0);
+    // animation
+    SKLabelNode *dot = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+    dot.userInteractionEnabled = YES;
+    dot.text = @"●";
+    dot.fontSize = 15.0;
+    dot.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
+    dot.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    dot.position = CGPointMake(0.0, 0.0);
+    [contentNode addChild:dot];
+    
+    SKAction *moveDot = [SKAction moveByX:kAnimationAreaWidth y:0.0 duration:0.5];
+    SKAction *moveDotBack = [moveDot reversedAction];
+    SKAction *animation = [SKAction sequence:@[moveDot, moveDotBack]];
+    [dot runAction:[SKAction repeatActionForever:animation]];
+    
+    contentNode.position = CGPointMake(CGRectGetMidX(_frame)-contentNode.calculateAccumulatedFrame.size.width/2.0,
+                                       CGRectGetMidY(_frame)-contentNode.calculateAccumulatedFrame.size.height/2.0);
+    
     [self addChild:contentNode];
     
     //
     // present
     //
-    SKAction *presentBackground = [SKAction runAction:[SKAction fadeAlphaTo:60.0 duration:kPresentationDuration] onChildWithName:kBackgroundNodeName];
-    SKAction *presentContent = [SKAction runAction:[SKAction fadeAlphaTo:60.0 duration:kPresentationDuration] onChildWithName:kContentNodeName];
+    SKAction *presentBackground = [SKAction runAction:[SKAction fadeAlphaTo:0.8 duration:kPresentationDuration] onChildWithName:kBackgroundNodeName];
+    SKAction *presentContent = [SKAction runAction:[SKAction fadeAlphaTo:1.0 duration:kPresentationDuration] onChildWithName:kContentNodeName];
     
     [self runAction:[SKAction group:@[presentBackground, presentContent]]];
 }
