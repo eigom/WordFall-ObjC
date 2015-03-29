@@ -8,7 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MWProgressNode : SKNode
+@interface MWProgressNode : SKNode {
+@private
+    CGRect _frame;
+}
 
 - (id)initWithFrame:(CGRect)frame;
 

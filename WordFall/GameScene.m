@@ -44,6 +44,7 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)playWithNextWord
 {
+    [self presentProgressWithText:@"Loading..."];
     //
     // pullback active streams
     //
@@ -53,6 +54,11 @@ static NSString * const kProgressNodeName = @"progress";
     // dismiss definition
     //
     [self dismissDefinitionWithDuration:kDismissDefinitionDuration];
+    
+    //
+    // clear solution
+    //
+    [self clearSolutionWithDuration:kDismissDefinitionDuration];
     
     //
     // setup scene with new word
@@ -204,6 +210,11 @@ static NSString * const kProgressNodeName = @"progress";
 - (void)setupSolutionWithDuration:(CFTimeInterval)duration
 {
     [[self solutionNode] setupForWordWithLetterCount:word.letterCount withDuration:duration];
+}
+
+- (void)clearSolutionWithDuration:(CFTimeInterval)duration
+{
+    [[self solutionNode] clearLettersWithDuration:duration];
 }
 
 - (MWSolutionNode *)solutionNode

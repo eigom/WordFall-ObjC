@@ -21,6 +21,6 @@
 - (void)setupForWordWithLetterCount:(NSInteger)letterCount withDuration:(CFTimeInterval)duration;
 - (void)setupWithPartialSolution:(NSString *)solution placeholder:(NSString *)placeholder withDuration:(CFTimeInterval)duration;
 - (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration;
-//- (void)clearWithDuration:(CFTimeInterval)duration;
+- (void)clearLettersWithDuration:(CFTimeInterval)duration;
 
 @end

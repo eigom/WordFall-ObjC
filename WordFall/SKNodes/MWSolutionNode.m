@@ -82,11 +82,13 @@
     [node setLetter:letter withDuration:duration];
 }
 
-/*- (void)clearWithDuration:(CFTimeInterval)duration
+- (void)clearLettersWithDuration:(CFTimeInterval)duration
 {
-    for (MWSolutionLetterNode *letterNode in letterNodes) {
+    for (MWSolutionLetterNode *letterNode in visibleLetterNodes) {
         [letterNode clearLetterWithDuration:duration];
     }
-}*/
+    
+    [visibleLetterNodes removeAllObjects];
+}
 
 @end
