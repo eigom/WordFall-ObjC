@@ -15,8 +15,10 @@
 #import "MWNextWordNode.h"
 #import "MWPurchaseNode.h"
 #import "MWSolveWordNode.h"
+#import "MWProgressNode.h"
 #import "Random.h"
 #import "MWPurchaseManager.h"
+#import "SKProduct+Extensions.h"
 
 static CFTimeInterval const kSolvingTime = 60.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
@@ -34,6 +36,7 @@ static NSString * const kStreamNodeName = @"stream";
 static NSString * const kSolutionNodeName = @"solution";
 static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
+static NSString * const kProgressNodeName = @"progress";
 
 @implementation GameScene
 
@@ -208,6 +211,27 @@ static NSString * const kPurchaseNodeName = @"purchase";
     return (MWSolutionNode *)[self childNodeWithName:kSolutionNodeName];
 }
 
+#pragma Progress
+
+- (void)presentProgressWithText:(NSString *)text
+{
+    MWProgressNode *progressNode = [[MWProgressNode alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
+    progressNode.name = kProgressNodeName;
+    [self addChild:progressNode];
+    
+    [progressNode presentWithText:text];
+}
+
+- (void)dismissProgress
+{
+    [[self progressNode] dismiss];
+}
+
+- (MWProgressNode *)progressNode
+{
+    return (MWProgressNode *)[self childNodeWithName:kProgressNodeName];
+}
+
 #pragma Scene
 
 - (void)didMoveToView:(SKView *)view
@@ -256,9 +280,18 @@ static NSString * const kPurchaseNodeName = @"purchase";
         }];
     }
     
-    [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product) {
-        [[self purchaseNode] remove];
-        [self addSolveNode];
+    [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
+        [self dismissProgress];
+        
+        if (error) {
+            if (error.code != SKErrorPaymentCancelled){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unlock auto-solve" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alert show];
+            }
+        } else {
+            [[self purchaseNode] remove];
+            [self addSolveNode];
+        }
     }];
     
     //
@@ -287,9 +320,24 @@ static NSString * const kPurchaseNodeName = @"purchase";
     MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
     purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
-        // TODO ask if want to purchase or restore
+        //
+        // ask if want to purchase or restore
+        //
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Unlock auto-solve" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Restore", @"Unlock", nil];
+        [alertView show];
     }];
     [self addChild:purchaseNode];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [self presentProgressWithText:@"Restoring purchase..."];
+        [[MWPurchaseManager sharedManager] restore];
+    } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
+        [self presentProgressWithText:@"Processing purchase..."];
+        [[MWPurchaseManager sharedManager] buy];
+    }
 }
 
 - (MWPurchaseNode *)purchaseNode

@@ -11,7 +11,7 @@
 @class MWWord;
 @class MWSolutionNode;
 
-@interface GameScene : SKScene {
+@interface GameScene : SKScene <UIAlertViewDelegate> {
 @private
     MWWord *word;
     CGFloat maxStreamDistance;

@@ -82,13 +82,18 @@ static NSString * const kProductIdentifier = @"";
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
+- (void)restore
+{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPurchasedKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if (_productPurchasedCompletion) {
-        _productPurchasedCompletion(_product);
+        _productPurchasedCompletion(_product, nil);
     }
 }
 
@@ -136,6 +141,10 @@ static NSString * const kProductIdentifier = @"";
     }
     
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    if (_productPurchasedCompletion) {
+        _productPurchasedCompletion(_product, transaction.error);
+    }
 }
 
 - (BOOL)isPurchased
