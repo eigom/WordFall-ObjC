@@ -18,4 +18,6 @@ typedef void (^MWNextWordNodeTouched)(MWNextWordNode *node);
 
 - (id)initWithFrame:(CGRect)frame;
 
+- (void)disableForDuration:(CFTimeInterval)duration;
+
 @end

@@ -21,6 +21,7 @@
 #import "SKProduct+Extensions.h"
 
 static CFTimeInterval const kSolvingTime = 60.0;
+static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
 static CFTimeInterval const kRemoveStreamDuration = 0.5;
@@ -47,17 +48,17 @@ static NSString * const kProgressNodeName = @"progress";
     //
     // pullback active streams
     //
-    [self pullbackStreamsWithDuration:kPullbackStreamDuration];
+    [self pullbackStreamsWithDuration:kPlayInitDuration];
     
     //
     // dismiss definition
     //
-    [self dismissDefinitionWithDuration:kDismissDefinitionDuration];
+    [self dismissDefinitionWithDuration:kPlayInitDuration];
     
     //
     // clear solution
     //
-    [self clearSolutionWithDuration:kDismissDefinitionDuration];
+    [self clearSolutionWithDuration:kPlayInitDuration];
     
     //
     // setup scene with new word
@@ -65,10 +66,9 @@ static NSString * const kProgressNodeName = @"progress";
     SKAction *setupWithNextWord = [SKAction runBlock:^{
         word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxLetterCount];
         
-        [self setupSolutionWithDuration:kSetupSolutionDuration];
+        [self setupSolutionWithDuration:kPlayInitDuration];
+        [self presentDefinitionWithDuration:kPlayInitDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
-        
-        [self presentDefinitionWithDuration:1];
     }];
     
     [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord]]];
@@ -146,7 +146,7 @@ static NSString * const kProgressNodeName = @"progress";
             //
             if (word.shouldRevealDefinition) {
                 //[word keepFirstSolution]; // pick first partially matching word as solution
-                [self presentDefinitionWithDuration:kPresentDefinitionDuration];
+                //[self presentDefinitionWithDuration:kPresentDefinitionDuration];
             }
             
             //
@@ -330,6 +330,8 @@ static NSString * const kProgressNodeName = @"progress";
     MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
     purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
+        [node disableForDuration:1.0];
+        
         //
         // ask if want to purchase or restore
         //
@@ -359,7 +361,7 @@ static NSString * const kProgressNodeName = @"progress";
 {
     MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
     [solveNode setNodeTouched:^(MWSolveWordNode *node){
-        
+        [node disableForDuration:1.0];
     }];
     [self addChild:solveNode];
 }
@@ -368,6 +370,7 @@ static NSString * const kProgressNodeName = @"progress";
 {
     MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
+        [node disableForDuration:kPlayInitDuration+1.0];
         [self playWithNextWord];
     }];
     [self addChild:nextWordNode];

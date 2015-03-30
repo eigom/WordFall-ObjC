@@ -18,6 +18,7 @@ typedef void (^MWPurchaseNodeTouched)(MWPurchaseNode *node);
 
 - (id)initWithFrame:(CGRect)frame;
 
+- (void)disableForDuration:(CFTimeInterval)duration;
 - (void)remove;
 
 @end

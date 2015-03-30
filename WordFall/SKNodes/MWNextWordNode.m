@@ -36,4 +36,17 @@
     }
 }
 
+- (void)disableForDuration:(CFTimeInterval)duration
+{
+    SKAction *disable = [SKAction runBlock:^{
+        self.userInteractionEnabled = NO;
+    }];
+    SKAction *wait = [SKAction waitForDuration:duration];
+    SKAction *enable = [SKAction runBlock:^{
+        self.userInteractionEnabled = YES;
+    }];
+    
+    [self runAction:[SKAction sequence:@[disable, wait, enable]]];
+}
+
 @end

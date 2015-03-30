@@ -46,6 +46,19 @@
     }
 }
 
+- (void)disableForDuration:(CFTimeInterval)duration
+{
+    SKAction *disable = [SKAction runBlock:^{
+        self.userInteractionEnabled = NO;
+    }];
+    SKAction *wait = [SKAction waitForDuration:duration];
+    SKAction *enable = [SKAction runBlock:^{
+        self.userInteractionEnabled = YES;
+    }];
+    
+    [self runAction:[SKAction sequence:@[disable, wait, enable]]];
+}
+
 - (void)remove
 {
     SKAction *disappear = [SKAction fadeAlphaTo:0.0 duration:0.5];

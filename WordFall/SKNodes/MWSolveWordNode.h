@@ -18,4 +18,6 @@ typedef void (^MWSolveWordNodeTouched)(MWSolveWordNode *node);
 
 - (id)initWithFrame:(CGRect)frame;
 
+- (void)disableForDuration:(CFTimeInterval)duration;
+
 @end
