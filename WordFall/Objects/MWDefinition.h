@@ -16,5 +16,6 @@
 
 @property (nonatomic, readonly) NSNumber *definitionID;
 @property (nonatomic, readonly) NSString *definition;
+@property (nonatomic, readonly) NSAttributedString *attributedDefinition;
 
 @end

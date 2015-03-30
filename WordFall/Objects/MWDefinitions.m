@@ -36,4 +36,9 @@
     return texts;
 }
 
+- (NSAttributedString *)attributedText
+{
+    return nil;
+}
+
 @end

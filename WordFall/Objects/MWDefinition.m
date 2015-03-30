@@ -23,4 +23,9 @@
     return self;
 }
 
+- (NSAttributedString *)attributedDefinition
+{
+    return nil;
+}
+
 @end

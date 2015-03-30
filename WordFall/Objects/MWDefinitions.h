@@ -12,4 +12,6 @@
 
 - (NSAttributedString *)combinedDefinitionTexts;
 
+@property (nonatomic, readonly) NSAttributedString *attributedText;
+
 @end
