@@ -12,10 +12,12 @@
 @private
     NSNumber *definitionID;
     NSString *definition;
+    NSString *type;
 }
 
 @property (nonatomic, readonly) NSNumber *definitionID;
 @property (nonatomic, readonly) NSString *definition;
-@property (nonatomic, readonly) NSAttributedString *attributedDefinition;
+@property (nonatomic, readonly) NSString *type;
+@property (nonatomic, readonly) NSAttributedString *attributedText;
 
 @end

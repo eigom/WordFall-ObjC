@@ -38,7 +38,14 @@
 
 - (NSAttributedString *)attributedText
 {
-    return nil;
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
+    
+    for (MWDefinition *definition in items) {
+        [text appendAttributedString:definition.attributedText];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+    }
+    
+    return text;
 }
 
 @end

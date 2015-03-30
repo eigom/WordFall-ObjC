@@ -10,7 +10,7 @@ def read_lines():
         f = open(filename)
         
         for line in f.readlines():
-            lines.append( {'line':line, 'type':filename[filename.index('.'):]} )
+            lines.append( {'line':line, 'type':filename[filename.index('.')+1:]} )
 
         f.close()
 

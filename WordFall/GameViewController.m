@@ -78,13 +78,22 @@
 
 - (void)presentWordDefinition:(MWWord *)word withDuration:(CFTimeInterval)duration
 {
-    MWDefinition *d = [word.definitions firstItem];
-    _definitionTextView.text = d.definition;
+    _definitionTextView.attributedText = word.definitions.attributedText;
+    
+    [UIView animateWithDuration:duration animations:^{
+        _definitionTextView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)dismissWordDefinitionWithDuration:(CFTimeInterval)duration
 {
-    
+    [UIView animateWithDuration:duration animations:^{
+        _definitionTextView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 #pragma view
@@ -100,6 +109,8 @@
     bannerView.delegate = self;
     [self.view addSubview:bannerView];
     [self dismissAdBannerAnimated:NO];
+    
+    [self dismissWordDefinitionWithDuration:0.0];
 }
 
 - (void)viewWillLayoutSubviews
