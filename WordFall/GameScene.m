@@ -83,7 +83,7 @@ static NSString * const kProgressNodeName = @"progress";
     
     NSArray *shuffeledLetters = [word shuffledLetters];
     
-    const CGFloat kEdgeGap = 20.0 + _topGap;
+    const CGFloat kEdgeGap = 20.0;
     const CGFloat kMinStartupMovementDistance = distance * 0.1;
     const CGFloat kMaxStartupMovementDistance = distance * 0.5;
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);

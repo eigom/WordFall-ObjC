@@ -19,6 +19,4 @@
     CGRect solutionAreaFrame;
 }
 
-@property (nonatomic, assign) CGFloat topGap;
-
 @end

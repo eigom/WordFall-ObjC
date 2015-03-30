@@ -51,8 +51,6 @@
     } completion:^(BOOL finished) {
         
     }];
-    
-    [self gameScene].topGap = bannerView.frame.size.height;
 }
 
 - (void)dismissAdBannerAnimated:(BOOL)animated
@@ -62,8 +60,6 @@
     } completion:^(BOOL finished) {
         
     }];
-    
-    [self gameScene].topGap = 0.0;
 }
 
 - (CGRect)bannerFrame
