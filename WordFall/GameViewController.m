@@ -30,9 +30,64 @@
 
 @implementation GameViewController
 
+#pragma ads
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    NSLog(@"Ad loaded");
+    [self presentAdBannerAnimated:YES];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"Ad failed");
+    [self dismissAdBannerAnimated:YES];
+}
+
+- (void)presentAdBannerAnimated:(BOOL)animated
+{
+    [UIView animateWithDuration:animated?1.0:0.0 animations:^{
+        bannerView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [self gameScene].topGap = bannerView.frame.size.height;
+}
+
+- (void)dismissAdBannerAnimated:(BOOL)animated
+{
+    [UIView animateWithDuration:animated?1.0:0.0 animations:^{
+        bannerView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [self gameScene].topGap = 0.0;
+}
+
+- (CGRect)bannerFrame
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return CGRectMake(0.0, 0.0, self.view.frame.size.width, 32.0);
+    } else {
+        return CGRectMake(0.0, 0.0, self.view.frame.size.width, 66.0);
+    }
+}
+
+#pragma view
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //
+    // ad banner
+    //
+    bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
+    bannerView.delegate = self;
+    [self.view addSubview:bannerView];
+    [self dismissAdBannerAnimated:NO];
 }
 
 - (void)viewWillLayoutSubviews
@@ -55,6 +110,13 @@
         // Present the scene.
         [skView presentScene:scene];
     }
+}
+
+- (GameScene *)gameScene
+{
+    SKView *skView = (SKView *)self.view;
+    
+    return (GameScene *)skView.scene;
 }
 
 - (BOOL)shouldAutorotate

@@ -33,6 +33,7 @@
 		1AA0B31C1A8509AA0040FCE6 /* MWDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31B1A8509AA0040FCE6 /* MWDefinitions.m */; };
 		1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B31E1A8509CF0040FCE6 /* MWManager.m */; };
 		1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */; };
+		1AA0F31B1AC98C76000AF252 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA0F31A1AC98C76000AF252 /* iAd.framework */; };
 		1AA0F8D31AC763C800A801F2 /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0F8D21AC763C800A801F2 /* words.sqlite */; };
 		1AA33E4D1AC1FB56002B29B5 /* MWPurchaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */; };
 		1AA33E501AC1FB69002B29B5 /* MWSolveWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */; };
@@ -113,6 +114,7 @@
 		1AA0B31E1A8509CF0040FCE6 /* MWManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWManager.m; sourceTree = "<group>"; };
 		1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWWordManager.h; sourceTree = "<group>"; };
 		1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWWordManager.m; sourceTree = "<group>"; };
+		1AA0F31A1AC98C76000AF252 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		1AA0F8D21AC763C800A801F2 /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = words.sqlite; path = ../DBScript/words.sqlite; sourceTree = "<group>"; };
 		1AA33E4B1AC1FB56002B29B5 /* MWPurchaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPurchaseNode.h; sourceTree = "<group>"; };
 		1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPurchaseNode.m; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA0F31B1AC98C76000AF252 /* iAd.framework in Frameworks */,
 				1AA807A01AC59A1300A0DBC1 /* StoreKit.framework in Frameworks */,
 				1A6E2F201A84BABD00725FCF /* libsqlite3.dylib in Frameworks */,
 			);
@@ -209,6 +212,7 @@
 		1A6E2F1F1A84BA7800725FCF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1AA0F31A1AC98C76000AF252 /* iAd.framework */,
 				1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */,
 				1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */,
 			);
