@@ -15,4 +15,6 @@
     ADBannerView *bannerView;
 }
 
+@property (nonatomic, strong) IBOutlet UITextView *definitionTextView;
+
 @end

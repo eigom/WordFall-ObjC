@@ -8,6 +8,9 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
+#import "MWDefinition.h"
+#import "MWDefinitions.h"
+#import "MWWord.h"
 
 @implementation SKScene (Unarchive)
 
@@ -71,6 +74,19 @@
     }
 }
 
+#pragma Definition
+
+- (void)presentWordDefinition:(MWWord *)word withDuration:(CFTimeInterval)duration
+{
+    MWDefinition *d = [word.definitions firstItem];
+    _definitionTextView.text = d.definition;
+}
+
+- (void)dismissWordDefinitionWithDuration:(CFTimeInterval)duration
+{
+    
+}
+
 #pragma view
 
 - (void)viewDidLoad
@@ -102,6 +118,14 @@
         //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
         GameScene *scene = [[GameScene alloc] initWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        [scene setShouldPresentWordDefinition:^(MWWord *word, CFTimeInterval duration) {
+            [self presentWordDefinition:word withDuration:duration];
+        }];
+        
+        [scene setShouldDismissWordDefinition:^(CFTimeInterval duration) {
+            [self dismissWordDefinitionWithDuration:duration];
+        }];
         
         // Present the scene.
         [skView presentScene:scene];

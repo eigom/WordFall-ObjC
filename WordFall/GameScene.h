@@ -11,6 +11,9 @@
 @class MWWord;
 @class MWSolutionNode;
 
+typedef void (^GameSceneShouldPresentWordDefinition)(MWWord *word, CFTimeInterval duration);
+typedef void (^GameSceneShouldDismissWordDefinition)(CFTimeInterval duration);
+
 @interface GameScene : SKScene <UIAlertViewDelegate> {
 @private
     MWWord *word;
@@ -18,5 +21,8 @@
     NSUInteger maxLetterCount;
     CGRect solutionAreaFrame;
 }
+
+@property (nonatomic, copy) GameSceneShouldPresentWordDefinition shouldPresentWordDefinition;
+@property (nonatomic, copy) GameSceneShouldDismissWordDefinition shouldDismissWordDefinition;
 
 @end

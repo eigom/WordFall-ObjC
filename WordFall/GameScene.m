@@ -193,18 +193,24 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    if (![self definitionNode].isDefinitionPresented) {
+    /*if (![self definitionNode].isDefinitionPresented) {
         MWDefinitionNode *definitionNode = [[MWDefinitionNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y+solutionAreaFrame.size.height, self.frame.size.width, self.frame.size.height - maxStreamDistance)];
         definitionNode.name = kDefinitionNodeName;
         [self addChild:definitionNode];
         
         [[self definitionNode] presentDefinitionOfWord:word.solutionWord withDuration:duration];
+    }*/
+    if (_shouldPresentWordDefinition) {
+        _shouldPresentWordDefinition(word, duration);
     }
 }
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration
 {
-    [[self definitionNode] dismissWithDuration:duration];
+    //[[self definitionNode] dismissWithDuration:duration];
+    if (_shouldDismissWordDefinition) {
+        _shouldDismissWordDefinition(duration);
+    }
 }
 
 - (MWDefinitionNode *)definitionNode
