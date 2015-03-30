@@ -26,8 +26,9 @@ static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
 static CFTimeInterval const kRemoveStreamDuration = 0.5;
 static CFTimeInterval const kPresentDefinitionDuration = 1.0;
-static CFTimeInterval const kDismissDefinitionDuration = 1.0;
-static CFTimeInterval const kSetupSolutionDuration = 1.0;
+static CFTimeInterval const kSolveWordDuration = 1.0;
+//static CFTimeInterval const kDismissDefinitionDuration = 1.0;
+//static CFTimeInterval const kSetupSolutionDuration = 1.0;
 static CFTimeInterval const kRevealLetterDuration = 1.0;
 
 static NSUInteger const kPhoneSolutionLetterSize = 30.0;
@@ -170,6 +171,13 @@ static NSString * const kProgressNodeName = @"progress";
     }
 }
 
+- (void)removeStreamsWithDuration:(CFTimeInterval)duration
+{
+    for (MWStreamNode *node in [self streamNodes]) {
+        [node removeWithDuration:duration];
+    }
+}
+
 - (NSArray *)streamNodes
 {
     NSMutableArray *nodes = [NSMutableArray array];
@@ -244,6 +252,108 @@ static NSString * const kProgressNodeName = @"progress";
 
 #pragma Scene
 
+- (void)addBackgroundNode
+{
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    [self addChild:background];
+}
+
+- (void)addSolutionArea
+{
+    MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
+    solutionNode.name = kSolutionNodeName;
+    [self addChild:solutionNode];
+    
+    [solutionNode setupWithPartialSolution:@"Word Guru" placeholder:[MWWord placeholder] withDuration:0.0];
+}
+
+- (void)addPurchaseNode
+{
+    MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    purchaseNode.name = kPurchaseNodeName;
+    [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
+        [node disableForDuration:1.0];
+        
+        //
+        // ask if want to purchase or restore
+        //
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Purchase auto-solving" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:[NSString stringWithFormat:@"Unlock for %@", [MWPurchaseManager sharedManager].product.formattedPrice], @"Restore", nil];
+        [alertView show];
+    }];
+    [self addChild:purchaseNode];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [self presentProgressWithText:@"Processing purchase..."];
+        [[MWPurchaseManager sharedManager] buy];
+    } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
+        [self presentProgressWithText:@"Restoring purchase..."];
+        [[MWPurchaseManager sharedManager] restore];
+    }
+}
+
+- (MWPurchaseNode *)purchaseNode
+{
+    return (MWPurchaseNode *)[self childNodeWithName:kPurchaseNodeName];
+}
+
+- (void)addSolveNode
+{
+    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    [solveNode setNodeTouched:^(MWSolveWordNode *node){
+        if (!word.isSolved) {
+            [node disableForDuration:kSolveWordDuration+1.0];
+            [self removeStreamsWithDuration:kSolveWordDuration];
+            [[self solutionNode] revealWord:[word solutionWord].word withDuration:kSolveWordDuration];
+        }
+    }];
+    [self addChild:solveNode];
+}
+
+- (void)addNextWordNode
+{
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
+    [nextWordNode setNodeTouched:^(MWNextWordNode *node){
+        [node disableForDuration:kPlayInitDuration+1.0];
+        [self playWithNextWord];
+    }];
+    [self addChild:nextWordNode];
+}
+
+- (void)addRevealLineNode
+{
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance);
+    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance);
+    [path moveToPoint:point1];
+    [path addLineToPoint:point2];
+    
+    CGFloat pattern[2];
+    pattern[0] = 6.0;
+    pattern[1] = 6.0;
+    CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
+    
+    SKShapeNode *node = [SKShapeNode node];
+    node.path = dashed;
+    node.fillColor = [UIColor yellowColor];
+    node.lineWidth = 1.0;
+    //node.glowWidth = 0.5;
+    [self addChild:node];
+    
+    CGPathRelease(dashed);
+}
+
+- (CGFloat)solutionLetterSize
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadSolutionLetterSize;
+    } else {
+        return kPhoneSolutionLetterSize;
+    }
+}
+
 - (void)didMoveToView:(SKView *)view
 {
     //
@@ -309,112 +419,6 @@ static NSString * const kProgressNodeName = @"progress";
     //
     [self addNextWordNode];
 }
-
-- (void)addBackgroundNode
-{
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
-    [self addChild:background];
-}
-
-- (void)addSolutionArea
-{
-    MWSolutionNode *solutionNode = [[MWSolutionNode alloc] initWithFrame:solutionAreaFrame];
-    solutionNode.name = kSolutionNodeName;
-    [self addChild:solutionNode];
-    
-    [solutionNode setupWithPartialSolution:@"Word Guru" placeholder:[MWWord placeholder] withDuration:0.0];
-}
-
-- (void)addPurchaseNode
-{
-    MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
-    purchaseNode.name = kPurchaseNodeName;
-    [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
-        [node disableForDuration:1.0];
-        
-        //
-        // ask if want to purchase or restore
-        //
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Purchase auto-solving" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:[NSString stringWithFormat:@"Unlock for %@", [MWPurchaseManager sharedManager].product.formattedPrice], @"Restore", nil];
-        [alertView show];
-    }];
-    [self addChild:purchaseNode];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [self presentProgressWithText:@"Processing purchase..."];
-        [[MWPurchaseManager sharedManager] buy];
-    } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
-        [self presentProgressWithText:@"Restoring purchase..."];
-        [[MWPurchaseManager sharedManager] restore];
-    }
-}
-
-- (MWPurchaseNode *)purchaseNode
-{
-    return (MWPurchaseNode *)[self childNodeWithName:kPurchaseNodeName];
-}
-
-- (void)addSolveNode
-{
-    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
-    [solveNode setNodeTouched:^(MWSolveWordNode *node){
-        [node disableForDuration:1.0];
-    }];
-    [self addChild:solveNode];
-}
-
-- (void)addNextWordNode
-{
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
-    [nextWordNode setNodeTouched:^(MWNextWordNode *node){
-        [node disableForDuration:kPlayInitDuration+1.0];
-        [self playWithNextWord];
-    }];
-    [self addChild:nextWordNode];
-}
-
-- (void)addRevealLineNode
-{
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance);
-    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance);
-    [path moveToPoint:point1];
-    [path addLineToPoint:point2];
-    
-    CGFloat pattern[2];
-    pattern[0] = 6.0;
-    pattern[1] = 6.0;
-    CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
-    
-    SKShapeNode *node = [SKShapeNode node];
-    node.path = dashed;
-    node.fillColor = [UIColor yellowColor];
-    node.lineWidth = 1.0;
-    //node.glowWidth = 0.5;
-    [self addChild:node];
-    
-    CGPathRelease(dashed);
-}
-
-- (CGFloat)solutionLetterSize
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return kPadSolutionLetterSize;
-    } else {
-        return kPhoneSolutionLetterSize;
-    }
-}
-
-/*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-    }
-}*/
 
 - (void)update:(CFTimeInterval)currentTime
 {
