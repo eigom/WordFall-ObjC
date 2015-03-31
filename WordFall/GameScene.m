@@ -270,7 +270,9 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)addBackgroundNode
 {
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"Background"];
+    background.anchorPoint = CGPointMake(0.0, 0.0);
+    background.zPosition = 0;
     [self addChild:background];
 }
 
@@ -352,6 +354,7 @@ static NSString * const kProgressNodeName = @"progress";
     CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
     
     SKShapeNode *node = [SKShapeNode node];
+    node.zPosition = 1;
     node.path = dashed;
     node.fillColor = [UIColor yellowColor];
     node.lineWidth = 1.0;
@@ -375,7 +378,7 @@ static NSString * const kProgressNodeName = @"progress";
     //
     // add background image
     //
-    //[self addBackgroundNode];
+    [self addBackgroundNode];
     
     //
     // max falling distance, letter reveal level
