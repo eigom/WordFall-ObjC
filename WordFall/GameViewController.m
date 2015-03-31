@@ -110,6 +110,9 @@
     [self.view addSubview:bannerView];
     [self dismissAdBannerAnimated:NO];
     
+    //
+    // hide definition
+    //
     [self dismissWordDefinitionWithDuration:0.0];
 }
 
@@ -141,6 +144,12 @@
         // Present the scene.
         [skView presentScene:scene];
     }
+    
+    //
+    // definition text view frame
+    //
+    _definitionTextView.frame = CGRectMake(0.0, [self gameScene].definitionAreaYOrigin, _definitionTextView.frame.size.width, [self gameScene].definitionAreaHeight);
+    _definitionTextView.center = CGPointMake(self.view.center.x+30.0, _definitionTextView.center.y);
 }
 
 - (GameScene *)gameScene

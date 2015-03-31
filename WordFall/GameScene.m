@@ -20,7 +20,7 @@
 #import "MWPurchaseManager.h"
 #import "SKProduct+Extensions.h"
 
-static CFTimeInterval const kSolvingTime = 60.0;
+static CFTimeInterval const kSolvingTime = 100.0;
 static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
@@ -424,6 +424,16 @@ static NSString * const kProgressNodeName = @"progress";
     // next word
     //
     [self addNextWordNode];
+}
+
+- (CGFloat)definitionAreaYOrigin
+{
+    return maxStreamDistance;
+}
+
+- (CGFloat)definitionAreaHeight
+{
+    return self.frame.size.height - maxStreamDistance - (solutionAreaFrame.origin.y+solutionAreaFrame.size.height);
 }
 
 - (void)update:(CFTimeInterval)currentTime

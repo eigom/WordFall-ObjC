@@ -22,6 +22,8 @@ typedef void (^GameSceneShouldDismissWordDefinition)(CFTimeInterval duration);
     CGRect solutionAreaFrame;
 }
 
+@property (nonatomic, readonly) CGFloat definitionAreaYOrigin;
+@property (nonatomic, readonly) CGFloat definitionAreaHeight;
 @property (nonatomic, copy) GameSceneShouldPresentWordDefinition shouldPresentWordDefinition;
 @property (nonatomic, copy) GameSceneShouldDismissWordDefinition shouldDismissWordDefinition;
 
