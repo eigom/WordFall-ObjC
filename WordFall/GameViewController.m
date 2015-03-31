@@ -114,6 +114,31 @@
     // hide definition
     //
     [self dismissWordDefinitionWithDuration:0.0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+}
+
+- (void)appWillEnterForeground
+{
+    [self skView].paused = NO;
+}
+
+- (void)appDidBecomeActive
+{
+    [self skView].paused = NO;
+}
+
+- (void)appWillResignActive
+{
+    [self skView].paused = YES;
+}
+
+- (void)appDidEnterBackground
+{
+    [self skView].paused = YES;
 }
 
 - (void)viewWillLayoutSubviews
@@ -168,11 +193,14 @@
     _definitionTextView.center = CGPointMake(self.view.center.x+30.0, _definitionTextView.center.y);
 }
 
+- (SKView *)skView
+{
+    return (SKView *)self.view;
+}
+
 - (GameScene *)gameScene
 {
-    SKView *skView = (SKView *)self.view;
-    
-    return (GameScene *)skView.scene;
+    return (GameScene *)[self skView].scene;
 }
 
 - (BOOL)shouldAutorotate
@@ -197,6 +225,11 @@
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
