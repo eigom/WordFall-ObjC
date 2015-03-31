@@ -141,6 +141,22 @@
             [self dismissWordDefinitionWithDuration:duration];
         }];
         
+        [scene setWillPresentProgress:^(CFTimeInterval duration, CGFloat alpha) {
+            [UIView animateWithDuration:duration animations:^{
+                _definitionTextView.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                _definitionTextView.hidden = YES;
+            }];
+        }];
+        
+        [scene setWillDismissProgress:^(CFTimeInterval duration) {
+            [UIView animateWithDuration:duration animations:^{
+                _definitionTextView.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                _definitionTextView.hidden = NO;
+            }];
+        }];
+        
         // Present the scene.
         [skView presentScene:scene];
     }

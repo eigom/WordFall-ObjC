@@ -11,8 +11,9 @@
 static NSString * const kBackgroundNodeName = @"background";
 static NSString * const kContentNodeName = @"content";
 
-static const CGFloat kPresentationDuration = 1.0;
+static const CGFloat kPresentationDuration = 0.6;
 static const CGFloat kAnimationAreaWidth = 10.0;
+static const CGFloat kAlpha = 0.8;
 
 @implementation MWProgressNode
 
@@ -69,7 +70,7 @@ static const CGFloat kAnimationAreaWidth = 10.0;
     dot.position = CGPointMake(0.0, 0.0);
     [contentNode addChild:dot];
     
-    SKAction *moveDot = [SKAction moveByX:kAnimationAreaWidth y:0.0 duration:0.5];
+    SKAction *moveDot = [SKAction moveByX:kAnimationAreaWidth y:0.0 duration:0.4];
     SKAction *moveDotBack = [moveDot reversedAction];
     SKAction *animation = [SKAction sequence:@[moveDot, moveDotBack]];
     [dot runAction:[SKAction repeatActionForever:animation]];
@@ -79,10 +80,14 @@ static const CGFloat kAnimationAreaWidth = 10.0;
     
     [self addChild:contentNode];
     
+    if (_willPresentProgress) {
+        _willPresentProgress(kPresentationDuration, kAlpha);
+    }
+    
     //
     // present
     //
-    SKAction *presentBackground = [SKAction runAction:[SKAction fadeAlphaTo:0.8 duration:kPresentationDuration] onChildWithName:kBackgroundNodeName];
+    SKAction *presentBackground = [SKAction runAction:[SKAction fadeAlphaTo:kAlpha duration:kPresentationDuration] onChildWithName:kBackgroundNodeName];
     SKAction *presentContent = [SKAction runAction:[SKAction fadeAlphaTo:1.0 duration:kPresentationDuration] onChildWithName:kContentNodeName];
     
     [self runAction:[SKAction group:@[presentBackground, presentContent]]];
@@ -90,7 +95,18 @@ static const CGFloat kAnimationAreaWidth = 10.0;
 
 - (void)dismiss
 {
+    if (_willDismissProgress) {
+        _willDismissProgress(kPresentationDuration);
+    }
     
+    //
+    // dismiss
+    //
+    SKAction *dismissBackground = [SKAction runAction:[SKAction fadeAlphaTo:0.0 duration:kPresentationDuration] onChildWithName:kBackgroundNodeName];
+    SKAction *dismissContent = [SKAction runAction:[SKAction fadeAlphaTo:0.0 duration:kPresentationDuration] onChildWithName:kContentNodeName];
+    SKAction *removeFromParent = [SKAction removeFromParent];
+    
+    [self runAction:[SKAction group:@[dismissBackground, dismissContent, removeFromParent]]];
 }
 
 @end

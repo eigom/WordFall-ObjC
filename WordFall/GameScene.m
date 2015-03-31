@@ -241,6 +241,16 @@ static NSString * const kProgressNodeName = @"progress";
 {
     MWProgressNode *progressNode = [[MWProgressNode alloc] initWithFrame:self.frame];
     progressNode.name = kProgressNodeName;
+    [progressNode setWillPresentProgress:^(CFTimeInterval duration, CGFloat alpha){
+        if (_willPresentProgress) {
+            _willPresentProgress(duration, alpha);
+        }
+    }];
+    [progressNode setWillDismissProgress:^(CFTimeInterval duration){
+        if (_willDismissProgress) {
+            _willDismissProgress(duration);
+        }
+    }];
     [self addChild:progressNode];
     
     [progressNode presentWithText:text];
