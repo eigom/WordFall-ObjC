@@ -13,8 +13,7 @@
 @interface GameViewController : UIViewController <ADBannerViewDelegate> {
 @private
     ADBannerView *bannerView;
+    UITextView *definitionTextView;
 }
-
-@property (nonatomic, strong) IBOutlet UITextView *definitionTextView;
 
 @end

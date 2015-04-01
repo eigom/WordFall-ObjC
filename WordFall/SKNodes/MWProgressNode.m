@@ -20,6 +20,7 @@ static const CGFloat kAlpha = 0.8;
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super init])) {
+        self.zPosition = 100000000;
         _frame = frame;
         
         self.userInteractionEnabled = YES;
@@ -36,7 +37,7 @@ static const CGFloat kAlpha = 0.8;
     SKShapeNode *background = [SKShapeNode shapeNodeWithRect:_frame];
     background.userInteractionEnabled = YES;
     background.name = kBackgroundNodeName;
-    background.zPosition = 100000000;
+    //background.zPosition = 100000000;
     background.userInteractionEnabled = YES;
     background.fillColor = [UIColor blackColor];
     background.alpha = 0.0;
@@ -47,7 +48,7 @@ static const CGFloat kAlpha = 0.8;
     //
     SKNode *contentNode = [SKNode node];
     contentNode.name = kContentNodeName;
-    contentNode.zPosition = 100000001;
+    //contentNode.zPosition = 100000001;
     contentNode.alpha = 0.0;
     
     // text

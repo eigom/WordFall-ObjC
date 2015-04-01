@@ -11,6 +11,7 @@
 #import "MWDefinition.h"
 #import "MWDefinitions.h"
 #import "MWWord.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SKScene (Unarchive)
 
@@ -78,10 +79,10 @@
 
 - (void)presentWordDefinition:(MWWord *)word withDuration:(CFTimeInterval)duration
 {
-    _definitionTextView.attributedText = word.definitions.attributedText;
+    definitionTextView.attributedText = word.definitions.attributedText;
     
     [UIView animateWithDuration:duration animations:^{
-        _definitionTextView.alpha = 1.0;
+        definitionTextView.alpha = 1.0;
     } completion:^(BOOL finished) {
         
     }];
@@ -90,7 +91,7 @@
 - (void)dismissWordDefinitionWithDuration:(CFTimeInterval)duration
 {
     [UIView animateWithDuration:duration animations:^{
-        _definitionTextView.alpha = 0.0;
+        definitionTextView.alpha = 0.0;
     } completion:^(BOOL finished) {
         
     }];
@@ -168,18 +169,18 @@
         
         [scene setWillPresentProgress:^(CFTimeInterval duration, CGFloat alpha) {
             [UIView animateWithDuration:duration animations:^{
-                _definitionTextView.alpha = 0.0;
+                definitionTextView.alpha = 0.0;
             } completion:^(BOOL finished) {
-                _definitionTextView.hidden = YES;
+                definitionTextView.hidden = YES;
             }];
         }];
         
         [scene setWillDismissProgress:^(CFTimeInterval duration) {
-            _definitionTextView.alpha = 0.0;
-            _definitionTextView.hidden = NO;
+            definitionTextView.alpha = 0.0;
+            definitionTextView.hidden = NO;
             
             [UIView animateWithDuration:duration animations:^{
-                _definitionTextView.alpha = 1.0;
+                definitionTextView.alpha = 1.0;
             } completion:^(BOOL finished) {
                 
             }];
@@ -192,8 +193,16 @@
     //
     // definition text view frame
     //
-    _definitionTextView.frame = CGRectMake(0.0, [self gameScene].definitionAreaYOrigin, _definitionTextView.frame.size.width, [self gameScene].definitionAreaHeight);
-    _definitionTextView.center = CGPointMake(self.view.center.x+30.0, _definitionTextView.center.y);
+    CGFloat width = [self skView].frame.size.height * 0.7;
+    CGFloat xOrigin = ([self skView].frame.size.height - width) / 2.0;
+    definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight))];
+    definitionTextView.editable = NO;
+    definitionTextView.backgroundColor = [UIColor clearColor];
+    definitionTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    definitionTextView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    definitionTextView.layer.shadowOpacity = 1.0f;
+    definitionTextView.layer.shadowRadius = 1.0f;
+    [[self skView] addSubview:definitionTextView];
 }
 
 - (SKView *)skView

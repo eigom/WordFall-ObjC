@@ -352,15 +352,16 @@ static NSString * const kProgressNodeName = @"progress";
     [path addLineToPoint:point2];
     
     CGFloat pattern[2];
-    pattern[0] = 6.0;
-    pattern[1] = 6.0;
+    pattern[0] = 3.0;
+    pattern[1] = 5.0;
     CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
     
     SKShapeNode *node = [SKShapeNode node];
     node.zPosition = 1;
     node.path = dashed;
-    node.fillColor = [UIColor yellowColor];
-    node.lineWidth = 1.0;
+    node.fillColor = [UIColor blackColor];
+    node.strokeColor = [UIColor whiteColor];
+    node.lineWidth = 0.5;
     //node.glowWidth = 0.5;
     [self addChild:node];
     

@@ -16,6 +16,7 @@ static NSString * const kLetterLabelNodeName = @"label";
 {
     if ((self = [super init])) {
         _frame = frame;
+        self.zPosition = 10;
     }
     
     return self;

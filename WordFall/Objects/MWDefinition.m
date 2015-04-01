@@ -36,7 +36,7 @@
     [text appendAttributedString:typeString];
     
     NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:definition
-        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],
+        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14],
                      NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     

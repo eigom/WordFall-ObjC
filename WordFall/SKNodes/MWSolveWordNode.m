@@ -13,6 +13,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super init])) {
+        self.zPosition = 10;
         self.userInteractionEnabled = YES;
         
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];

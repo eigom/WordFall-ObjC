@@ -14,6 +14,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super init])) {
+        self.zPosition = 10;
+        
         letterNodes = [NSMutableArray array];
         visibleLetterNodes = [NSMutableArray array];
         

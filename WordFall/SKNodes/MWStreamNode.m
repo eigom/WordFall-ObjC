@@ -23,6 +23,7 @@ static NSString * const kMovementActionKey = @"movementAction";
         
         self.userInteractionEnabled = YES;
         self.position = CGPointMake(self.position.x, 0.0);
+        self.zPosition = 10;
         
         //TODO create nodes
         
