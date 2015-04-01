@@ -43,4 +43,22 @@
     return text;
 }
 
+- (CGFloat)typeSize
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return 12;
+    } else {
+        return 16;
+    }
+}
+
+- (CGFloat)definitionSize
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return 16;
+    } else {
+        return 20;
+    }
+}
+
 @end
