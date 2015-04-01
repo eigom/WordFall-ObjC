@@ -184,7 +184,7 @@
         bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
         NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
         NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
-        bannerView.center = CGPointMake(CGRectGetMidY([self skView].frame), bannerView.center.y);
+        bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
         bannerView.delegate = self;
         [self.view addSubview:bannerView];
         [self dismissAdBannerAnimated:NO];
@@ -194,8 +194,8 @@
     // definition text view
     //
     if (definitionTextView == nil) {
-        CGFloat width = [self skView].frame.size.height * 0.7;
-        CGFloat xOrigin = ([self skView].frame.size.height - width) / 2.0;
+        CGFloat width = [self skView].bounds.size.width * 0.7;
+        CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
         definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight))];
         definitionTextView.editable = NO;
         definitionTextView.backgroundColor = [UIColor clearColor];
