@@ -103,19 +103,6 @@
 {
     [super viewDidLoad];
     
-    //
-    // ad banner
-    //
-    bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
-    bannerView.delegate = self;
-    [self.view addSubview:bannerView];
-    [self dismissAdBannerAnimated:NO];
-    
-    //
-    // hide definition
-    //
-    [self dismissWordDefinitionWithDuration:0.0];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -191,18 +178,38 @@
     }
     
     //
-    // definition text view frame
+    // ad banner
     //
-    CGFloat width = [self skView].frame.size.height * 0.7;
-    CGFloat xOrigin = ([self skView].frame.size.height - width) / 2.0;
-    definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight))];
-    definitionTextView.editable = NO;
-    definitionTextView.backgroundColor = [UIColor clearColor];
-    definitionTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    definitionTextView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    definitionTextView.layer.shadowOpacity = 1.0f;
-    definitionTextView.layer.shadowRadius = 1.0f;
-    [[self skView] addSubview:definitionTextView];
+    if (bannerView == nil) {
+        bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
+        NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
+        NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
+        bannerView.center = CGPointMake(CGRectGetMidY([self skView].frame), bannerView.center.y);
+        bannerView.delegate = self;
+        [self.view addSubview:bannerView];
+        [self dismissAdBannerAnimated:NO];
+    }
+    
+    //
+    // definition text view
+    //
+    if (definitionTextView == nil) {
+        CGFloat width = [self skView].frame.size.height * 0.7;
+        CGFloat xOrigin = ([self skView].frame.size.height - width) / 2.0;
+        definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight))];
+        definitionTextView.editable = NO;
+        definitionTextView.backgroundColor = [UIColor clearColor];
+        definitionTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        definitionTextView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+        definitionTextView.layer.shadowOpacity = 1.0f;
+        definitionTextView.layer.shadowRadius = 1.0f;
+        [[self skView] addSubview:definitionTextView];
+        
+        //
+        // hide definition
+        //
+        [self dismissWordDefinitionWithDuration:0.0];
+    }
 }
 
 - (SKView *)skView
