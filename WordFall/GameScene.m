@@ -270,8 +270,11 @@ static NSString * const kProgressNodeName = @"progress";
 
 - (void)addBackgroundNode
 {
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"Background"];
-    background.anchorPoint = CGPointMake(0.0, 0.0);
+    NSUInteger sceneWidth = self.frame.size.width;
+    NSString *filename = [NSString stringWithFormat:@"background-%lu", (unsigned long)sceneWidth];
+    
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:filename];
+    background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     background.zPosition = 0;
     [self addChild:background];
 }

@@ -44,6 +44,12 @@
 		1AA8C7EF1AC0965D00B10E49 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7EE1AC0965D00B10E49 /* Random.m */; };
 		1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */; };
 		1AA8D49D1ACB0B4000CF1842 /* words.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D49C1ACB0B4000CF1842 /* words.sqlite */; };
+		1AA8D4A51ACC86E800CF1842 /* background-480@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D49F1ACC86E800CF1842 /* background-480@2x.png */; };
+		1AA8D4A61ACC86E800CF1842 /* background-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4A01ACC86E800CF1842 /* background-568@2x.png */; };
+		1AA8D4A71ACC86E800CF1842 /* background-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4A11ACC86E800CF1842 /* background-667@2x.png */; };
+		1AA8D4A81ACC86E800CF1842 /* background-736@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4A21ACC86E800CF1842 /* background-736@3x.png */; };
+		1AA8D4A91ACC86E800CF1842 /* background-1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4A31ACC86E800CF1842 /* background-1024.png */; };
+		1AA8D4AA1ACC86E800CF1842 /* background-1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4A41ACC86E800CF1842 /* background-1024@2x.png */; };
 		1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */; };
 		1AA945BE1AC88D9A00006FEF /* MWProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */; };
 /* End PBXBuildFile section */
@@ -133,6 +139,12 @@
 		1AA8C7F01AC0CE8100B10E49 /* MWNextWordNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWNextWordNode.h; sourceTree = "<group>"; };
 		1AA8C7F11AC0CE8100B10E49 /* MWNextWordNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWNextWordNode.m; sourceTree = "<group>"; };
 		1AA8D49C1ACB0B4000CF1842 /* words.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = words.sqlite; path = ../DBScript/words.sqlite; sourceTree = "<group>"; };
+		1AA8D49F1ACC86E800CF1842 /* background-480@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-480@2x.png"; sourceTree = "<group>"; };
+		1AA8D4A01ACC86E800CF1842 /* background-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-568@2x.png"; sourceTree = "<group>"; };
+		1AA8D4A11ACC86E800CF1842 /* background-667@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-667@2x.png"; sourceTree = "<group>"; };
+		1AA8D4A21ACC86E800CF1842 /* background-736@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-736@3x.png"; sourceTree = "<group>"; };
+		1AA8D4A31ACC86E800CF1842 /* background-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-1024.png"; sourceTree = "<group>"; };
+		1AA8D4A41ACC86E800CF1842 /* background-1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-1024@2x.png"; sourceTree = "<group>"; };
 		1AA945B91AC886A700006FEF /* SKProduct+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Extensions.h"; sourceTree = "<group>"; };
 		1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Extensions.m"; sourceTree = "<group>"; };
 		1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWProgressNode.h; sourceTree = "<group>"; };
@@ -294,6 +306,7 @@
 				1AA8D49C1ACB0B4000CF1842 /* words.sqlite */,
 				1A6E2F1F1A84BA7800725FCF /* Libraries */,
 				1AA07A8F1A762BA400722BEB /* Supporting Files */,
+				1AA8D49E1ACC86C200CF1842 /* Images */,
 			);
 			path = WordFall;
 			sourceTree = "<group>";
@@ -354,6 +367,19 @@
 				1AA8C7EE1AC0965D00B10E49 /* Random.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		1AA8D49E1ACC86C200CF1842 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1AA8D49F1ACC86E800CF1842 /* background-480@2x.png */,
+				1AA8D4A01ACC86E800CF1842 /* background-568@2x.png */,
+				1AA8D4A11ACC86E800CF1842 /* background-667@2x.png */,
+				1AA8D4A21ACC86E800CF1842 /* background-736@3x.png */,
+				1AA8D4A31ACC86E800CF1842 /* background-1024.png */,
+				1AA8D4A41ACC86E800CF1842 /* background-1024@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,9 +464,15 @@
 			files = (
 				1AA07AA51A762BA400722BEB /* LaunchScreen.xib in Resources */,
 				1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */,
+				1AA8D4A71ACC86E800CF1842 /* background-667@2x.png in Resources */,
+				1AA8D4A81ACC86E800CF1842 /* background-736@3x.png in Resources */,
 				1AA07A9A1A762BA400722BEB /* GameScene.sks in Resources */,
+				1AA8D4A61ACC86E800CF1842 /* background-568@2x.png in Resources */,
+				1AA8D4A91ACC86E800CF1842 /* background-1024.png in Resources */,
 				1AA07AA01A762BA400722BEB /* Main.storyboard in Resources */,
 				1AA8D49D1ACB0B4000CF1842 /* words.sqlite in Resources */,
+				1AA8D4A51ACC86E800CF1842 /* background-480@2x.png in Resources */,
+				1AA8D4AA1ACC86E800CF1842 /* background-1024@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

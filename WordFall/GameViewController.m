@@ -175,10 +175,13 @@
         }];
         
         [scene setWillDismissProgress:^(CFTimeInterval duration) {
+            _definitionTextView.alpha = 0.0;
+            _definitionTextView.hidden = NO;
+            
             [UIView animateWithDuration:duration animations:^{
                 _definitionTextView.alpha = 1.0;
             } completion:^(BOOL finished) {
-                _definitionTextView.hidden = NO;
+                
             }];
         }];
         
