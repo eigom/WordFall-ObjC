@@ -15,6 +15,9 @@ static NSString * const kMovementActionKey = @"movementAction";
 
 static NSString * const kFont = @"Copperplate";
 
+static const CGFloat kPhoneFontSize = 18;
+static const CGFloat kPadFontSize = 22;
+
 @implementation MWStreamNode
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame
@@ -35,15 +38,24 @@ static NSString * const kFont = @"Copperplate";
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
         label.zPosition = bgNode.zPosition + 1;
         label.text = _letter;
-        label.fontSize = 17.0;
+        label.fontSize = [self fontSize];
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
         label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label.userInteractionEnabled = NO;
-        label.position = CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-4);
+        label.position = CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-5.0);
         [self addChild:label];
     }
     
     return self;
+}
+
+- (CGFloat)fontSize
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadFontSize;
+    } else {
+        return kPhoneFontSize;
+    }
 }
 
 - (void)startFall

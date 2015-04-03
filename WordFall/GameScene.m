@@ -87,7 +87,7 @@ static NSString * const kProgressNodeName = @"progress";
     const CGFloat kMinStartupMovementDistance = distance * 0.1;
     const CGFloat kMaxStartupMovementDistance = distance * 0.5;
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);
-    const CGFloat kStreamHeight = maxStreamDistance;
+    const CGFloat kStreamHeight = distance - _topGap; // adjust for ad banner height
     
     CGFloat xOrigin = floor(kEdgeGap + ((shuffeledLetters.count * kStreamWidth) - (shuffeledLetters.count * kStreamWidth)) / 2.0);
     

@@ -9,6 +9,15 @@
 #import "MWDefinition.h"
 #import <UIKit/UIKit.h>
 
+static NSString * const kTypeFont = @"GillSans";
+static NSString * const kDefinitionFont = @"GillSans";
+
+static const CGFloat kPhoneTypeFontSize = 15;
+static const CGFloat kPhoneDefinitionFontSize = 16;
+
+static const CGFloat kPadTypeFontSize = 18;
+static const CGFloat kPadDefinitionSize = 20;
+
 @implementation MWDefinition
 
 @synthesize definitionID;
@@ -31,12 +40,12 @@
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
     
     NSAttributedString *typeString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"(%@) ", type]
-        attributes:@{NSFontAttributeName : [UIFont italicSystemFontOfSize:12],
+        attributes:@{NSFontAttributeName : [UIFont fontWithName:kTypeFont size:[self typeSize]],
                      NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:typeString];
     
     NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:definition
-        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14],
+        attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[self definitionSize]],
                      NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     
@@ -46,18 +55,18 @@
 - (CGFloat)typeSize
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return 12;
+        return kPhoneTypeFontSize;
     } else {
-        return 16;
+        return kPadTypeFontSize;
     }
 }
 
 - (CGFloat)definitionSize
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return 16;
+        return kPhoneDefinitionFontSize;
     } else {
-        return 20;
+        return kPadDefinitionSize;
     }
 }
 

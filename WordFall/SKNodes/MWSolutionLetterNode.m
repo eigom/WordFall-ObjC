@@ -12,6 +12,9 @@ static NSString * const kLetterLabelNodeName = @"label";
 
 static NSString * const kFont = @"Copperplate";
 
+static const CGFloat kPhoneFontSize = 20;
+static const CGFloat kPadFontSize = 26;
+
 @implementation MWSolutionLetterNode
 
 - (id)initWithFrame:(CGRect)frame
@@ -37,7 +40,8 @@ static NSString * const kFont = @"Copperplate";
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
     label.name = kLetterLabelNodeName;
     label.text = _letter;
-    label.fontSize = 15.0;
+    label.fontSize = [self fontSize];
+    label.fontColor = [UIColor yellowColor];
     label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     label.userInteractionEnabled = NO;
@@ -46,6 +50,15 @@ static NSString * const kFont = @"Copperplate";
     [self addChild:label];
     
     // TODO flip to label side
+}
+
+- (CGFloat)fontSize
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadFontSize;
+    } else {
+        return kPhoneFontSize;
+    }
 }
 
 - (void)clearLetterWithDuration:(CFTimeInterval)duration
