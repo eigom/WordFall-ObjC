@@ -40,6 +40,8 @@ static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
 static NSString * const kProgressNodeName = @"progress";
 
+static const NSUInteger kNumOfStreamBackgrounds = 2;
+
 @implementation GameScene
 
 #pragma Game
@@ -91,11 +93,13 @@ static NSString * const kProgressNodeName = @"progress";
     
     CGFloat xOrigin = floor(kEdgeGap + ((shuffeledLetters.count * kStreamWidth) - (shuffeledLetters.count * kStreamWidth)) / 2.0);
     
+    NSString *bgImageName = [self streamBackgroundImageName];
+    
     for (NSString *letter in shuffeledLetters) {
         //
         // position stream on top of scene
         //
-        MWStreamNode *streamNode = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectMake(xOrigin, self.frame.size.height, kStreamWidth, kStreamHeight)];
+        MWStreamNode *streamNode = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectMake(xOrigin, self.frame.size.height, kStreamWidth, kStreamHeight) bgImageName:bgImageName];
         streamNode.name = kStreamNodeName;
         
         //
@@ -158,6 +162,21 @@ static NSString * const kProgressNodeName = @"progress";
         
         xOrigin = xOrigin + kStreamWidth;
     }
+}
+
+- (NSString *)streamBackgroundImageName
+{
+    NSString *imageName = @"";
+    
+    NSUInteger index = arc4random_uniform(kNumOfStreamBackgrounds);
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        imageName = [NSString stringWithFormat:@"stream-%d_ipad", index];
+    } else {
+        return imageName = [NSString stringWithFormat:@"stream-%d_iphone", index];
+    }
+    
+    return imageName;
 }
 
 - (void)pullbackStreamsWithDuration:(CFTimeInterval)duration
@@ -281,7 +300,15 @@ static NSString * const kProgressNodeName = @"progress";
     solutionNode.name = kSolutionNodeName;
     [self addChild:solutionNode];
     
-    [solutionNode setupWithPartialSolution:@"WordGuru" placeholder:[MWWord placeholder] withDuration:0.0];
+    NSString *solution = @"Word Guru";
+    
+    if (maxLetterCount == 8) {
+        solution = @"WordGuru";
+    } else if (maxLetterCount < 8) {
+        solution = @"";
+    }
+    
+    [solutionNode setupWithPartialSolution:solution placeholder:[MWWord placeholder] withDuration:0.0];
 }
 
 - (void)addPurchaseNode
@@ -392,14 +419,14 @@ static NSString * const kProgressNodeName = @"progress";
     solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
     
     //
-    // add solution area
-    //
-    [self addSolutionArea];
-    
-    //
     // max word lengths that can fit on screen
     //
     maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize];
+    
+    //
+    // add solution area
+    //
+    [self addSolutionArea];
     
     //
     // draw reveal line

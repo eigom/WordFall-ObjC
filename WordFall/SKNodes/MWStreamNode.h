@@ -17,6 +17,7 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 @interface MWStreamNode : SKNode {
 @private
     CGRect _frame;
+    NSString *_bgImageName;
 }
 
 @property (nonatomic, strong) NSString *letter;
@@ -27,7 +28,7 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 @property (nonatomic, copy) MWStreamTouched streamTouched;
 @property (nonatomic, copy) MWStreamEndReached streamEndReached;
 
-- (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame;
+- (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame bgImageName:(NSString *)bgImageName;
 
 - (void)startFall;
 - (void)pullbackWithDuration:(CFTimeInterval)duration;

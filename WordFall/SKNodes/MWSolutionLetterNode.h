@@ -11,6 +11,8 @@
 @interface MWSolutionLetterNode : SKNode {
 @private
     CGRect _frame;
+    SKTexture *letterBackgroundTexture;
+    SKTexture *emptyBackgroundTexture;
 }
 
 @property (nonatomic, readonly) NSString *letter;

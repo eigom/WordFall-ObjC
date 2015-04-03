@@ -20,17 +20,18 @@ static const CGFloat kPadFontSize = 22;
 
 @implementation MWStreamNode
 
-- (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame
+- (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame bgImageName:(NSString *)bgImageName
 {
     if ((self = [super init])) {
         _letter = letter;
         _frame = frame;
+        _bgImageName = bgImageName;
         
         self.userInteractionEnabled = YES;
         self.position = CGPointMake(self.position.x, 0.0);
         self.zPosition = 10;
         
-        SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:@"stream-0_iphone"];
+        SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:bgImageName];
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
         bgNode.zPosition = self.zPosition + 1;
         [self addChild:bgNode];
@@ -44,6 +45,15 @@ static const CGFloat kPadFontSize = 22;
         label.userInteractionEnabled = NO;
         label.position = CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-5.0);
         [self addChild:label];
+        
+        SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
+        dropShadow.fontSize = [self fontSize];
+        dropShadow.fontColor = [SKColor blackColor];
+        dropShadow.text = _letter;
+        dropShadow.zPosition = label.zPosition - 1;
+        dropShadow.position = CGPointMake(label.position.x + 1.0, label.position.y - 1.0);
+        
+        [self addChild:dropShadow];
     }
     
     return self;
