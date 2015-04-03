@@ -24,7 +24,7 @@ typedef void (^GameSceneWillDismissProgress)(CFTimeInterval duration);
     CGRect solutionAreaFrame;
 }
 
-@property (nonatomic, assign) CGFloat topGap;
+@property (nonatomic, assign) BOOL adsShown;
 @property (nonatomic, readonly) CGFloat definitionAreaYOrigin;
 @property (nonatomic, readonly) CGFloat definitionAreaHeight;
 @property (nonatomic, copy) GameSceneShouldPresentWordDefinition shouldPresentWordDefinition;

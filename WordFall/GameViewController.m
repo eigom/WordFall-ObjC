@@ -50,6 +50,8 @@
 
 - (void)presentAdBannerAnimated:(BOOL)animated
 {
+    [self gameScene].adsShown = YES;
+    
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 1.0;
     } completion:^(BOOL finished) {
@@ -59,6 +61,8 @@
 
 - (void)dismissAdBannerAnimated:(BOOL)animated
 {
+    [self gameScene].adsShown = NO;
+    
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 0.0;
     } completion:^(BOOL finished) {
