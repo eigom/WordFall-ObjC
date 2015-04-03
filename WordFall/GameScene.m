@@ -111,8 +111,6 @@ static NSString * const kProgressNodeName = @"progress";
         // handle stream touch
         //
         [streamNode setStreamTouched:^(MWStreamNode *node){
-            NSLog(@"Touched: %@", node.letter);
-            
             //
             // check if next word
             //
@@ -134,8 +132,6 @@ static NSString * const kProgressNodeName = @"progress";
         // handle stream end
         //
         [streamNode setStreamEndReached:^(MWStreamNode *node) {
-            NSLog(@"Reached end: %@", node.letter);
-            
             //
             // reveal letter
             //
