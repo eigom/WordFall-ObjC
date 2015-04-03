@@ -22,6 +22,7 @@
         //
         // create nodes
         //
+        NSLog(@"%@", NSStringFromCGRect(frame));
         for (int i = 0; i < frame.size.width/frame.size.height; i++) {
             MWSolutionLetterNode *letterNode = [[MWSolutionLetterNode alloc] initWithFrame:CGRectMake(frame.origin.x + i*frame.size.height, frame.origin.y, frame.size.height, frame.size.height)];
             [letterNodes addObject:letterNode];
@@ -63,7 +64,7 @@
 
 - (void)setupWithPartialSolution:(NSString *)solution placeholder:(NSString *)placeholder withDuration:(CFTimeInterval)duration
 {
-    [self setupForWordWithLetterCount:solution.length withDuration:duration];
+    [self setupForWordWithLetterCount:solution.length withDuration:0.0];
     
     SKAction *wait = [SKAction waitForDuration:duration];
     SKAction *setLetters = [SKAction runBlock:^{

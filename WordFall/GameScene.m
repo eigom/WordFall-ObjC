@@ -31,8 +31,8 @@ static CFTimeInterval const kSolveWordDuration = 1.0;
 //static CFTimeInterval const kSetupSolutionDuration = 1.0;
 static CFTimeInterval const kRevealLetterDuration = 1.0;
 
-static NSUInteger const kPhoneSolutionLetterSize = 30.0;
-static NSUInteger const kPadSolutionLetterSize = 40.0;
+static NSUInteger const kPhoneSolutionLetterSize = 38.0;
+static NSUInteger const kPadSolutionLetterSize = 50.0;
 
 static NSString * const kStreamNodeName = @"stream";
 static NSString * const kSolutionNodeName = @"solution";
@@ -285,7 +285,7 @@ static NSString * const kProgressNodeName = @"progress";
     solutionNode.name = kSolutionNodeName;
     [self addChild:solutionNode];
     
-    [solutionNode setupWithPartialSolution:@"Word Guru" placeholder:[MWWord placeholder] withDuration:0.0];
+    [solutionNode setupWithPartialSolution:@"WordGuru" placeholder:[MWWord placeholder] withDuration:0.0];
 }
 
 - (void)addPurchaseNode

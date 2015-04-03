@@ -25,15 +25,17 @@ static NSString * const kMovementActionKey = @"movementAction";
         self.position = CGPointMake(self.position.x, 0.0);
         self.zPosition = 10;
         
-        //TODO create nodes
+        SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:@"stream-0_iphone"];
+        bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
+        [self addChild:bgNode];
         
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
         label.text = _letter;
-        label.fontSize = 15.0;
+        label.fontSize = 17.0;
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
         label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label.userInteractionEnabled = NO;
-        label.position = CGPointMake(CGRectGetMidX(frame), frame.origin.y);
+        label.position = CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-4);
         [self addChild:label];
     }
     
