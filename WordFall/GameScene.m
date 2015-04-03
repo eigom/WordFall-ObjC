@@ -40,7 +40,7 @@ static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
 static NSString * const kProgressNodeName = @"progress";
 
-static const NSUInteger kNumOfStreamBackgrounds = 2;
+static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 @implementation GameScene
 

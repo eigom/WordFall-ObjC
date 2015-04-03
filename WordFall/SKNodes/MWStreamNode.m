@@ -9,6 +9,7 @@
 #import "MWStreamNode.h"
 #import "MWObjects.h"
 
+static NSString * const kBackgroundNodeName = @"background";
 static NSString * const kAnimatedLetterNodeName = @"animatedLetterNode";
 static NSString * const kLetterNodeName = @"letterNode";
 static NSString * const kMovementActionKey = @"movementAction";
@@ -16,7 +17,7 @@ static NSString * const kMovementActionKey = @"movementAction";
 static NSString * const kFont = @"Copperplate";
 
 static const CGFloat kPhoneFontSize = 18;
-static const CGFloat kPadFontSize = 22;
+static const CGFloat kPadFontSize = 26;
 
 @implementation MWStreamNode
 
@@ -32,18 +33,19 @@ static const CGFloat kPadFontSize = 22;
         self.zPosition = 10;
         
         SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:bgImageName];
+        bgNode.name = kBackgroundNodeName;
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
-        bgNode.zPosition = self.zPosition + 1;
+        bgNode.zPosition = 15;
         [self addChild:bgNode];
         
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
-        label.zPosition = bgNode.zPosition + 1;
+        label.zPosition = 20;
         label.text = _letter;
         label.fontSize = [self fontSize];
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
         label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         label.userInteractionEnabled = NO;
-        label.position = CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-5.0);
+        label.position = [self letterPosition];
         [self addChild:label];
         
         SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
@@ -65,6 +67,17 @@ static const CGFloat kPadFontSize = 22;
         return kPadFontSize;
     } else {
         return kPhoneFontSize;
+    }
+}
+
+- (CGPoint)letterPosition
+{
+    SKSpriteNode *bgNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-2.0);
+    } else {
+        return CGPointMake(CGRectGetMidX(bgNode.frame), CGRectGetMidY(bgNode.frame)-2.0);
     }
 }
 
