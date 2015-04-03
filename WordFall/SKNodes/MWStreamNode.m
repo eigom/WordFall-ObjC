@@ -13,6 +13,8 @@ static NSString * const kAnimatedLetterNodeName = @"animatedLetterNode";
 static NSString * const kLetterNodeName = @"letterNode";
 static NSString * const kMovementActionKey = @"movementAction";
 
+static NSString * const kFont = @"Copperplate";
+
 @implementation MWStreamNode
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame
@@ -27,9 +29,11 @@ static NSString * const kMovementActionKey = @"movementAction";
         
         SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:@"stream-0_iphone"];
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
+        bgNode.zPosition = self.zPosition + 1;
         [self addChild:bgNode];
         
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
+        label.zPosition = bgNode.zPosition + 1;
         label.text = _letter;
         label.fontSize = 17.0;
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;

@@ -10,6 +10,8 @@
 
 static NSString * const kLetterLabelNodeName = @"label";
 
+static NSString * const kFont = @"Copperplate";
+
 @implementation MWSolutionLetterNode
 
 - (id)initWithFrame:(CGRect)frame
@@ -32,7 +34,7 @@ static NSString * const kLetterLabelNodeName = @"label";
 {
     _letter = letter;
     
-    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
     label.name = kLetterLabelNodeName;
     label.text = _letter;
     label.fontSize = 15.0;

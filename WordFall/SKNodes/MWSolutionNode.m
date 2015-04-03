@@ -24,7 +24,7 @@
         //
         NSLog(@"%@", NSStringFromCGRect(frame));
         for (int i = 0; i < frame.size.width/frame.size.height; i++) {
-            MWSolutionLetterNode *letterNode = [[MWSolutionLetterNode alloc] initWithFrame:CGRectMake(frame.origin.x + i*frame.size.height, frame.origin.y, frame.size.height, frame.size.height)];
+            MWSolutionLetterNode *letterNode = [[MWSolutionLetterNode alloc] initWithFrame:CGRectIntegral(CGRectMake(frame.origin.x + i*frame.size.height, frame.origin.y, frame.size.height, frame.size.height))];
             [letterNodes addObject:letterNode];
             
             [self addChild:letterNode];
