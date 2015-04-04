@@ -12,13 +12,13 @@ static NSString * const kBackgroundNodeName = @"background";
 static NSString * const kLetterLabelNodeName = @"label";
 static NSString * const kShadowLabelNodeName = @"shadow";
 
-static NSString * const kLetterBackgroundImageName = @"stream-0_iphone";
-static NSString * const kEmptyBackgroundImageName = @"stream-1_iphone";
+static NSString * const kPhoneLetterBackgroundImageName = @"letterbox_iphone";
+static NSString * const kPadLetterBackgroundImageName = @"letterbox_ipad";
 
 static NSString * const kFont = @"Copperplate";
 
-static const CGFloat kPhoneFontSize = 20;
-static const CGFloat kPadFontSize = 26;
+static const CGFloat kPhoneFontSize = 22;
+static const CGFloat kPadFontSize = 28;
 
 @implementation MWSolutionLetterNode
 
@@ -29,19 +29,25 @@ static const CGFloat kPadFontSize = 26;
         self.zPosition = 10;
         //self.alpha = 0.0;
         
-        letterBackgroundTexture = [SKTexture textureWithImageNamed:kLetterBackgroundImageName];
-        emptyBackgroundTexture = [SKTexture textureWithImageNamed:kEmptyBackgroundImageName];
-        
-        /*SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithTexture:emptyBackgroundTexture];
+        SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:[self backgroundImageName]];
         bgNode.name = kBackgroundNodeName;
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
         bgNode.zPosition = self.zPosition + 1;
         [self addChild:bgNode];
         
-        [self setVisible:NO withDuration:0.0];*/
+        //[self setVisible:NO withDuration:0.0];
     }
     
     return self;
+}
+
+- (NSString *)backgroundImageName
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadLetterBackgroundImageName;
+    } else {
+        return kPhoneLetterBackgroundImageName;
+    }
 }
 
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
@@ -72,8 +78,7 @@ static const CGFloat kPadFontSize = 26;
     label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     label.userInteractionEnabled = NO;
     label.zPosition = [self childNodeWithName:kBackgroundNodeName].zPosition + 1;
-    label.position = CGPointMake(CGRectGetMidX(_frame),
-                                 CGRectGetMidY(_frame));
+    label.position = [self letterPosition];//CGPointMake(CGRectGetMidX(_frame), CGRectGetMidY(_frame));
     [self addChild:label];
     
     SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
@@ -87,6 +92,17 @@ static const CGFloat kPadFontSize = 26;
     [self addChild:dropShadow];
     
     // TODO flip to label side
+}
+
+- (CGPoint)letterPosition
+{
+    SKSpriteNode *bgNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-5.0);
+    } else {
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-3.0);
+    }
 }
 
 - (CGFloat)fontSize

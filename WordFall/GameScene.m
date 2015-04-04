@@ -171,9 +171,9 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     NSUInteger index = arc4random_uniform(kNumOfStreamBackgrounds);
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        imageName = [NSString stringWithFormat:@"stream-%d_ipad", index];
+        imageName = [NSString stringWithFormat:@"stream-%lu_ipad", (unsigned long)index];
     } else {
-        return imageName = [NSString stringWithFormat:@"stream-%d_iphone", index];
+        return imageName = [NSString stringWithFormat:@"stream-%lu_iphone", (unsigned long)index];
     }
     
     return imageName;
