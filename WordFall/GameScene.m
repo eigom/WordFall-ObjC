@@ -25,7 +25,8 @@ static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
 static CFTimeInterval const kRemoveStreamDuration = 0.5;
-static CFTimeInterval const kPresentDefinitionDuration = 1.0;
+static CFTimeInterval const kSetupSolutionDuration = 0.2;
+static CFTimeInterval const kClearSolutionDuration = 0.4;
 static CFTimeInterval const kSolveWordDuration = 1.0;
 //static CFTimeInterval const kDismissDefinitionDuration = 1.0;
 //static CFTimeInterval const kSetupSolutionDuration = 1.0;
@@ -61,7 +62,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     //
     // clear solution
     //
-    [self clearSolutionWithDuration:kPlayInitDuration];
+    [self clearSolutionWithDuration:kClearSolutionDuration];
     
     //
     // setup scene with new word
@@ -69,7 +70,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     SKAction *setupWithNextWord = [SKAction runBlock:^{
         word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxLetterCount];
         
-        [self setupSolutionWithDuration:kPlayInitDuration];
+        [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self presentDefinitionWithDuration:kPlayInitDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
     }];
@@ -410,13 +411,13 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     //
     // max falling distance, letter reveal level
     //
-    maxStreamDistance = self.frame.size.height * 0.6;
+    maxStreamDistance = self.frame.size.height * 0.5;
     
     //
     // solution area
     //
     CGFloat solutionAreaWidth = floor(self.frame.size.width / [self solutionLetterSize]) * [self solutionLetterSize] - 4*[self solutionLetterSize]; // left/right gap of 4 letter sizes
-    solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 0.0, solutionAreaWidth, [self solutionLetterSize]);
+    solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 5.0, solutionAreaWidth, [self solutionLetterSize]);
     
     //
     // max word lengths that can fit on screen

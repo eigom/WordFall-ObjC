@@ -33,9 +33,10 @@ static const CGFloat kPadFontSize = 28;
         bgNode.name = kBackgroundNodeName;
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
         bgNode.zPosition = self.zPosition + 1;
+        bgNode.alpha = 0.0;
         [self addChild:bgNode];
         
-        //[self setVisible:NO withDuration:0.0];
+        [self setVisible:NO withDuration:0.0];
     }
     
     return self;
@@ -52,17 +53,15 @@ static const CGFloat kPadFontSize = 28;
 
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration
 {
-    // TODO animate visible - flip empty pentagon from nothing with particle effect
-    /*
     _visible = visible;
     
     if (_visible) {
-        SKAction *grow = [SKAction scaleXTo:1.0 duration:duration];
-        [self runAction:grow];
+        SKAction *fadeIn = [SKAction fadeInWithDuration:duration];
+        [self runAction:[SKAction runAction:fadeIn onChildWithName:kBackgroundNodeName]];
     } else {
-        SKAction *shrink = [SKAction scaleXTo:0.0 duration:duration];
-        [self runAction:[SKAction runAction:shrink onChildWithName:kBackgroundNodeName]];
-    }*/
+        SKAction *fadeOut = [SKAction fadeOutWithDuration:duration];
+        [self runAction:[SKAction runAction:fadeOut onChildWithName:kBackgroundNodeName]];
+    }
 }
 
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration
@@ -101,7 +100,7 @@ static const CGFloat kPadFontSize = 28;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-5.0);
     } else {
-        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-3.0);
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-4.0);
     }
 }
 

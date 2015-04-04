@@ -200,7 +200,7 @@
     if (definitionTextView == nil) {
         CGFloat width = [self skView].bounds.size.width * 0.7;
         CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
-        definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight))];
+        definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight-10.0))];
         definitionTextView.editable = NO;
         definitionTextView.backgroundColor = [UIColor clearColor];
         definitionTextView.layer.shadowColor = [[UIColor blackColor] CGColor];

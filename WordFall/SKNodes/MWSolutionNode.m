@@ -50,14 +50,10 @@
         [letterNode clearLetterWithDuration:duration];
         
         if (i < startIndex || i >= startIndex+letterCount) {
-            if (letterNode.visible) {
-                [letterNode setVisible:NO withDuration:duration];
-            }
+            [letterNode setVisible:NO withDuration:duration];
         } else {
-            if (!letterNode.visible) {
-                [letterNode setVisible:YES withDuration:duration];
-                [visibleLetterNodes addObject:letterNode];
-            }
+            [letterNode setVisible:YES withDuration:duration];
+            [visibleLetterNodes addObject:letterNode];
         }
     }
 }
