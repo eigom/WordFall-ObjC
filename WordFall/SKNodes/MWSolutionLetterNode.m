@@ -68,6 +68,9 @@ static const CGFloat kPadFontSize = 28;
 {
     _letter = letter;
     
+    //
+    // letter
+    //
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
     label.name = kLetterLabelNodeName;
     label.text = _letter;
@@ -77,9 +80,13 @@ static const CGFloat kPadFontSize = 28;
     label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     label.userInteractionEnabled = NO;
     label.zPosition = [self childNodeWithName:kBackgroundNodeName].zPosition + 1;
-    label.position = [self letterPosition];//CGPointMake(CGRectGetMidX(_frame), CGRectGetMidY(_frame));
+    label.position = [self letterPosition];
+    label.alpha = 0.0;
     [self addChild:label];
     
+    //
+    // frop shadow
+    //
     SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
     dropShadow.name = kShadowLabelNodeName;
     dropShadow.fontSize = [self fontSize];
@@ -87,10 +94,13 @@ static const CGFloat kPadFontSize = 28;
     dropShadow.text = _letter;
     dropShadow.zPosition = label.zPosition - 1;
     dropShadow.position = CGPointMake(label.position.x + 1.0, label.position.y - 1.0);
-    
+    dropShadow.alpha = 0.0;
     [self addChild:dropShadow];
     
-    // TODO flip to label side
+    SKAction *fadeInLetter = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kLetterLabelNodeName];
+    SKAction *fadeInShadow = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kShadowLabelNodeName];
+    
+    [self runAction:[SKAction group:@[fadeInLetter, fadeInShadow]]];
 }
 
 - (CGPoint)letterPosition
@@ -117,13 +127,13 @@ static const CGFloat kPadFontSize = 28;
 {
     _letter = nil;
     
-    SKLabelNode *labelNode = (SKLabelNode *)[self childNodeWithName:kLetterLabelNodeName];
-    [labelNode removeFromParent];
+    SKAction *fadeOut = [SKAction fadeOutWithDuration:duration];
+    SKAction *remove = [SKAction removeFromParent];
     
-    SKLabelNode *shadowLabel = (SKLabelNode *)[self childNodeWithName:kShadowLabelNodeName];
-    [shadowLabel removeFromParent];
+    SKAction *clearAction = [SKAction sequence:@[fadeOut, remove]];
     
-    //TODO flip to empty side with particle effect
+    [[self childNodeWithName:kLetterLabelNodeName] runAction:clearAction];
+    [[self childNodeWithName:kShadowLabelNodeName] runAction:clearAction];
 }
 
 

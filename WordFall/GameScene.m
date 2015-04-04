@@ -28,9 +28,7 @@ static CFTimeInterval const kRemoveStreamDuration = 0.5;
 static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
 static CFTimeInterval const kSolveWordDuration = 1.0;
-//static CFTimeInterval const kDismissDefinitionDuration = 1.0;
-//static CFTimeInterval const kSetupSolutionDuration = 1.0;
-static CFTimeInterval const kRevealLetterDuration = 1.0;
+static CFTimeInterval const kRevealLetterDuration = 0.2;
 
 static NSUInteger const kPhoneSolutionLetterSize = 38.0;
 static NSUInteger const kPadSolutionLetterSize = 50.0;
@@ -87,8 +85,8 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     NSArray *shuffeledLetters = [word shuffledLetters];
     
     const CGFloat kEdgeGap = 20.0;
-    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?0.35:0.1);
-    const CGFloat kMaxStartupMovementDistance = distance * 0.5;
+    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?0.4:0.1);
+    const CGFloat kMaxStartupMovementDistance = distance * (_adsShown?0.7:0.5);
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);
     const CGFloat kStreamHeight = distance;
     
@@ -370,8 +368,8 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 - (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
-    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance);
-    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance);
+    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance + 4.0); // stream image has shadow on bottom so add small constant
+    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 4.0);
     [path moveToPoint:point1];
     [path addLineToPoint:point2];
     
