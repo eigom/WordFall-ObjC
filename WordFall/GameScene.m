@@ -140,7 +140,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     NSArray *shuffeledLetters = [word shuffledLetters];
     
     const CGFloat kEdgeGap = 20.0;
-    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?0.4:0.1);
+    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?0.4:0.2);
     const CGFloat kMaxStartupMovementDistance = distance * (_adsShown?0.7:0.5);
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);
     const CGFloat kStreamHeight = distance;
