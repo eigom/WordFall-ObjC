@@ -15,6 +15,7 @@ typedef void (^GameSceneShouldPresentWordDefinition)(MWWord *word, CFTimeInterva
 typedef void (^GameSceneShouldDismissWordDefinition)(CFTimeInterval duration);
 typedef void (^GameSceneWillPresentProgress)(CFTimeInterval duration, CGFloat alpha);
 typedef void (^GameSceneWillDismissProgress)(CFTimeInterval duration);
+typedef void (^GameSceneWillBeginPlay)(void);
 
 @interface GameScene : SKScene <UIAlertViewDelegate> {
 @private
@@ -31,5 +32,6 @@ typedef void (^GameSceneWillDismissProgress)(CFTimeInterval duration);
 @property (nonatomic, copy) GameSceneShouldDismissWordDefinition shouldDismissWordDefinition;
 @property (nonatomic, copy) GameSceneWillPresentProgress willPresentProgress;
 @property (nonatomic, copy) GameSceneWillDismissProgress willDismissProgress;
+@property (nonatomic, copy) GameSceneWillBeginPlay willBeginPlay;
 
 @end

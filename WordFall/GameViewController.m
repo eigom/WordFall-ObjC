@@ -150,6 +150,21 @@
         GameScene *scene = [[GameScene alloc] initWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
+        [scene setWillBeginPlay:^() {
+            //
+            // ad banner
+            //
+            if (bannerView == nil) {
+                bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
+                NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
+                NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
+                bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
+                bannerView.delegate = self;
+                [self.view addSubview:bannerView];
+                [self dismissAdBannerAnimated:NO];
+            }
+        }];
+        
         [scene setShouldPresentWordDefinition:^(MWWord *word, CFTimeInterval duration) {
             [self presentWordDefinition:word withDuration:duration];
         }];
@@ -179,19 +194,6 @@
         
         // Present the scene.
         [skView presentScene:scene];
-    }
-    
-    //
-    // ad banner
-    //
-    if (bannerView == nil) {
-        bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
-        NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
-        NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
-        bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
-        bannerView.delegate = self;
-        [self.view addSubview:bannerView];
-        [self dismissAdBannerAnimated:NO];
     }
     
     //

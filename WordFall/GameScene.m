@@ -48,6 +48,13 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 - (void)playWithNextWord
 {
     //
+    // notify block
+    //
+    if (_willBeginPlay) {
+        _willBeginPlay();
+    }
+    
+    //
     // pullback active streams
     //
     [self pullbackStreamsWithDuration:kPlayInitDuration];
@@ -76,7 +83,55 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord]]];
 }
 
+- (NSString *)initialText
+{
+    NSString *text = @"Word Guru";
+    
+    if (maxLetterCount == 8) {
+        text = @"WordGuru";
+    } else if (maxLetterCount < 8) {
+        text = @"";
+    }
+    
+    return text;
+}
+
 #pragma Streams
+
+- (void)placeInitialStreamsWithText:(NSString *)text maxDistance:(CGFloat)distance
+{
+    //
+    // make array of letters
+    //
+    NSMutableArray *letters = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i <text.length; i++) {
+        [letters addObject:[text substringWithRange:NSMakeRange(i, 1)]];
+    }
+    
+    const CGFloat kEdgeGap = 20.0;
+    const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / letters.count);
+    const CGFloat kStreamHeight = distance;
+    
+    CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0);
+    
+    NSString *bgImageName = [self initialStreamBackgroundImageName];
+    
+    for (NSString *letter in letters) {
+        CGFloat yOrigin = [Random randomFloatBetween:self.frame.size.height-distance*0.4 and:self.frame.size.height-distance*0.8];
+        
+        //
+        // position stream
+        //
+        MWStreamNode *streamNode = [[MWStreamNode alloc] initWithLetter:letter inFrame:CGRectMake(xOrigin, yOrigin, kStreamWidth, kStreamHeight) bgImageName:bgImageName];
+        streamNode.name = kStreamNodeName;
+        [self addChild:streamNode];
+        
+        [streamNode startFall];
+        
+        xOrigin = xOrigin + kStreamWidth;
+    }
+}
 
 - (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
 {
@@ -161,6 +216,21 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
         
         xOrigin = xOrigin + kStreamWidth;
     }
+}
+
+- (NSString *)initialStreamBackgroundImageName
+{
+    NSString *imageName = @"";
+    
+    NSUInteger index = 2;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        imageName = [NSString stringWithFormat:@"stream-%lu_ipad", (unsigned long)index];
+    } else {
+        return imageName = [NSString stringWithFormat:@"stream-%lu_iphone", (unsigned long)index];
+    }
+    
+    return imageName;
 }
 
 - (NSString *)streamBackgroundImageName
@@ -299,15 +369,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     solutionNode.name = kSolutionNodeName;
     [self addChild:solutionNode];
     
-    NSString *solution = @"Word Guru";
-    
-    if (maxLetterCount == 8) {
-        solution = @"WordGuru";
-    } else if (maxLetterCount < 8) {
-        solution = @"";
-    }
-    
-    [solutionNode setupWithPartialSolution:solution placeholder:[MWWord placeholder] withDuration:0.0];
+    [solutionNode setupWithPartialSolution:[self initialText] placeholder:[MWWord placeholder] withDuration:0.0];
 }
 
 - (void)addPurchaseNode
@@ -463,6 +525,11 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     // next word
     //
     [self addNextWordNode];
+    
+    //
+    // initial text
+    //
+    [self placeInitialStreamsWithText:[self initialText] maxDistance:maxStreamDistance];
 }
 
 - (CGFloat)definitionAreaYOrigin
