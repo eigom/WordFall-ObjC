@@ -118,7 +118,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     NSString *bgImageName = [self initialStreamBackgroundImageName];
     
     for (NSString *letter in letters) {
-        CGFloat yOrigin = [Random randomFloatBetween:self.frame.size.height-distance*0.4 and:self.frame.size.height-distance*0.8];
+        CGFloat yOrigin = [Random randomFloatBetween:self.frame.size.height-distance*0.6 and:self.frame.size.height-distance*0.8];
         
         //
         // position stream
