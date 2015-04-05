@@ -122,7 +122,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
                 // set letter
                 //
                 NSUInteger index = [word setNextLetter:node.letter];
-                [[self solutionNode] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+                [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration];
                 
                 //
                 // remove stream
@@ -139,7 +139,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
             // reveal letter
             //
              NSUInteger index = [word revealLetter:node.letter];
-            [[self solutionNode] revealLetter:node.letter atIndex:index withDuration:kRevealLetterDuration];
+            [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration];
             
             //
             // check if need to reveal definition

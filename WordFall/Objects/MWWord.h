@@ -24,6 +24,8 @@
 
 @property (nonatomic, readonly) NSNumber *wordID;
 @property (nonatomic, readonly) NSString *word;
+@property (nonatomic, readonly) NSString *lowercaseWord;
+@property (nonatomic, readonly) NSString *lowercaseSolution;
 @property (nonatomic, strong) MWWords *alternativeWords;
 @property (nonatomic, strong) MWDefinitions *definitions;
 @property (nonatomic, assign) BOOL isSolution;
@@ -37,6 +39,7 @@
 - (NSUInteger)revealLetter:(NSString *)letter;
 - (BOOL)isNextLetter:(NSString *)letter;
 - (NSUInteger)setNextLetter:(NSString *)letter;
+- (NSString *)wordLetterAtIndex:(NSUInteger)index;
 - (BOOL)shouldRevealDefinition;
 //- (void)keepFirstSolution;
 - (BOOL)isSolved;

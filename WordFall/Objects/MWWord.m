@@ -50,28 +50,23 @@ static const float kRevealDefinitionLevel = 0.5;
 
 - (NSArray *)shuffledLetters
 {
-    NSMutableString *shuffeledLetters = [[NSMutableString alloc] initWithString:self.word];
+    NSMutableString *shuffledLetters = [[NSMutableString alloc] initWithString:self.lowercaseWord];
     
-    for (int i = 0; i < shuffeledLetters.length; i++) {
-        u_int32_t j = arc4random_uniform((u_int32_t)shuffeledLetters.length);
+    for (int i = 0; i < shuffledLetters.length; i++) {
+        u_int32_t j = arc4random_uniform((u_int32_t)shuffledLetters.length);
         
-        NSString *temp = [shuffeledLetters substringWithRange:NSMakeRange(i, 1)];
-        [shuffeledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffeledLetters substringWithRange:NSMakeRange(j, 1)]];
-        [shuffeledLetters replaceCharactersInRange:NSMakeRange(j, 1) withString:temp];
+        NSString *temp = [shuffledLetters substringWithRange:NSMakeRange(i, 1)];
+        [shuffledLetters replaceCharactersInRange:NSMakeRange(i, 1) withString:[shuffledLetters substringWithRange:NSMakeRange(j, 1)]];
+        [shuffledLetters replaceCharactersInRange:NSMakeRange(j, 1) withString:temp];
     }
     
     NSMutableArray *shuffeledArray = [NSMutableArray array];
     
-    for (int i = 0; i < shuffeledLetters.length; i++) {
-        [shuffeledArray addObject:[shuffeledLetters substringWithRange:NSMakeRange(i, 1)]];
+    for (int i = 0; i < shuffledLetters.length; i++) {
+        [shuffeledArray addObject:[shuffledLetters substringWithRange:NSMakeRange(i, 1)]];
     }
     
     return shuffeledArray;
-}
-
-- (NSUInteger)letterCount
-{
-    return word.length;
 }
 
 - (BOOL)isNextLetter:(NSString *)letter
@@ -80,7 +75,7 @@ static const float kRevealDefinitionLevel = 0.5;
     NSUInteger index = [solution rangeOfString:kPlaceholder].location;
     
     for (MWWord *aWord in [self solutionWords]) {
-        if ([[aWord.word substringWithRange:NSMakeRange(index, 1)] isEqualToString:letter]) {
+        if ([[aWord.lowercaseWord substringWithRange:NSMakeRange(index, 1)] isEqualToString:letter]) {
             isNext = YES;
             break;
         }
@@ -99,30 +94,15 @@ static const float kRevealDefinitionLevel = 0.5;
     return index;
 }
 
+- (NSString *)wordLetterAtIndex:(NSUInteger)index
+{
+    return [word substringWithRange:NSMakeRange(index, 1)];
+}
+
 - (BOOL)shouldRevealDefinition
 {
     return (1.0 / self.letterCount) * revealedLetterCount >= kRevealDefinitionLevel;
 }
-
-/*- (void)keepFirstSolution
-{
-    BOOL found = NO;
-    NSArray *solutionWords = [self solutionWords];
-    
-    //
-    // set first partially matching word as solution, clear remaining
-    //
-    for (int i = 0; i < [solutionWords count]; i++) {
-        MWWord *aWord = [solutionWords objectAtIndex:i];
-        
-        if (!found && aWord.isSolution) {
-            [solution setString:aWord.word];
-            found = YES;
-        } else {
-            aWord.isSolution = NO;
-        }
-    }
-}*/
 
 - (NSUInteger)revealLetter:(NSString *)letter
 {
@@ -134,7 +114,7 @@ static const float kRevealDefinitionLevel = 0.5;
     MWWord *firstWord = [[self solutionWords] firstObject];
     
     for (int i = 0; i < solution.length; i++) {
-        NSString *wordLetter = [firstWord.word substringWithRange:NSMakeRange(i, 1)];
+        NSString *wordLetter = [firstWord.lowercaseWord substringWithRange:NSMakeRange(i, 1)];
         NSString *solutionLetter = [solution substringWithRange:NSMakeRange(i, 1)];
         
         if ([solutionLetter isEqualToString:kPlaceholder] && [wordLetter isEqualToString:letter]) {
@@ -149,30 +129,6 @@ static const float kRevealDefinitionLevel = 0.5;
     [self filterSolutions];
     
     return index;
-}
-
-- (BOOL)isSolved
-{
-    return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
-}
-
-- (MWWord *)solutionWord
-{
-    /*MWWord *solutionWord = nil;
-    
-    //
-    // find first solution
-    //
-    for (MWWord *aWord in [self solutionWords]) {
-        if (aWord.isSolution) {
-            solutionWord = aWord;
-            break;
-        }
-    }
-    
-    return solutionWord;*/
-    
-    return [[self solutionWords] firstObject];
 }
 
 - (NSArray *)solutionWords
@@ -195,7 +151,7 @@ static const float kRevealDefinitionLevel = 0.5;
 - (void)filterSolutions
 {
     for (MWWord *solutionWord in [self solutionWords]) {
-        solutionWord.isSolution = [solutionWord matchesSolution:solution];
+        solutionWord.isSolution = [solutionWord matchesSolution:self.lowercaseSolution];
     }
 }
 
@@ -204,10 +160,10 @@ static const float kRevealDefinitionLevel = 0.5;
     BOOL matches = YES;
     
     for (int i = 0; i < aSolution.length; i++) {
-        NSString *solutionLetter = [solution substringWithRange:NSMakeRange(i, 1)];
+        NSString *solutionLetter = [self.lowercaseSolution substringWithRange:NSMakeRange(i, 1)];
         
         if (![solutionLetter isEqualToString:kPlaceholder]) {
-            NSString *wordLetter = [word substringWithRange:NSMakeRange(i, 1)];
+            NSString *wordLetter = [self.lowercaseWord substringWithRange:NSMakeRange(i, 1)];
             
             if (![solutionLetter isEqualToString:wordLetter]) {
                 matches = NO;
@@ -217,6 +173,31 @@ static const float kRevealDefinitionLevel = 0.5;
     }
     
     return matches;
+}
+
+- (BOOL)isSolved
+{
+    return ([solution rangeOfString:kPlaceholder].location == NSNotFound);
+}
+
+- (MWWord *)solutionWord
+{
+    return [[self solutionWords] firstObject];
+}
+
+- (NSUInteger)letterCount
+{
+    return word.length;
+}
+
+- (NSString *)lowercaseWord
+{
+    return [word lowercaseString];
+}
+
+- (NSString *)lowercaseSolution
+{
+    return [solution lowercaseString];
 }
 
 @end
