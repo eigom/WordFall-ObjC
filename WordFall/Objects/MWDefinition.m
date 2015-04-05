@@ -24,6 +24,28 @@ static const CGFloat kPadDefinitionSize = 20;
 @synthesize definition;
 @synthesize type;
 
++ (NSAttributedString *)wordGuruText
+{
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
+    
+    NSAttributedString *typeString = [[NSAttributedString alloc] initWithString:@"(noun) "
+                                                                     attributes:@{NSFontAttributeName : [UIFont fontWithName:kTypeFont size:[MWDefinition typeSize]],
+                                                                                  NSForegroundColorAttributeName : [UIColor yellowColor]}];
+    [text appendAttributedString:typeString];
+    
+    NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:@"a game where you tap falling letters to form words and names"
+                                                                           attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
+                                                                                        NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [text appendAttributedString:definitionString];
+    
+    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\n\nTap Next to begin..."
+                                                                           attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
+                                                                                        NSForegroundColorAttributeName : [UIColor yellowColor]}];
+    [text appendAttributedString:beginString];
+    
+    return text;
+}
+
 - (id)initFromResultSet:(FMResultSet *)rs
 {
     if ((self = [super initFromResultSet:rs])) {
@@ -40,19 +62,19 @@ static const CGFloat kPadDefinitionSize = 20;
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
     
     NSAttributedString *typeString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"(%@) ", type]
-        attributes:@{NSFontAttributeName : [UIFont fontWithName:kTypeFont size:[self typeSize]],
+        attributes:@{NSFontAttributeName : [UIFont fontWithName:kTypeFont size:[MWDefinition typeSize]],
                      NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:typeString];
     
     NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:definition
-        attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[self definitionSize]],
+        attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                      NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     
     return text;
 }
 
-- (CGFloat)typeSize
++ (CGFloat)typeSize
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return kPhoneTypeFontSize;
@@ -61,7 +83,7 @@ static const CGFloat kPadDefinitionSize = 20;
     }
 }
 
-- (CGFloat)definitionSize
++ (CGFloat)definitionSize
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return kPhoneDefinitionFontSize;

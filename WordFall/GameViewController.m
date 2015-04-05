@@ -202,17 +202,15 @@
         CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
         definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight-10.0))];
         definitionTextView.editable = NO;
+        definitionTextView.attributedText = [MWDefinition wordGuruText];
+        definitionTextView.showsHorizontalScrollIndicator = NO;
+        definitionTextView.showsVerticalScrollIndicator = NO;
         definitionTextView.backgroundColor = [UIColor clearColor];
         definitionTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
         definitionTextView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
         definitionTextView.layer.shadowOpacity = 1.0f;
-        definitionTextView.layer.shadowRadius = 1.0f;
+        definitionTextView.layer.shadowRadius = 0.5f;
         [[self skView] addSubview:definitionTextView];
-        
-        //
-        // hide definition
-        //
-        [self dismissWordDefinitionWithDuration:0.0];
     }
 }
 

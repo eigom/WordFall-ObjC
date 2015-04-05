@@ -20,4 +20,6 @@
 @property (nonatomic, readonly) NSString *type;
 @property (nonatomic, readonly) NSAttributedString *attributedText;
 
++ (NSAttributedString *)wordGuruText;
+
 @end
