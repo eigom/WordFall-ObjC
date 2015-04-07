@@ -80,6 +80,7 @@
 		1AA8D4F51AD2BD3200CF1842 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4EF1AD2BD3200CF1842 /* Default-Landscape@2x~ipad.png */; };
 		1AA8D4F61AD2BD3200CF1842 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F01AD2BD3200CF1842 /* Default-Landscape~ipad.png */; };
 		1AA8D4F71AD2BD3200CF1842 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F11AD2BD3200CF1842 /* Default@2x.png */; };
+		1AA8D4FA1AD4779700CF1842 /* MWSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F91AD4779700CF1842 /* MWSoundManager.m */; };
 		1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */; };
 		1AA945BE1AC88D9A00006FEF /* MWProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */; };
 /* End PBXBuildFile section */
@@ -205,6 +206,8 @@
 		1AA8D4EF1AD2BD3200CF1842 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		1AA8D4F01AD2BD3200CF1842 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		1AA8D4F11AD2BD3200CF1842 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1AA8D4F81AD4779700CF1842 /* MWSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSoundManager.h; sourceTree = "<group>"; };
+		1AA8D4F91AD4779700CF1842 /* MWSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSoundManager.m; sourceTree = "<group>"; };
 		1AA945B91AC886A700006FEF /* SKProduct+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Extensions.h"; sourceTree = "<group>"; };
 		1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Extensions.m"; sourceTree = "<group>"; };
 		1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWProgressNode.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				1AA0B3211A850A6A0040FCE6 /* MWWordManager.m */,
 				1AA33E511AC20C17002B29B5 /* MWPurchaseManager.h */,
 				1AA33E521AC20C17002B29B5 /* MWPurchaseManager.m */,
+				1AA8D4F81AD4779700CF1842 /* MWSoundManager.h */,
+				1AA8D4F91AD4779700CF1842 /* MWSoundManager.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,
 				1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */,
+				1AA8D4FA1AD4779700CF1842 /* MWSoundManager.m in Sources */,
 				1AA07A921A762BA400722BEB /* main.m in Sources */,
 				1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */,
 				1AA33E531AC20C17002B29B5 /* MWPurchaseManager.m in Sources */,

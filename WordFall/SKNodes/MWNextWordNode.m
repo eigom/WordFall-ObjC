@@ -17,7 +17,7 @@
         self.userInteractionEnabled = YES;
         
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
-        label.text = @"Next";
+        label.text = @"W";
         label.fontSize = 15.0;
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;

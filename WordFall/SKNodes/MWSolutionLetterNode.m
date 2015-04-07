@@ -97,10 +97,13 @@ static const CGFloat kPadFontSize = 28;
     dropShadow.alpha = 0.0;
     [self addChild:dropShadow];
     
-    SKAction *fadeInLetter = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kLetterLabelNodeName];
+    /*SKAction *fadeInLetter = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kLetterLabelNodeName];
     SKAction *fadeInShadow = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kShadowLabelNodeName];
     
-    [self runAction:[SKAction group:@[fadeInLetter, fadeInShadow]]];
+    [self runAction:[SKAction group:@[fadeInLetter, fadeInShadow]]];*/
+    
+    [[self childNodeWithName:kLetterLabelNodeName] runAction:[SKAction fadeInWithDuration:duration]];
+    [[self childNodeWithName:kShadowLabelNodeName] runAction:[SKAction fadeInWithDuration:duration]];
 }
 
 - (CGPoint)letterPosition

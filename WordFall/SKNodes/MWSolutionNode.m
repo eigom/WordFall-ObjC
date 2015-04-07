@@ -75,13 +75,17 @@
     [self runAction:[SKAction sequence:@[wait, setLetters]]];
 }
 
-- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration
+- (void)revealLetter:(NSString *)letter atIndex:(NSInteger)index withDuration:(CFTimeInterval)duration withSound:(SKAction *)soundAction
 {
     MWSolutionLetterNode *node = [visibleLetterNodes objectAtIndex:index];
     [node setLetter:letter withDuration:duration];
+    
+    if (soundAction) {
+        [self runAction:soundAction];
+    }
 }
 
-- (void)revealWord:(NSString *)word withDuration:(CFTimeInterval)duration
+- (void)revealWord:(NSString *)word withDuration:(CFTimeInterval)duration withSound:(SKAction *)soundAction
 {
     for (int i = 0; i < word.length; i++) {
         MWSolutionLetterNode *node = [visibleLetterNodes objectAtIndex:i];
@@ -90,6 +94,10 @@
             NSString *letter = [word substringWithRange:NSMakeRange(i, 1)];
             [node setLetter:letter withDuration:duration];
         }
+    }
+    
+    if (soundAction) {
+        [self runAction:soundAction];
     }
 }
 

@@ -18,6 +18,7 @@
 #import "MWProgressNode.h"
 #import "Random.h"
 #import "MWPurchaseManager.h"
+#import "MWSoundManager.h"
 #import "SKProduct+Extensions.h"
 
 static CFTimeInterval const kSolvingTime = 100.0;
@@ -85,7 +86,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 - (NSString *)initialText
 {
-    NSString *text = @"Word Guru";
+    NSString *text = @"Word●Guru";
     
     if (maxLetterCount == 8) {
         text = @"WordGuru";
@@ -127,7 +128,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
         streamNode.name = kStreamNodeName;
         [self addChild:streamNode];
         
-        [streamNode startFall];
+        [streamNode startFallWithSound:nil];
         
         xOrigin = xOrigin + kStreamWidth;
     }
@@ -177,7 +178,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
                 // set letter
                 //
                 NSUInteger index = [word setNextLetter:node.letter];
-                [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration];
+                [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration withSound:[[MWSoundManager sharedManager] revealLetterSound]];
                 
                 //
                 // remove stream
@@ -194,7 +195,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
             // reveal letter
             //
              NSUInteger index = [word revealLetter:node.letter];
-            [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration];
+            [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration withSound:[[MWSoundManager sharedManager] revealLetterSound]];
             
             //
             // check if need to reveal definition
@@ -212,7 +213,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
         
         [self addChild:streamNode];
         
-        [streamNode startFall];
+        [streamNode startFallWithSound:[[MWSoundManager sharedManager] streamSound]];
         
         xOrigin = xOrigin + kStreamWidth;
     }
@@ -411,7 +412,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
         if (!word.isSolved) {
             [node disableForDuration:kSolveWordDuration+1.0];
             [self removeStreamsWithDuration:kSolveWordDuration];
-            [[self solutionNode] revealWord:[word solutionWord].word withDuration:kSolveWordDuration];
+            [[self solutionNode] revealWord:[word solutionWord].word withDuration:kSolveWordDuration withSound:[[MWSoundManager sharedManager] revealWordSound]];
         }
     }];
     [self addChild:solveNode];
