@@ -16,6 +16,7 @@
 #import "MWPurchaseNode.h"
 #import "MWSolveWordNode.h"
 #import "MWProgressNode.h"
+#import "MWSoundNode.h"
 #import "Random.h"
 #import "MWPurchaseManager.h"
 #import "MWSoundManager.h"
@@ -39,6 +40,7 @@ static NSString * const kSolutionNodeName = @"solution";
 static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
 static NSString * const kProgressNodeName = @"progress";
+static NSString * const kSoundNodeName = @"sound";
 
 static const NSUInteger kNumOfStreamBackgrounds = 5;
 
@@ -428,6 +430,18 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     [self addChild:nextWordNode];
 }
 
+- (void)addSoundNode
+{
+    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithPosition:CGPointMake(2.0, self.frame.size.height*0.3) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
+    soundNode.name = kSoundNodeName;
+    
+    [soundNode setSoundToggled:^(BOOL soundEnabled){
+        [MWSoundManager sharedManager].soundEnabled = soundEnabled;
+    }];
+    
+    [self addChild:soundNode];
+}
+
 - (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -521,6 +535,11 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
             [self addSolveNode];
         }
     }];
+    
+    //
+    // sound On/Off
+    //
+    [self addSoundNode];
     
     //
     // next word

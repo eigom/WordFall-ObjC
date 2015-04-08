@@ -81,6 +81,15 @@
 		1AA8D4F61AD2BD3200CF1842 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F01AD2BD3200CF1842 /* Default-Landscape~ipad.png */; };
 		1AA8D4F71AD2BD3200CF1842 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F11AD2BD3200CF1842 /* Default@2x.png */; };
 		1AA8D4FA1AD4779700CF1842 /* MWSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8D4F91AD4779700CF1842 /* MWSoundManager.m */; };
+		1AA8D4FD1AD5559500CF1842 /* MWSoundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA8D4FC1AD5559500CF1842 /* MWSoundNode.m */; };
+		1AA8D5071AD55B3C00CF1842 /* sound_off_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D4FF1AD55B3C00CF1842 /* sound_off_ipad.png */; };
+		1AA8D5081AD55B3C00CF1842 /* sound_off_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5001AD55B3C00CF1842 /* sound_off_ipad@2x.png */; };
+		1AA8D5091AD55B3C00CF1842 /* sound_off_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5011AD55B3C00CF1842 /* sound_off_iphone.png */; };
+		1AA8D50A1AD55B3C00CF1842 /* sound_off_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5021AD55B3C00CF1842 /* sound_off_iphone@2x.png */; };
+		1AA8D50B1AD55B3C00CF1842 /* sound_on_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5031AD55B3C00CF1842 /* sound_on_ipad.png */; };
+		1AA8D50C1AD55B3C00CF1842 /* sound_on_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5041AD55B3C00CF1842 /* sound_on_ipad@2x.png */; };
+		1AA8D50D1AD55B3C00CF1842 /* sound_on_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5051AD55B3C00CF1842 /* sound_on_iphone.png */; };
+		1AA8D50E1AD55B3C00CF1842 /* sound_on_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5061AD55B3C00CF1842 /* sound_on_iphone@2x.png */; };
 		1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */; };
 		1AA945BE1AC88D9A00006FEF /* MWProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */; };
 /* End PBXBuildFile section */
@@ -208,6 +217,16 @@
 		1AA8D4F11AD2BD3200CF1842 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1AA8D4F81AD4779700CF1842 /* MWSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSoundManager.h; sourceTree = "<group>"; };
 		1AA8D4F91AD4779700CF1842 /* MWSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSoundManager.m; sourceTree = "<group>"; };
+		1AA8D4FB1AD5559500CF1842 /* MWSoundNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSoundNode.h; sourceTree = "<group>"; };
+		1AA8D4FC1AD5559500CF1842 /* MWSoundNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSoundNode.m; sourceTree = "<group>"; };
+		1AA8D4FF1AD55B3C00CF1842 /* sound_off_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_off_ipad.png; sourceTree = "<group>"; };
+		1AA8D5001AD55B3C00CF1842 /* sound_off_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound_off_ipad@2x.png"; sourceTree = "<group>"; };
+		1AA8D5011AD55B3C00CF1842 /* sound_off_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_off_iphone.png; sourceTree = "<group>"; };
+		1AA8D5021AD55B3C00CF1842 /* sound_off_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound_off_iphone@2x.png"; sourceTree = "<group>"; };
+		1AA8D5031AD55B3C00CF1842 /* sound_on_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_on_ipad.png; sourceTree = "<group>"; };
+		1AA8D5041AD55B3C00CF1842 /* sound_on_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound_on_ipad@2x.png"; sourceTree = "<group>"; };
+		1AA8D5051AD55B3C00CF1842 /* sound_on_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound_on_iphone.png; sourceTree = "<group>"; };
+		1AA8D5061AD55B3C00CF1842 /* sound_on_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sound_on_iphone@2x.png"; sourceTree = "<group>"; };
 		1AA945B91AC886A700006FEF /* SKProduct+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Extensions.h"; sourceTree = "<group>"; };
 		1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Extensions.m"; sourceTree = "<group>"; };
 		1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWProgressNode.h; sourceTree = "<group>"; };
@@ -254,6 +273,8 @@
 				1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */,
 				1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */,
 				1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */,
+				1AA8D4FB1AD5559500CF1842 /* MWSoundNode.h */,
+				1AA8D4FC1AD5559500CF1842 /* MWSoundNode.m */,
 			);
 			path = SKNodes;
 			sourceTree = "<group>";
@@ -437,6 +458,7 @@
 		1AA8D49E1ACC86C200CF1842 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1AA8D4FE1AD55B2200CF1842 /* Sound */,
 				1AA8D4EB1AD2BCF200CF1842 /* Launch */,
 				1AA8D4E01AD0206A00CF1842 /* Solution */,
 				1AA8D4B71ACF448A00CF1842 /* Stream */,
@@ -499,6 +521,21 @@
 				1AA8D4F11AD2BD3200CF1842 /* Default@2x.png */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		1AA8D4FE1AD55B2200CF1842 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				1AA8D4FF1AD55B3C00CF1842 /* sound_off_ipad.png */,
+				1AA8D5001AD55B3C00CF1842 /* sound_off_ipad@2x.png */,
+				1AA8D5011AD55B3C00CF1842 /* sound_off_iphone.png */,
+				1AA8D5021AD55B3C00CF1842 /* sound_off_iphone@2x.png */,
+				1AA8D5031AD55B3C00CF1842 /* sound_on_ipad.png */,
+				1AA8D5041AD55B3C00CF1842 /* sound_on_ipad@2x.png */,
+				1AA8D5051AD55B3C00CF1842 /* sound_on_iphone.png */,
+				1AA8D5061AD55B3C00CF1842 /* sound_on_iphone@2x.png */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +630,7 @@
 				1AA8D4D61ACF44AA00CF1842 /* stream-2_iphone.png in Resources */,
 				1AA8D4A81ACC86E800CF1842 /* background-736@3x.png in Resources */,
 				1AA8D4F71AD2BD3200CF1842 /* Default@2x.png in Resources */,
+				1AA8D5091AD55B3C00CF1842 /* sound_off_iphone.png in Resources */,
 				1AA8D4EA1AD0259B00CF1842 /* letterbox_ipad@2x.png in Resources */,
 				1AA8D4D31ACF44AA00CF1842 /* stream-1_iphone@2x.png in Resources */,
 				1AA8D4D21ACF44AA00CF1842 /* stream-1_iphone.png in Resources */,
@@ -609,10 +647,17 @@
 				1AA8D4F51AD2BD3200CF1842 /* Default-Landscape@2x~ipad.png in Resources */,
 				1AA8D4D01ACF44AA00CF1842 /* stream-1_ipad.png in Resources */,
 				1AA07AA01A762BA400722BEB /* Main.storyboard in Resources */,
+				1AA8D50D1AD55B3C00CF1842 /* sound_on_iphone.png in Resources */,
 				1AA8D4F31AD2BD3200CF1842 /* Default-667h@2x.png in Resources */,
+				1AA8D5071AD55B3C00CF1842 /* sound_off_ipad.png in Resources */,
 				1AA8D4DA1ACF44AA00CF1842 /* stream-3_iphone.png in Resources */,
+				1AA8D5081AD55B3C00CF1842 /* sound_off_ipad@2x.png in Resources */,
 				1AA8D4D41ACF44AA00CF1842 /* stream-2_ipad.png in Resources */,
+				1AA8D50A1AD55B3C00CF1842 /* sound_off_iphone@2x.png in Resources */,
+				1AA8D50E1AD55B3C00CF1842 /* sound_on_iphone@2x.png in Resources */,
 				1AA8D49D1ACB0B4000CF1842 /* words.sqlite in Resources */,
+				1AA8D50C1AD55B3C00CF1842 /* sound_on_ipad@2x.png in Resources */,
+				1AA8D50B1AD55B3C00CF1842 /* sound_on_ipad.png in Resources */,
 				1AA8D4F41AD2BD3200CF1842 /* Default-736h@3x.png in Resources */,
 				1AA8D4D51ACF44AA00CF1842 /* stream-2_ipad@2x.png in Resources */,
 				1AA8D4F21AD2BD3200CF1842 /* Default-568h@2x.png in Resources */,
@@ -666,6 +711,7 @@
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,
 				1AA34B001A8AA8E20036AE8A /* MWSolutionLetterNode.m in Sources */,
+				1AA8D4FD1AD5559500CF1842 /* MWSoundNode.m in Sources */,
 				1AA8D4FA1AD4779700CF1842 /* MWSoundManager.m in Sources */,
 				1AA07A921A762BA400722BEB /* main.m in Sources */,
 				1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */,
