@@ -8,6 +8,10 @@
 
 #import "MWNextWordNode.h"
 
+static NSString * const kSpriteNodeName = @"sprite";
+static NSString * const kPhoneBackgroundImageName = @"word_iphone";
+static NSString * const kPadBackgroundImageName = @"word_ipad";
+
 @implementation MWNextWordNode
 
 - (id)initWithFrame:(CGRect)frame
@@ -16,18 +20,23 @@
         self.zPosition = 10;
         self.userInteractionEnabled = YES;
         
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
-        label.text = @"W";
-        label.fontSize = 15.0;
-        label.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
-        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-        label.userInteractionEnabled = NO;
-        label.position = CGPointMake(CGRectGetMidX(frame),
-                                     CGRectGetMidY(frame));
-        [self addChild:label];
+        SKSpriteNode *spriteNode = [SKSpriteNode spriteNodeWithImageNamed:[self backgroundImageName]];
+        spriteNode.userInteractionEnabled = NO;
+        spriteNode.name = kSpriteNodeName;
+        spriteNode.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+        [self addChild:spriteNode];
     }
     
     return self;
+}
+
+- (NSString *)backgroundImageName
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadBackgroundImageName;
+    } else {
+        return kPhoneBackgroundImageName;
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

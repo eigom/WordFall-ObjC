@@ -422,7 +422,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 - (void)addNextWordNode
 {
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 0.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 5.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
         [node disableForDuration:kPlayInitDuration+1.0];
         [self playWithNextWord];
@@ -445,14 +445,14 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 - (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
-    CGPoint point1 = CGPointMake(0.0, self.frame.size.height - maxStreamDistance + 4.0); // stream image has shadow on bottom so add small constant
+    CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 4.0); // stream image has shadow on bottom so add small constant
     CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 4.0);
     [path moveToPoint:point1];
     [path addLineToPoint:point2];
     
     CGFloat pattern[2];
-    pattern[0] = 3.0;
-    pattern[1] = 5.0;
+    pattern[0] = 1.0;
+    pattern[1] = 3.0;
     CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
     
     SKShapeNode *node = [SKShapeNode node];
