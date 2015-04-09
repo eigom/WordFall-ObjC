@@ -409,7 +409,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 - (void)addSolveNode
 {
-    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 5.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
     [solveNode setNodeTouched:^(MWSolveWordNode *node){
         if (!word.isSolved) {
             [node disableForDuration:kSolveWordDuration+1.0];
@@ -512,7 +512,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     //
     // purchase/solve node
     //
-    if ([MWPurchaseManager sharedManager].isPurchased) {
+    if (YES/*[MWPurchaseManager sharedManager].isPurchased*/) {
         [self addSolveNode];
     } else {
         [[MWPurchaseManager sharedManager] requestProductWithCompletionHandler:^(BOOL success, SKProduct *product) {
