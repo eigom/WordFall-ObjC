@@ -9,8 +9,8 @@
 #import "MWNextWordNode.h"
 
 static NSString * const kSpriteNodeName = @"sprite";
-static NSString * const kPhoneBackgroundImageName = @"word_iphone";
-static NSString * const kPadBackgroundImageName = @"word_ipad";
+static NSString * const kPhoneBackgroundImageName = @"next_iphone";
+static NSString * const kPadBackgroundImageName = @"next_ipad";
 
 @implementation MWNextWordNode
 
