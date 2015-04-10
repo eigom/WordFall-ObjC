@@ -57,7 +57,7 @@ static const CGFloat kAlpha = 1.0;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:1.0 duration:0.1]];
+    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -74,8 +74,7 @@ static const CGFloat kAlpha = 1.0;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /*SKSpriteNode *spriteNode = (SKSpriteNode *)[self childNodeWithName:kSpriteNodeName];
-    spriteNode.alpha = kFadeOutAlpha;*/
+    
 }
 
 @end

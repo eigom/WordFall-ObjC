@@ -38,7 +38,7 @@ static const CGFloat kPadDefinitionSize = 20;
                                                                                         NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     
-    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\n\n      Tap NEXT to begin..."
+    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\n\nTap NEXT to begin..."
                                                                            attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                                                                                         NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:beginString];
