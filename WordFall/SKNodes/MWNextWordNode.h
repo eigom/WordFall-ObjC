@@ -14,6 +14,7 @@ typedef void (^MWNextWordNodeTouched)(MWNextWordNode *node);
 
 @interface MWNextWordNode : SKNode
 
+@property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) MWNextWordNodeTouched nodeTouched;
 
 + (CGFloat)width;

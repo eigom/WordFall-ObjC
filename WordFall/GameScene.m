@@ -41,6 +41,7 @@ static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
 static NSString * const kProgressNodeName = @"progress";
 static NSString * const kSolveNodeName = @"solve";
+static NSString * const kNextNodeName = @"next";
 static NSString * const kSoundNodeName = @"sound";
 
 static const NSUInteger kNumOfStreamBackgrounds = 5;
@@ -88,13 +89,14 @@ static CGFloat const kPadButtonGap = 20.0;
     }];
     
     //
-    // enable solve
+    // enable controls
     //
-    SKAction *enableSolve = [SKAction runBlock:^{
+    SKAction *enable = [SKAction runBlock:^{
         [self solveNode].enabled = YES;
+        [self nextNode].enabled = YES;
     }];
     
-    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord, enableSolve]]];
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord, enable]]];
 }
 
 - (NSString *)initialText
@@ -441,11 +443,18 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)addNextWordNode
 {
     MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height)];
+    nextWordNode.name = kNextNodeName;
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
-        [node disableForDuration:kPlayInitDuration+1.0];
+        //[node disableForDuration:kPlayInitDuration+1.0];
+        node.enabled = NO;
         [self playWithNextWord];
     }];
     [self addChild:nextWordNode];
+}
+
+- (MWNextWordNode *)nextNode
+{
+    return (MWNextWordNode *)[self childNodeWithName:kNextNodeName];
 }
 
 - (void)addSoundNode

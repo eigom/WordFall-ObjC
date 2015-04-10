@@ -70,4 +70,9 @@ static CGFloat const kPadWidth = 76.0;
     [self runAction:[SKAction sequence:@[disable, wait, enable]]];
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    self.userInteractionEnabled = enabled;
+}
+
 @end
