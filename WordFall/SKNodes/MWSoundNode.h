@@ -19,6 +19,8 @@ typedef void (^MWSoundNodeSoundToggled)(BOOL soundEnabled);
 
 @property (nonatomic, copy) MWSoundNodeSoundToggled soundToggled;
 
-- (id)initWithPosition:(CGPoint)position soundEnabled:(BOOL)soundEnabled;
++ (CGSize)size;
+
+- (id)initWithFrame:(CGRect)frame soundEnabled:(BOOL)soundEnabled;
 
 @end

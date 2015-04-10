@@ -40,9 +40,13 @@ static NSString * const kSolutionNodeName = @"solution";
 static NSString * const kDefinitionNodeName = @"definition";
 static NSString * const kPurchaseNodeName = @"purchase";
 static NSString * const kProgressNodeName = @"progress";
+static NSString * const kSolveNodeName = @"solve";
 static NSString * const kSoundNodeName = @"sound";
 
 static const NSUInteger kNumOfStreamBackgrounds = 5;
+
+static CGFloat const kPhoneButtonGap = 10.0;
+static CGFloat const kPadButtonGap = 20.0;
 
 @implementation GameScene
 
@@ -83,12 +87,19 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
     }];
     
-    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord]]];
+    //
+    // enable solve
+    //
+    SKAction *enableSolve = [SKAction runBlock:^{
+        [self solveNode].enabled = YES;
+    }];
+    
+    [self runAction:[SKAction sequence:@[[SKAction waitForDuration:kPullbackStreamDuration], setupWithNextWord, enableSolve]]];
 }
 
 - (NSString *)initialText
 {
-    NSString *text = @"Word●Guru";
+    NSString *text = @"Word Guru";
     
     if (maxLetterCount == 8) {
         text = @"WordGuru";
@@ -409,10 +420,12 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 - (void)addSolveNode
 {
-    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake(0.0, 5.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
-    [solveNode setNodeTouched:^(MWSolveWordNode *node){
+    MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake([self buttonGap], solutionAreaFrame.origin.y, [MWSolveWordNode width], solutionAreaFrame.size.height)];
+    solveNode.name = kSolveNodeName;
+    [solveNode setNodeTouched:^(MWSolveWordNode *node){NSLog(@"touched");
         if (!word.isSolved) {
-            [node disableForDuration:kSolveWordDuration+1.0];
+            node.enabled = NO;
+            
             [self removeStreamsWithDuration:kSolveWordDuration];
             [[self solutionNode] revealWord:[word solutionWord].word withDuration:kSolveWordDuration withSound:[[MWSoundManager sharedManager] revealWordSound]];
         }
@@ -420,9 +433,14 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     [self addChild:solveNode];
 }
 
+- (MWSolveWordNode *)solveNode
+{
+    return (MWSolveWordNode *)[self childNodeWithName:kSolveNodeName];
+}
+
 - (void)addNextWordNode
 {
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(solutionAreaFrame.origin.x+solutionAreaFrame.size.width, 5.0, self.frame.size.width - (solutionAreaFrame.origin.x+solutionAreaFrame.size.width), solutionAreaFrame.size.height)];
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height)];
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
         [node disableForDuration:kPlayInitDuration+1.0];
         [self playWithNextWord];
@@ -432,7 +450,7 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 
 - (void)addSoundNode
 {
-    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithPosition:CGPointMake(2.0, self.frame.size.height*0.3) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
+    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(0.0, self.frame.size.height-maxStreamDistance-[MWSoundNode size].height, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
     soundNode.name = kSoundNodeName;
     
     [soundNode setSoundToggled:^(BOOL soundEnabled){
@@ -440,6 +458,11 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     }];
     
     [self addChild:soundNode];
+}
+
+- (MWSoundNode *)soundNode
+{
+    return (MWSoundNode *)[self childNodeWithName:kSoundNodeName];
 }
 
 - (void)addRevealLineNode
@@ -491,8 +514,10 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
     //
     // solution area
     //
-    CGFloat solutionAreaWidth = floor(self.frame.size.width / [self solutionLetterSize]) * [self solutionLetterSize] - 4*[self solutionLetterSize]; // left/right gap of 4 letter sizes
-    solutionAreaFrame = CGRectMake((self.frame.size.width - solutionAreaWidth) / 2.0, 5.0, solutionAreaWidth, [self solutionLetterSize]);
+    CGFloat leftButtonAreaWidth = [self buttonGap] + [MWSolveWordNode width] + [self buttonGap];
+    CGFloat rightButtonAreaWidth = [self buttonGap] + [MWNextWordNode width] + [self buttonGap];
+    CGFloat solutionAreaWidth = floor((self.frame.size.width - leftButtonAreaWidth-rightButtonAreaWidth) / [self solutionLetterSize]) * [self solutionLetterSize];
+    solutionAreaFrame = CGRectMake((solutionAreaWidth-leftButtonAreaWidth-rightButtonAreaWidth)/2.0, 5.0, solutionAreaWidth, [self solutionLetterSize]);
     
     //
     // max word lengths that can fit on screen
@@ -560,6 +585,15 @@ static const NSUInteger kNumOfStreamBackgrounds = 5;
 - (CGFloat)definitionAreaHeight
 {
     return self.frame.size.height - maxStreamDistance - (solutionAreaFrame.origin.y+solutionAreaFrame.size.height);
+}
+
+- (CGFloat)buttonGap
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadButtonGap;
+    } else {
+        return kPhoneButtonGap;
+    }
 }
 
 - (void)update:(CFTimeInterval)currentTime

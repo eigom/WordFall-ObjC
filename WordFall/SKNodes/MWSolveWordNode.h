@@ -14,7 +14,10 @@ typedef void (^MWSolveWordNodeTouched)(MWSolveWordNode *node);
 
 @interface MWSolveWordNode : SKNode
 
+@property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, copy) MWSolveWordNodeTouched nodeTouched;
+
++ (CGFloat)width;
 
 - (id)initWithFrame:(CGRect)frame;
 

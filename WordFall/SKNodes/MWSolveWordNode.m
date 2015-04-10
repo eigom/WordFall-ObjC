@@ -11,8 +11,19 @@
 static NSString * const kSpriteNodeName = @"sprite";
 static NSString * const kPhoneBackgroundImageName = @"solve_iphone";
 static NSString * const kPadBackgroundImageName = @"solve_ipad";
+static CGFloat const kPhoneWidth = 65.0;
+static CGFloat const kPadWidth = 86.0;
 
 @implementation MWSolveWordNode
+
++ (CGFloat)width
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadWidth;
+    } else {
+        return kPhoneWidth;
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -57,6 +68,11 @@ static NSString * const kPadBackgroundImageName = @"solve_ipad";
     }];
     
     [self runAction:[SKAction sequence:@[disable, wait, enable]]];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    self.userInteractionEnabled = enabled;
 }
 
 @end

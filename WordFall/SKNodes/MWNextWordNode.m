@@ -11,8 +11,19 @@
 static NSString * const kSpriteNodeName = @"sprite";
 static NSString * const kPhoneBackgroundImageName = @"next_iphone";
 static NSString * const kPadBackgroundImageName = @"next_ipad";
+static CGFloat const kPhoneWidth = 65.0;
+static CGFloat const kPadWidth = 76.0;
 
 @implementation MWNextWordNode
+
++ (CGFloat)width
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadWidth;
+    } else {
+        return kPhoneWidth;
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

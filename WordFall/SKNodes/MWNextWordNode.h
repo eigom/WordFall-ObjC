@@ -16,6 +16,8 @@ typedef void (^MWNextWordNodeTouched)(MWNextWordNode *node);
 
 @property (nonatomic, copy) MWNextWordNodeTouched nodeTouched;
 
++ (CGFloat)width;
+
 - (id)initWithFrame:(CGRect)frame;
 
 - (void)disableForDuration:(CFTimeInterval)duration;

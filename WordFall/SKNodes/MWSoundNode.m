@@ -9,12 +9,23 @@
 #import "MWSoundNode.h"
 
 static NSString * const kSpriteNodeName = @"sprite";
+static CGFloat const kPhoneHeight = 30.0;
+static CGFloat const kPadHeight = 46.0;
 
-static const CGFloat kAlpha = 1.0;
+static const CGFloat kAlpha = 0.9;
 
 @implementation MWSoundNode
 
-- (id)initWithPosition:(CGPoint)position soundEnabled:(BOOL)soundEnabled
++ (CGSize)size
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return CGSizeMake(kPadHeight, kPadHeight);
+    } else {
+        return CGSizeMake(kPhoneHeight, kPhoneHeight);
+    }
+}
+
+- (id)initWithFrame:(CGRect)frame soundEnabled:(BOOL)soundEnabled
 {
     if ((self = [super init])) {
         _soundEnabled = soundEnabled;
@@ -24,8 +35,7 @@ static const CGFloat kAlpha = 1.0;
         SKSpriteNode *spriteNode = [SKSpriteNode spriteNodeWithTexture:[self soundTexture]];
         spriteNode.userInteractionEnabled = NO;
         spriteNode.name = kSpriteNodeName;
-        spriteNode.anchorPoint = CGPointMake(0.0, 0.0);
-        spriteNode.position = position;
+        spriteNode.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
         spriteNode.alpha = kAlpha;
         [self addChild:spriteNode];
     }
