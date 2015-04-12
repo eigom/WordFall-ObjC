@@ -27,6 +27,7 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 @property (nonatomic, assign) CGFloat normalMovementDuration;
 @property (nonatomic, copy) MWStreamTouched streamTouched;
 @property (nonatomic, copy) MWStreamEndReached streamEndReached;
+@property (nonatomic, assign) BOOL enabled;
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame bgImageName:(NSString *)bgImageName;
 

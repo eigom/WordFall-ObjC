@@ -12,7 +12,7 @@ static NSString * const kSpriteNodeName = @"sprite";
 static CGFloat const kPhoneHeight = 30.0;
 static CGFloat const kPadHeight = 46.0;
 
-static const CGFloat kAlpha = 0.9;
+static const CGFloat kAlpha = 0.7;
 
 @implementation MWSoundNode
 

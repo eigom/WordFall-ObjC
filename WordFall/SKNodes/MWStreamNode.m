@@ -141,6 +141,11 @@ static const CGFloat kPadFontSize = 26;
     [self runAction:[SKAction sequence:@[disappear, removeFromParent]]];
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    self.userInteractionEnabled = enabled;
+}
+
 - (void)pause
 {
     // pause on app inactive (ad tapped etc)

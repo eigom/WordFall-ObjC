@@ -38,6 +38,8 @@ static NSString * const kProductIdentifier = @"";
 
 - (void)requestProductWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler
 {
+    _isLoading = YES;
+    
     _requestProductsCompletionHandler = [completionHandler copy];
     
     _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kProductIdentifier]];
@@ -49,6 +51,7 @@ static NSString * const kProductIdentifier = @"";
 {
     NSLog(@"Loaded list of products...");
     _productsRequest = nil;
+    _isLoading = NO;
     
     if ([response.products count] > 0) {
         NSLog(@"Loaded product");

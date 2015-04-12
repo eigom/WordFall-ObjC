@@ -8,6 +8,8 @@
 
 #import "MWPurchaseNode.h"
 
+static const CGFloat kAlpha = 0.6;
+
 @implementation MWPurchaseNode
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,9 +17,10 @@
     if ((self = [super init])) {
         self.zPosition = 10;
         self.userInteractionEnabled = YES;
+        self.alpha = kAlpha;
         
         SKLabelNode *label1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
-        label1.text = @"Auto-solve words";
+        label1.text = @"Auto-solve";
         label1.fontSize = 13.0;
         label1.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         label1.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;

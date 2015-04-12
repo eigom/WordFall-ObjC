@@ -19,6 +19,7 @@ typedef void (^MWPurchaseManagerProductPurchasedCompletion)(SKProduct *product, 
 }
 
 @property (nonatomic, readonly) SKProduct *product;
+@property (nonatomic, readonly) BOOL isLoading;
 @property (nonatomic, readonly) BOOL isPurchased;
 @property (nonatomic, copy) MWPurchaseManagerProductPurchasedCompletion productPurchasedCompletion;
 

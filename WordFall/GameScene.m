@@ -63,6 +63,19 @@ static CGFloat const kPadButtonGap = 20.0;
     }
     
     //
+    // load product if needed
+    //
+    if (![MWPurchaseManager sharedManager].isPurchased) {
+        if (![MWPurchaseManager sharedManager].product && ![MWPurchaseManager sharedManager].isLoading) {
+            [[MWPurchaseManager sharedManager] requestProductWithCompletionHandler:^(BOOL success, SKProduct *product) {
+                if (success) {
+                    [self addPurchaseNode];
+                }
+            }];
+        }
+    }
+    
+    //
     // pullback active streams
     //
     [self pullbackStreamsWithDuration:kPlayInitDuration];
@@ -101,7 +114,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (NSString *)initialText
 {
-    NSString *text = @"Word Guru";
+    NSString *text = @"WordGuru";
     
     if (maxLetterCount == 8) {
         text = @"WordGuru";
@@ -189,6 +202,8 @@ static CGFloat const kPadButtonGap = 20.0;
             // check if next word
             //
             if ([word isNextLetter:node.letter]) {
+                node.enabled = NO;
+                
                 //
                 // set letter
                 //
@@ -206,6 +221,8 @@ static CGFloat const kPadButtonGap = 20.0;
         // handle stream end
         //
         [streamNode setStreamEndReached:^(MWStreamNode *node) {
+            node.enabled = NO;
+            
             //
             // reveal letter
             //
@@ -390,7 +407,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)addPurchaseNode
 {
-    MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, 0.0, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
+    MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y, solutionAreaFrame.origin.x, solutionAreaFrame.size.height)];
     purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
         [node disableForDuration:1.0];
@@ -526,7 +543,8 @@ static CGFloat const kPadButtonGap = 20.0;
     CGFloat leftButtonAreaWidth = [self buttonGap] + [MWSolveWordNode width] + [self buttonGap];
     CGFloat rightButtonAreaWidth = [self buttonGap] + [MWNextWordNode width] + [self buttonGap];
     CGFloat solutionAreaWidth = floor((self.frame.size.width - leftButtonAreaWidth-rightButtonAreaWidth) / [self solutionLetterSize]) * [self solutionLetterSize];
-    solutionAreaFrame = CGRectMake((solutionAreaWidth-leftButtonAreaWidth-rightButtonAreaWidth)/2.0, 5.0, solutionAreaWidth, [self solutionLetterSize]);
+    CGFloat solutionAreaOriginX = leftButtonAreaWidth + (self.frame.size.width - rightButtonAreaWidth - leftButtonAreaWidth - solutionAreaWidth) / 2.0;
+    solutionAreaFrame = CGRectMake(solutionAreaOriginX, 5.0, solutionAreaWidth, [self solutionLetterSize]);
     
     //
     // max word lengths that can fit on screen
@@ -546,14 +564,8 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // purchase/solve node
     //
-    if (YES/*[MWPurchaseManager sharedManager].isPurchased*/) {
+    if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
-    } else {
-        [[MWPurchaseManager sharedManager] requestProductWithCompletionHandler:^(BOOL success, SKProduct *product) {
-            if (success) {
-                [self addPurchaseNode];
-            }
-        }];
     }
     
     [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
