@@ -17,7 +17,7 @@ static const CGFloat kAlpha = 0.6;
     if ((self = [super init])) {
         self.zPosition = 10;
         self.userInteractionEnabled = YES;
-        self.alpha = kAlpha;
+        self.alpha = 0.0;
         
         SKLabelNode *label1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
         label1.text = @"Auto-solve";
@@ -41,6 +41,11 @@ static const CGFloat kAlpha = 0.6;
     }
     
     return self;
+}
+
+- (void)appearWithDuration:(CFTimeInterval)duration
+{
+    [self runAction:[SKAction fadeAlphaTo:kAlpha duration:duration]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

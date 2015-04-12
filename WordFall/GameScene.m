@@ -418,7 +418,9 @@ static CGFloat const kPadButtonGap = 20.0;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Purchase auto-solving" message:[NSString stringWithFormat:@"Unlock auto-solving mode and remove ads for %@.\n\nPress Restore if you have already unlocked in the past.", [MWPurchaseManager sharedManager].product.formattedPrice] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:[NSString stringWithFormat:@"Unlock for %@", [MWPurchaseManager sharedManager].product.formattedPrice], @"Restore", nil];
         [alertView show];
     }];
+    
     [self addChild:purchaseNode];
+    [purchaseNode appearWithDuration:0.5];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
