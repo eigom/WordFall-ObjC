@@ -121,7 +121,11 @@ static const CGFloat kPadFontSize = 28;
         [[self childNodeWithName:kShadowLabelNodeName] runAction:[SKAction scaleXTo:1.0 duration:duration]];
     }];
     
-    [self runAction:[SKAction sequence:@[scaleOut, addLetter, wait, scaleIn]]];
+    if (duration > 0.0) {
+        [self runAction:[SKAction sequence:@[scaleOut, addLetter, wait, scaleIn]]];
+    } else {
+        [self runAction:[SKAction sequence:@[addLetter, scaleIn]]];
+    }
 }
 
 - (CGPoint)letterPosition
