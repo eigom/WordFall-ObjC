@@ -47,7 +47,7 @@
     
     for (int i = 0; i < letterNodes.count; i++) {
         MWSolutionLetterNode *letterNode = [letterNodes objectAtIndex:i];
-        [letterNode clearLetterWithDuration:duration];
+        //[letterNode clearLetterWithDuration:duration];
         
         if (i < startIndex || i >= startIndex+letterCount) {
             [letterNode setVisible:NO withDuration:duration];

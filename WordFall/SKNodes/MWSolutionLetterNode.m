@@ -33,7 +33,7 @@ static const CGFloat kPadFontSize = 28;
         bgNode.name = kBackgroundNodeName;
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
         bgNode.zPosition = self.zPosition + 1;
-        bgNode.alpha = 0.0;
+        //bgNode.alpha = 0.0;
         [self addChild:bgNode];
         
         [self setVisible:NO withDuration:0.0];
@@ -56,11 +56,17 @@ static const CGFloat kPadFontSize = 28;
     _visible = visible;
     
     if (_visible) {
-        SKAction *fadeIn = [SKAction fadeInWithDuration:duration];
-        [self runAction:[SKAction runAction:fadeIn onChildWithName:kBackgroundNodeName]];
+        //SKAction *fadeIn = [SKAction fadeInWithDuration:duration];
+        //[self runAction:[SKAction runAction:fadeIn onChildWithName:kBackgroundNodeName]];
+        /*if ([self childNodeWithName:kBackgroundNodeName].xScale < 1.0) {
+            [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction scaleXTo:1.0 duration:duration]];
+        }*/
+        [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction fadeInWithDuration:duration]];
     } else {
-        SKAction *fadeOut = [SKAction fadeOutWithDuration:duration];
-        [self runAction:[SKAction runAction:fadeOut onChildWithName:kBackgroundNodeName]];
+        [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction fadeOutWithDuration:duration]];
+        /*if ([self childNodeWithName:kBackgroundNodeName].xScale > 0.0) {
+            [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction scaleXTo:0.0 duration:duration]];
+        }*/
     }
 }
 
@@ -68,42 +74,54 @@ static const CGFloat kPadFontSize = 28;
 {
     _letter = letter;
     
-    //
-    // letter
-    //
-    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
-    label.name = kLetterLabelNodeName;
-    label.text = _letter;
-    label.fontSize = [self fontSize];
-    label.fontColor = [UIColor yellowColor];
-    label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-    label.userInteractionEnabled = NO;
-    label.zPosition = [self childNodeWithName:kBackgroundNodeName].zPosition + 1;
-    label.position = [self letterPosition];
-    label.alpha = 0.0;
-    [self addChild:label];
+    SKSpriteNode *backgroundNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
     
-    //
-    // frop shadow
-    //
-    SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
-    dropShadow.name = kShadowLabelNodeName;
-    dropShadow.fontSize = [self fontSize];
-    dropShadow.fontColor = [SKColor blackColor];
-    dropShadow.text = _letter;
-    dropShadow.zPosition = label.zPosition - 1;
-    dropShadow.position = CGPointMake(label.position.x + 1.0, label.position.y - 1.0);
-    dropShadow.alpha = 0.0;
-    [self addChild:dropShadow];
+    SKAction *addLetter = [SKAction runBlock:^{
+        //
+        // letter
+        //
+        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
+        label.name = kLetterLabelNodeName;
+        label.text = _letter;
+        label.fontSize = [self fontSize];
+        label.fontColor = [UIColor yellowColor];
+        label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
+        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        label.userInteractionEnabled = NO;
+        label.zPosition = backgroundNode.zPosition + 1;
+        label.position = [self letterPosition];
+        label.xScale = 0.0;
+        //label.alpha = 0.0;
+        [self addChild:label];
+        
+        //
+        // drop shadow
+        //
+        SKLabelNode *dropShadow = [SKLabelNode labelNodeWithFontNamed:kFont];
+        dropShadow.name = kShadowLabelNodeName;
+        dropShadow.fontSize = [self fontSize];
+        dropShadow.fontColor = [SKColor blackColor];
+        dropShadow.text = _letter;
+        dropShadow.zPosition = label.zPosition - 1;
+        dropShadow.position = CGPointMake(label.position.x + 1.0, label.position.y - 1.0);
+        dropShadow.xScale = 0.0;
+        //dropShadow.alpha = 0.0;
+        [self addChild:dropShadow];
+    }];
     
-    /*SKAction *fadeInLetter = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kLetterLabelNodeName];
-    SKAction *fadeInShadow = [SKAction runAction:[SKAction fadeInWithDuration:duration] onChildWithName:kShadowLabelNodeName];
+    SKAction *wait = [SKAction waitForDuration:duration];
     
-    [self runAction:[SKAction group:@[fadeInLetter, fadeInShadow]]];*/
+    SKAction *scaleOut = [SKAction runBlock:^{
+        [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction scaleXTo:0.0 duration:duration]];
+    }];
     
-    [[self childNodeWithName:kLetterLabelNodeName] runAction:[SKAction fadeInWithDuration:duration]];
-    [[self childNodeWithName:kShadowLabelNodeName] runAction:[SKAction fadeInWithDuration:duration]];
+    SKAction *scaleIn = [SKAction runBlock:^{
+        [[self childNodeWithName:kBackgroundNodeName] runAction:[SKAction scaleXTo:1.0 duration:duration]];
+        [[self childNodeWithName:kLetterLabelNodeName] runAction:[SKAction scaleXTo:1.0 duration:duration]];
+        [[self childNodeWithName:kShadowLabelNodeName] runAction:[SKAction scaleXTo:1.0 duration:duration]];
+    }];
+    
+    [self runAction:[SKAction sequence:@[scaleOut, addLetter, wait, scaleIn]]];
 }
 
 - (CGPoint)letterPosition
@@ -133,10 +151,8 @@ static const CGFloat kPadFontSize = 28;
     SKAction *fadeOut = [SKAction fadeOutWithDuration:duration];
     SKAction *remove = [SKAction removeFromParent];
     
-    SKAction *clearAction = [SKAction sequence:@[fadeOut, remove]];
-    
-    [[self childNodeWithName:kLetterLabelNodeName] runAction:clearAction];
-    [[self childNodeWithName:kShadowLabelNodeName] runAction:clearAction];
+    [[self childNodeWithName:kLetterLabelNodeName] runAction:[SKAction sequence:@[fadeOut, remove]]];
+    [[self childNodeWithName:kShadowLabelNodeName] runAction:[SKAction sequence:@[fadeOut, remove]]];
 }
 
 
