@@ -86,6 +86,7 @@
     definitionTextView.attributedText = word.definitions.attributedText;
     
     [UIView animateWithDuration:duration animations:^{
+        backgroundStrip.alpha = 1.0;
         definitionTextView.alpha = 1.0;
     } completion:^(BOOL finished) {
         
@@ -95,6 +96,7 @@
 - (void)dismissWordDefinitionWithDuration:(CFTimeInterval)duration
 {
     [UIView animateWithDuration:duration animations:^{
+        backgroundStrip.alpha = 0.0;
         definitionTextView.alpha = 0.0;
     } completion:^(BOOL finished) {
         
@@ -200,6 +202,16 @@
     // definition text view
     //
     if (definitionTextView == nil) {
+        //
+        // dark background strip
+        //
+        backgroundStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self gameScene].definitionAreaYOrigin, [self skView].bounds.size.width, [self skView].bounds.size.height-[self gameScene].definitionAreaYOrigin)];
+        backgroundStrip.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
+        [[self skView] addSubview:backgroundStrip];
+        
+        //
+        // definition view
+        //
         CGFloat width = [self skView].bounds.size.width * 0.7;
         CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
         definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight-10.0))];

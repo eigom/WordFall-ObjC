@@ -9,8 +9,8 @@
 #import "MWDefinition.h"
 #import <UIKit/UIKit.h>
 
-static NSString * const kTypeFont = @"GillSans";
-static NSString * const kDefinitionFont = @"GillSans";
+static NSString * const kTypeFont = @"Avenir-Oblique";
+static NSString * const kDefinitionFont = @"Avenir-Medium";
 
 static const CGFloat kPhoneTypeFontSize = 15;
 static const CGFloat kPhoneDefinitionFontSize = 16;
@@ -38,7 +38,7 @@ static const CGFloat kPadDefinitionSize = 20;
                                                                                         NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     
-    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\n\nTap NEXT to begin..."
+    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\nTap NEXT to begin..."
                                                                            attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                                                                                         NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:beginString];

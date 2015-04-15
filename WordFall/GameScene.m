@@ -502,7 +502,7 @@ static CGFloat const kPadButtonGap = 20.0;
     [path addLineToPoint:point2];
     
     CGFloat pattern[2];
-    pattern[0] = 1.0;
+    pattern[0] = 7.0;
     pattern[1] = 3.0;
     CGPathRef dashed = CGPathCreateCopyByDashingPath([path CGPath], NULL, 0, pattern, 2);
     
@@ -602,7 +602,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (CGFloat)definitionAreaYOrigin
 {
-    return maxStreamDistance;
+    return maxStreamDistance-4.0;
 }
 
 - (CGFloat)definitionAreaHeight

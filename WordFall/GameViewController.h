@@ -14,6 +14,7 @@
 @private
     ADBannerView *bannerView;
     UITextView *definitionTextView;
+    UIView *backgroundStrip;
 }
 
 @end
