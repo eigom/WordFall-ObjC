@@ -34,13 +34,19 @@ static const CGFloat kAlpha = 0.8;
     //
     // semitransparent background in full frame
     //
-    SKShapeNode *background = [SKShapeNode shapeNodeWithRect:_frame];
+    SKShapeNode *background = [SKShapeNode node];
     background.userInteractionEnabled = YES;
     background.name = kBackgroundNodeName;
     //background.zPosition = 100000000;
     background.userInteractionEnabled = YES;
     background.fillColor = [UIColor blackColor];
+    background.strokeColor = [UIColor blackColor];
     background.alpha = 0.0;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, nil, _frame);
+    background.path = path;
+    
     [self addChild:background];
     
     //

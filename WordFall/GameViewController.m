@@ -205,9 +205,9 @@
         //
         // dark background strip
         //
-        backgroundStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self gameScene].definitionAreaYOrigin, [self skView].bounds.size.width, [self skView].bounds.size.height-[self gameScene].definitionAreaYOrigin)];
+        /*backgroundStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self gameScene].definitionAreaYOrigin, [self skView].bounds.size.width, [self skView].bounds.size.height-[self gameScene].definitionAreaYOrigin)];
         backgroundStrip.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
-        [[self skView] addSubview:backgroundStrip];
+        [[self skView] addSubview:backgroundStrip];*/
         
         //
         // definition view

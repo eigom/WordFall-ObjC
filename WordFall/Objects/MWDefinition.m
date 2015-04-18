@@ -15,8 +15,8 @@ static NSString * const kDefinitionFont = @"Avenir-Medium";
 static const CGFloat kPhoneTypeFontSize = 15;
 static const CGFloat kPhoneDefinitionFontSize = 16;
 
-static const CGFloat kPadTypeFontSize = 18;
-static const CGFloat kPadDefinitionSize = 20;
+static const CGFloat kPadTypeFontSize = 20;
+static const CGFloat kPadDefinitionSize = 22;
 
 @implementation MWDefinition
 
@@ -33,7 +33,7 @@ static const CGFloat kPadDefinitionSize = 20;
                                                                                   NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:typeString];
     
-    NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:@"a game where you tap falling letters in correct order to form words and names"
+    NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:@"a game where you tap falling letters  to form words and names"
                                                                            attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                                                                                         NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];

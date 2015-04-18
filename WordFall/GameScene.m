@@ -22,7 +22,7 @@
 #import "MWSoundManager.h"
 #import "SKProduct+Extensions.h"
 
-static CFTimeInterval const kSolvingTime = 100.0;
+static CFTimeInterval const kSolvingTime = 200.0;
 static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
@@ -394,6 +394,21 @@ static CGFloat const kPadButtonGap = 20.0;
     background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     background.zPosition = 0;
     [self addChild:background];
+    
+    //
+    // dim background
+    //
+    SKShapeNode *dimNode = [SKShapeNode node];
+    dimNode.fillColor = [UIColor blackColor];
+    dimNode.strokeColor = [UIColor blackColor];
+    dimNode.alpha = 0.15;
+    dimNode.zPosition = background.zPosition + 1;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, nil, CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height));
+    dimNode.path = path;
+    
+    [self addChild:dimNode];
 }
 
 - (void)addSolutionArea
@@ -478,7 +493,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)addSoundNode
 {
-    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(0.0, self.frame.size.height-maxStreamDistance-[MWSoundNode size].height, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
+    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance-[MWSoundNode size].height, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
     soundNode.name = kSoundNodeName;
     
     [soundNode setSoundToggled:^(BOOL soundEnabled){

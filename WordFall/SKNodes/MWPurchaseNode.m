@@ -8,7 +8,7 @@
 
 #import "MWPurchaseNode.h"
 
-static const CGFloat kAlpha = 0.6;
+static const CGFloat kAlpha = 0.5;
 
 @implementation MWPurchaseNode
 

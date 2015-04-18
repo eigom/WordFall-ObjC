@@ -9,7 +9,7 @@
 #import "MWPurchaseManager.h"
 
 static NSString * const kPurchasedKey = @"purchased";
-static NSString * const kProductIdentifier = @"";
+static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 
 @implementation MWPurchaseManager
 
@@ -71,7 +71,7 @@ static NSString * const kProductIdentifier = @"";
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"Failed to load list of products.");
+    NSLog(@"Failed to load list of products: %@", error.localizedDescription);
     _productsRequest = nil;
     
     if (_requestProductsCompletionHandler) {
