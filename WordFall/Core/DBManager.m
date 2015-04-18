@@ -16,6 +16,7 @@
 #import "MWDefinition.h"
 
 static NSString * const kDBName = @"words";
+static NSString * const kFullDBName = @"words.sqlite";
 
 @implementation DBManager
 
@@ -29,6 +30,25 @@ static NSString * const kDBName = @"words";
     });
     
     return manager;
+}
+
++ (void)copyToDocumentsIfNeeded
+{
+    NSString *destinationPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kFullDBName];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
+        NSLog(@"Copying db...");
+        
+        NSURL *sourceURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:kDBName ofType:@"sqlite"]];
+        NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
+        
+        NSError *error = nil;
+        [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destinationURL error:&error];
+        
+        if (error) {
+            NSLog(@"Error copying db: %@", error.localizedDescription);
+        }
+    }
 }
 
 - (id)init

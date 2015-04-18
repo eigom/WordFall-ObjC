@@ -17,6 +17,7 @@
 }
 
 + (DBManager *)sharedManager;
++ (void)copyToDocumentsIfNeeded;
 
 - (MWWord *)wordWithMaxLength:(NSUInteger)maxLength;
 
