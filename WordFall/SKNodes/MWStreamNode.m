@@ -30,16 +30,16 @@ static const CGFloat kPadFontSize = 26;
         
         self.userInteractionEnabled = YES;
         self.position = CGPointMake(self.position.x, 0.0);
-        self.zPosition = 10;
+        self.zPosition = 100;
         
         SKSpriteNode *bgNode = [SKSpriteNode spriteNodeWithImageNamed:bgImageName];
         bgNode.name = kBackgroundNodeName;
         bgNode.position = CGPointMake(CGRectGetMidX(_frame), _frame.origin.y+bgNode.frame.size.height/2.0);
-        bgNode.zPosition = 15;
+        bgNode.zPosition = 150;
         [self addChild:bgNode];
         
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:kFont];
-        label.zPosition = 20;
+        label.zPosition = 160;
         label.text = _letter;
         label.fontSize = [self fontSize];
         label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;

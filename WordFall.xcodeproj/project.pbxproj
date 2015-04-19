@@ -20,7 +20,7 @@
 		1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F171A84BA4100725FCF /* FMResultSet.m */; };
 		1A6E2F201A84BABD00725FCF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */; };
 		1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F241A84BC3500725FCF /* MWObject.m */; };
-		1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F271A84BC5A00725FCF /* DBManager.m */; };
+		1A6E2F281A84BC5A00725FCF /* MWDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F271A84BC5A00725FCF /* MWDBManager.m */; };
 		1AA07A921A762BA400722BEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A911A762BA400722BEB /* main.m */; };
 		1AA07A951A762BA400722BEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A941A762BA400722BEB /* AppDelegate.m */; };
 		1AA07A981A762BA400722BEB /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA07A971A762BA400722BEB /* GameScene.m */; };
@@ -139,8 +139,8 @@
 		1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1A6E2F231A84BC3500725FCF /* MWObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWObject.h; sourceTree = "<group>"; };
 		1A6E2F241A84BC3500725FCF /* MWObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWObject.m; sourceTree = "<group>"; };
-		1A6E2F261A84BC5A00725FCF /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
-		1A6E2F271A84BC5A00725FCF /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		1A6E2F261A84BC5A00725FCF /* MWDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDBManager.h; sourceTree = "<group>"; };
+		1A6E2F271A84BC5A00725FCF /* MWDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDBManager.m; sourceTree = "<group>"; };
 		1AA07A8C1A762BA400722BEB /* WordFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA07A901A762BA400722BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AA07A911A762BA400722BEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -342,8 +342,8 @@
 		1A6E2F211A84BBF200725FCF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1A6E2F261A84BC5A00725FCF /* DBManager.h */,
-				1A6E2F271A84BC5A00725FCF /* DBManager.m */,
+				1A6E2F261A84BC5A00725FCF /* MWDBManager.h */,
+				1A6E2F271A84BC5A00725FCF /* MWDBManager.m */,
 				1AA0B31D1A8509CF0040FCE6 /* MWManager.h */,
 				1AA0B31E1A8509CF0040FCE6 /* MWManager.m */,
 				1AA0B3201A850A6A0040FCE6 /* MWWordManager.h */,
@@ -762,7 +762,7 @@
 				1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */,
 				1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */,
 				1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */,
-				1A6E2F281A84BC5A00725FCF /* DBManager.m in Sources */,
+				1A6E2F281A84BC5A00725FCF /* MWDBManager.m in Sources */,
 				1AA0B31F1A8509CF0040FCE6 /* MWManager.m in Sources */,
 				1AA0B3131A85080B0040FCE6 /* MWObjects.m in Sources */,
 				1A6E2F1C1A84BA4100725FCF /* FMResultSet.m in Sources */,

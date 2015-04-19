@@ -10,7 +10,7 @@
 #import "MWWord.h"
 #import "MWWords.h"
 #import "MWDefinitions.h"
-#import "DBManager.h"
+#import "MWDBManager.h"
 
 @implementation MWWordManager
 
@@ -37,7 +37,7 @@
 
 - (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength
 {
-    return [[DBManager sharedManager] wordWithMaxLength:maxLength];
+    return [[MWDBManager sharedManager] wordWithMaxLength:maxLength];
 }
 
 @end

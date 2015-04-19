@@ -1,5 +1,5 @@
 //
-//  DBManager.h
+//  MWDBManager.h
 //  WordFall
 //
 //  Created by eigo on 06/02/15.
@@ -11,12 +11,12 @@
 @class FMDatabaseQueue;
 @class MWWord;
 
-@interface DBManager : NSObject {
+@interface MWDBManager : NSObject {
 @private
     FMDatabaseQueue *dbQueue;
 }
 
-+ (DBManager *)sharedManager;
++ (MWDBManager *)sharedManager;
 + (void)copyToDocumentsIfNeeded;
 
 - (MWWord *)wordWithMaxLength:(NSUInteger)maxLength;

@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DBManager.h"
+#import "MWDBManager.h"
+#import "MWPurchaseManager.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [DBManager copyToDocumentsIfNeeded];
+    [MWDBManager copyToDocumentsIfNeeded];
+    [MWPurchaseManager sharedManager];
     
     return YES;
 }

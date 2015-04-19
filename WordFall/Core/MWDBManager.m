@@ -1,12 +1,12 @@
 //
-//  DBManager.m
+//  MWDBManager.m
 //  WordFall
 //
 //  Created by eigo on 06/02/15.
 //  Copyright (c) 2015 eigo. All rights reserved.
 //
 
-#import "DBManager.h"
+#import "MWDBManager.h"
 #import "FMDatabaseQueue.h"
 #import "FMResultSet.h"
 #import "FMDatabase.h"
@@ -18,15 +18,15 @@
 static NSString * const kDBName = @"words";
 static NSString * const kFullDBName = @"words.sqlite";
 
-@implementation DBManager
+@implementation MWDBManager
 
-+ (DBManager *)sharedManager
++ (MWDBManager *)sharedManager
 {
     static id manager = nil;
     static dispatch_once_t onceToken = 0;
     
     dispatch_once(&onceToken, ^{
-        manager = [[DBManager alloc] init];
+        manager = [[MWDBManager alloc] init];
     });
     
     return manager;

@@ -95,6 +95,16 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    
+}
+
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPurchasedKey];
