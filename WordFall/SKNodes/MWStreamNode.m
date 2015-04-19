@@ -75,7 +75,7 @@ static const CGFloat kPadFontSize = 26;
     SKSpriteNode *bgNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-2.0);
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-3.0, CGRectGetMidY(bgNode.frame)-1.0);
     } else {
         return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-0.0);
     }

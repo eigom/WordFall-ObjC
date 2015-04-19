@@ -11,8 +11,8 @@
 static NSString * const kSpriteNodeName = @"sprite";
 static NSString * const kPhoneBackgroundImageName = @"solve_iphone";
 static NSString * const kPadBackgroundImageName = @"solve_ipad";
-static CGFloat const kPhoneWidth = 65.0;
-static CGFloat const kPadWidth = 86.0;
+static CGFloat const kPhoneWidth = 75.0;
+static CGFloat const kPadWidth = 90.0;
 
 @implementation MWSolveWordNode
 
