@@ -398,9 +398,9 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // dim background
     //
-    SKShapeNode *dimNode = [SKShapeNode node];
-    dimNode.fillColor = [UIColor blackColor];
-    dimNode.strokeColor = [UIColor blackColor];
+    /*SKShapeNode *dimNode = [SKShapeNode node];
+    dimNode.fillColor = [UIColor lightGrayColor];
+    dimNode.strokeColor = [UIColor lightGrayColor];
     dimNode.alpha = 0.15;
     dimNode.zPosition = background.zPosition + 1;
     
@@ -408,7 +408,7 @@ static CGFloat const kPadButtonGap = 20.0;
     CGPathAddRect(path, nil, CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height));
     dimNode.path = path;
     
-    [self addChild:dimNode];
+    [self addChild:dimNode];*/
 }
 
 - (void)addSolutionArea
