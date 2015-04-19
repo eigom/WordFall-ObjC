@@ -427,7 +427,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         frame = CGRectMake(0.0, solutionAreaFrame.origin.y, solutionAreaFrame.origin.x, solutionAreaFrame.size.height);
     } else {
-        frame = CGRectMake(-8.0, solutionAreaFrame.origin.y, solutionAreaFrame.origin.x, solutionAreaFrame.size.height);
+        frame = CGRectMake(-4.0, solutionAreaFrame.origin.y, solutionAreaFrame.origin.x, solutionAreaFrame.size.height);
     }
     
     MWPurchaseNode *purchaseNode = [[MWPurchaseNode alloc] initWithFrame:frame];
@@ -472,7 +472,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         frame = CGRectMake([self buttonGap], solutionAreaFrame.origin.y, [MWSolveWordNode width], solutionAreaFrame.size.height);
     } else {
-        frame = CGRectMake([self buttonGap]-4.0, solutionAreaFrame.origin.y, [MWSolveWordNode width], solutionAreaFrame.size.height);
+        frame = CGRectMake([self buttonGap], solutionAreaFrame.origin.y, [MWSolveWordNode width], solutionAreaFrame.size.height);
     }
     
     MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:frame];
@@ -495,7 +495,15 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)addNextWordNode
 {
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height)];
+    CGRect frame = CGRectZero;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
+    } else {
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap]-4.0, solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
+    }
+    
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:frame];
     nextWordNode.name = kNextNodeName;
     [nextWordNode setNodeTouched:^(MWNextWordNode *node){
         //[node disableForDuration:kPlayInitDuration+1.0];
@@ -580,7 +588,8 @@ static CGFloat const kPadButtonGap = 20.0;
     CGFloat rightButtonAreaWidth = [self buttonGap] + [MWNextWordNode width] + [self buttonGap];
     CGFloat solutionAreaWidth = floor((self.frame.size.width - leftButtonAreaWidth-rightButtonAreaWidth) / [self solutionLetterSize]) * [self solutionLetterSize];
     CGFloat solutionAreaOriginX = leftButtonAreaWidth + (self.frame.size.width - rightButtonAreaWidth - leftButtonAreaWidth - solutionAreaWidth) / 2.0;
-    solutionAreaFrame = CGRectMake(solutionAreaOriginX, 5.0, solutionAreaWidth, [self solutionLetterSize]);
+    CGFloat solutionAreaOriginY = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone? 10.0 : 20.0;
+    solutionAreaFrame = CGRectMake(solutionAreaOriginX, solutionAreaOriginY, solutionAreaWidth, [self solutionLetterSize]);
     
     //
     // max word lengths that can fit on screen
@@ -603,7 +612,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
     }
-    [self addSolveNode];
+    
     [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
         [self dismissProgress];
         [self scene].paused = NO;
