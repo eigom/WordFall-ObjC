@@ -398,17 +398,17 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // dim background
     //
-    /*SKShapeNode *dimNode = [SKShapeNode node];
-    dimNode.fillColor = [UIColor lightGrayColor];
-    dimNode.strokeColor = [UIColor lightGrayColor];
-    dimNode.alpha = 0.15;
+    SKShapeNode *dimNode = [SKShapeNode node];
+    dimNode.fillColor = [UIColor blackColor];
+    dimNode.strokeColor = [UIColor blackColor];
+    dimNode.alpha = 0.1;
     dimNode.zPosition = background.zPosition + 1;
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, nil, CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height));
     dimNode.path = path;
     
-    [self addChild:dimNode];*/
+    [self addChild:dimNode];
 }
 
 - (void)addSolutionArea
@@ -426,6 +426,7 @@ static CGFloat const kPadButtonGap = 20.0;
     purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
         [node disableForDuration:1.0];
+        [self scene].paused = YES;
         
         //
         // ask if want to purchase or restore
@@ -446,6 +447,8 @@ static CGFloat const kPadButtonGap = 20.0;
     } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
         [self presentProgressWithText:@"Restoring purchase..."];
         [[MWPurchaseManager sharedManager] restore];
+    } else {
+        [self scene].paused = NO;
     }
 }
 
@@ -587,6 +590,7 @@ static CGFloat const kPadButtonGap = 20.0;
     
     [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
         [self dismissProgress];
+        [self scene].paused = NO;
         
         if (error) {
             if (error.code != SKErrorPaymentCancelled){

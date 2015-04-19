@@ -170,8 +170,8 @@ static NSString * const kFullDBName = @"words.sqlite";
 
 - (NSString *)dbPath
 {
-    return [[NSBundle mainBundle] pathForResource:kDBName ofType:@"sqlite"];
-    //return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kDBName];
+    //return [[NSBundle mainBundle] pathForResource:kDBName ofType:@"sqlite"];
+    return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:kFullDBName];
 }
 
 @end

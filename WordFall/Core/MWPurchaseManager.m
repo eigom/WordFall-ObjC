@@ -160,4 +160,9 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
     return ([[NSUserDefaults standardUserDefaults] objectForKey:kPurchasedKey] != nil);
 }
 
+- (void)dealloc
+{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
+
 @end

@@ -42,7 +42,7 @@
     
     for (MWDefinition *definition in items) {
         [text appendAttributedString:definition.attributedText];
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n"]];
     }
     
     return text;
