@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */; };
 		1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */; };
+		1A5A6C471AE43854005F3903 /* auto-solve_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C461AE43854005F3903 /* auto-solve_ipad@2x.png */; };
+		1A5A6C4B1AE43D55005F3903 /* auto-solve_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C481AE43D55005F3903 /* auto-solve_ipad.png */; };
+		1A5A6C4C1AE43D55005F3903 /* auto-solve_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C491AE43D55005F3903 /* auto-solve_iphone.png */; };
+		1A5A6C4D1AE43D55005F3903 /* auto-solve_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C4A1AE43D55005F3903 /* auto-solve_iphone@2x.png */; };
 		1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */; };
 		1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F101A84BA4100725FCF /* FMDatabaseAdditions.m */; };
 		1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F121A84BA4100725FCF /* FMDatabasePool.m */; };
@@ -117,6 +121,10 @@
 		1A4AB29D1A8A0E17008B9F6E /* MWStreamNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWStreamNode.m; sourceTree = "<group>"; };
 		1A4AB29F1A8A0E8B008B9F6E /* MWSolutionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSolutionNode.h; sourceTree = "<group>"; };
 		1A4AB2A01A8A0E8B008B9F6E /* MWSolutionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSolutionNode.m; sourceTree = "<group>"; };
+		1A5A6C461AE43854005F3903 /* auto-solve_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto-solve_ipad@2x.png"; sourceTree = "<group>"; };
+		1A5A6C481AE43D55005F3903 /* auto-solve_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto-solve_ipad.png"; sourceTree = "<group>"; };
+		1A5A6C491AE43D55005F3903 /* auto-solve_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto-solve_iphone.png"; sourceTree = "<group>"; };
+		1A5A6C4A1AE43D55005F3903 /* auto-solve_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto-solve_iphone@2x.png"; sourceTree = "<group>"; };
 		1A6E2F0D1A84BA4100725FCF /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		1A6E2F0F1A84BA4100725FCF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -558,6 +566,10 @@
 		1AA8D50F1AD5CC4D00CF1842 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				1A5A6C481AE43D55005F3903 /* auto-solve_ipad.png */,
+				1A5A6C491AE43D55005F3903 /* auto-solve_iphone.png */,
+				1A5A6C4A1AE43D55005F3903 /* auto-solve_iphone@2x.png */,
+				1A5A6C461AE43854005F3903 /* auto-solve_ipad@2x.png */,
 				1AA8D5201AD71A7C00CF1842 /* solve_ipad.png */,
 				1AA8D5211AD71A7C00CF1842 /* solve_ipad@2x.png */,
 				1AA8D5221AD71A7C00CF1842 /* solve_iphone.png */,
@@ -652,6 +664,7 @@
 			files = (
 				1AA8D4CF1ACF44AA00CF1842 /* stream-0_iphone@2x.png in Resources */,
 				1AA8D4CD1ACF44AA00CF1842 /* stream-0_ipad@2x.png in Resources */,
+				1A5A6C4B1AE43D55005F3903 /* auto-solve_ipad.png in Resources */,
 				1AA8D4E41AD021E900CF1842 /* letterbox_iphone.png in Resources */,
 				1AA8D4DD1ACF44AA00CF1842 /* stream-4_ipad@2x.png in Resources */,
 				1AA8D4DE1ACF44AA00CF1842 /* stream-4_iphone.png in Resources */,
@@ -663,6 +676,7 @@
 				1AA8D4A81ACC86E800CF1842 /* background-736@3x.png in Resources */,
 				1AA8D4F71AD2BD3200CF1842 /* Default@2x.png in Resources */,
 				1AA8D5091AD55B3C00CF1842 /* sound_off_iphone.png in Resources */,
+				1A5A6C4D1AE43D55005F3903 /* auto-solve_iphone@2x.png in Resources */,
 				1AA8D4EA1AD0259B00CF1842 /* letterbox_ipad@2x.png in Resources */,
 				1AA8D4D31ACF44AA00CF1842 /* stream-1_iphone@2x.png in Resources */,
 				1AA8D4D21ACF44AA00CF1842 /* stream-1_iphone.png in Resources */,
@@ -686,6 +700,7 @@
 				1AA8D5071AD55B3C00CF1842 /* sound_off_ipad.png in Resources */,
 				1AA8D4DA1ACF44AA00CF1842 /* stream-3_iphone.png in Resources */,
 				1AA8D51E1AD7149D00CF1842 /* next_iphone.png in Resources */,
+				1A5A6C4C1AE43D55005F3903 /* auto-solve_iphone.png in Resources */,
 				1AA8D5081AD55B3C00CF1842 /* sound_off_ipad@2x.png in Resources */,
 				1AA8D5271AD71A7C00CF1842 /* solve_iphone@2x.png in Resources */,
 				1AA8D4D41ACF44AA00CF1842 /* stream-2_ipad.png in Resources */,
@@ -705,6 +720,7 @@
 				1AA8D4DF1ACF44AA00CF1842 /* stream-4_iphone@2x.png in Resources */,
 				1AA8D4D81ACF44AA00CF1842 /* stream-3_ipad.png in Resources */,
 				1AA8D4A51ACC86E800CF1842 /* background-480@2x.png in Resources */,
+				1A5A6C471AE43854005F3903 /* auto-solve_ipad@2x.png in Resources */,
 				1AA8D4DC1ACF44AA00CF1842 /* stream-4_ipad.png in Resources */,
 				1AA8D4AA1ACC86E800CF1842 /* background-1024@2x.png in Resources */,
 			);

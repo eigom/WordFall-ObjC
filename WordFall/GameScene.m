@@ -587,7 +587,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
     }
-    
+    [self addPurchaseNode];
     [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
         [self dismissProgress];
         [self scene].paused = NO;

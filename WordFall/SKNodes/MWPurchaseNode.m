@@ -8,9 +8,24 @@
 
 #import "MWPurchaseNode.h"
 
-static const CGFloat kAlpha = 0.5;
+static NSString * const kSpriteNodeName = @"sprite";
+static NSString * const kPhoneBackgroundImageName = @"auto-solve_iphone";
+static NSString * const kPadBackgroundImageName = @"auto-solve_ipad";
+static CGFloat const kPhoneWidth = 75.0;
+static CGFloat const kPadWidth = 90.0;
+
+static const CGFloat kAlpha = 1.0;
 
 @implementation MWPurchaseNode
+
++ (CGFloat)width
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadWidth;
+    } else {
+        return kPhoneWidth;
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -19,7 +34,13 @@ static const CGFloat kAlpha = 0.5;
         self.userInteractionEnabled = YES;
         self.alpha = 0.0;
         
-        SKLabelNode *label1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+        SKSpriteNode *spriteNode = [SKSpriteNode spriteNodeWithImageNamed:[self backgroundImageName]];
+        spriteNode.userInteractionEnabled = NO;
+        spriteNode.name = kSpriteNodeName;
+        spriteNode.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+        [self addChild:spriteNode];
+        
+        /*SKLabelNode *label1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
         label1.text = @"Auto-solve";
         label1.fontSize = 13.0;
         label1.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
@@ -37,10 +58,19 @@ static const CGFloat kAlpha = 0.5;
         label2.userInteractionEnabled = NO;
         label2.position = CGPointMake(CGRectGetMidX(frame),
                                       CGRectGetMidY(frame) - label2.frame.size.height / 2.0);
-        [self addChild:label2];
+        [self addChild:label2];*/
     }
     
     return self;
+}
+
+- (NSString *)backgroundImageName
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return kPadBackgroundImageName;
+    } else {
+        return kPhoneBackgroundImageName;
+    }
 }
 
 - (void)appearWithDuration:(CFTimeInterval)duration
