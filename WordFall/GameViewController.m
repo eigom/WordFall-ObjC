@@ -48,6 +48,19 @@
     [self dismissAdBannerAnimated:YES];
 }
 
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner
+               willLeaveApplication:(BOOL)willLeave
+{
+    [self gameScene].paused = YES;
+    
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    [self gameScene].paused = NO;
+}
+
 - (void)presentAdBannerAnimated:(BOOL)animated
 {
     [self gameScene].adsShown = YES;

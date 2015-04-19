@@ -442,7 +442,7 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [self presentProgressWithText:@"Processing purchase..."];
+        [self presentProgressWithText:@"Making purchase..."];
         [[MWPurchaseManager sharedManager] buy];
     } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
         [self presentProgressWithText:@"Restoring purchase..."];
@@ -461,7 +461,7 @@ static CGFloat const kPadButtonGap = 20.0;
 {
     MWSolveWordNode *solveNode = [[MWSolveWordNode alloc] initWithFrame:CGRectMake([self buttonGap], solutionAreaFrame.origin.y, [MWSolveWordNode width], solutionAreaFrame.size.height)];
     solveNode.name = kSolveNodeName;
-    [solveNode setNodeTouched:^(MWSolveWordNode *node){NSLog(@"touched");
+    [solveNode setNodeTouched:^(MWSolveWordNode *node){
         if (!word.isSolved) {
             node.enabled = NO;
             
