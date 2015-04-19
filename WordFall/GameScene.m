@@ -555,7 +555,7 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // max falling distance, letter reveal level
     //
-    maxStreamDistance = self.frame.size.height * 0.5;
+    maxStreamDistance = self.frame.size.height * 0.5 + 5.0;
     
     //
     // solution area
