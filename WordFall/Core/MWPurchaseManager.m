@@ -25,6 +25,11 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
     return manager;
 }
 
++ (BOOL)canMakePayments
+{
+    return [SKPaymentQueue canMakePayments];
+}
+
 - (id)init
 {
     if ((self = [super init])) {

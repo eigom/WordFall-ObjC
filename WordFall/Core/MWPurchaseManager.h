@@ -29,6 +29,8 @@ typedef void (^MWPurchaseManagerRestoreFailedCompletion)(NSError *error);
 
 + (MWPurchaseManager *)sharedManager;
 
++ (BOOL)canMakePayments;
+
 - (void)requestProductWithCompletionHandler:(MWPurchaseManagerRequestProductsCompletion)completionHandler;
 - (void)restore;
 - (void)buy;

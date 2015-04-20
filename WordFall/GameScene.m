@@ -430,10 +430,13 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        //[self presentProgressWithText:@"Making purchase..."];
-        [[MWPurchaseManager sharedManager] buy];
+        if ([MWPurchaseManager canMakePayments]) {
+            [[MWPurchaseManager sharedManager] buy];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Payments disabled" message:@"Purchases are currently disabled on your device. Please enable purchases and try again." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
     } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
-        //[self presentProgressWithText:@"Restoring purchase..."];
         [self presentProgressWithText:@"Processing..."];
         [[MWPurchaseManager sharedManager] restore];
     } else {
