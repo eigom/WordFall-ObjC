@@ -706,7 +706,14 @@ static CGFloat const kPadButtonGap = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return kPadButtonGap;
     } else {
-        return kPhoneButtonGap;
+        //
+        // check if iPhone 4S
+        //
+        if ([[UIScreen mainScreen] bounds].size.height == 480.0) {
+            return 2.0;
+        } else {
+            return kPhoneButtonGap;
+        }
     }
 }
 

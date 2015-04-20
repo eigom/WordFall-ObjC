@@ -122,6 +122,7 @@
 {
     if (progressView == nil) {
         progressView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        progressView.userInteractionEnabled = YES;
         progressView.backgroundColor = [UIColor blackColor];
         progressView.alpha = 0.0;
         [self.view addSubview:progressView];
