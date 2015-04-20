@@ -645,6 +645,10 @@ static CGFloat const kPadButtonGap = 20.0;
                 }
                 break;
             case SKPaymentTransactionStatePurchased:
+                if (_shouldDismissAds) {
+                    _shouldDismissAds();
+                }
+                
                 [[self purchaseNode] remove];
                 [self addSolveNode];
                 [self dismissProgress];

@@ -11,6 +11,7 @@
 #import "MWDefinition.h"
 #import "MWDefinitions.h"
 #import "MWWord.h"
+#import "MWPurchaseManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SKScene (Unarchive)
@@ -79,7 +80,7 @@
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 0.0;
     } completion:^(BOOL finished) {
-        
+        bannerView = nil;
     }];
 }
 
@@ -185,22 +186,22 @@
 
 - (void)appWillEnterForeground
 {
-    [self skView].paused = NO;
+    [[self gameScene] resumePlay];
 }
 
 - (void)appDidBecomeActive
 {
-    [self skView].paused = NO;
+    [[self gameScene] resumePlay];
 }
 
 - (void)appWillResignActive
 {
-    [self skView].paused = YES;
+    [[self gameScene] pausePlay];
 }
 
 - (void)appDidEnterBackground
 {
-    [self skView].paused = YES;
+    [[self gameScene] pausePlay];
 }
 
 - (void)viewWillLayoutSubviews
@@ -224,14 +225,16 @@
             //
             // ad banner
             //
-            if (bannerView == nil) {
-                bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
-                NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
-                NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
-                bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
-                bannerView.delegate = self;
-                [self.view addSubview:bannerView];
-                [self dismissAdBannerAnimated:NO];
+            if ([MWPurchaseManager sharedManager].isPurchased == NO) {
+                if (bannerView == nil) {
+                    bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
+                    NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
+                    NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
+                    bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
+                    bannerView.delegate = self;
+                    [self.view addSubview:bannerView];
+                    [self dismissAdBannerAnimated:NO];
+                }
             }
         }];
         
@@ -249,6 +252,10 @@
         
         [scene setShouldDismissProgress:^() {
             [self dismissProgress];
+        }];
+        
+        [scene setShouldDismissAds:^() {
+            [self dismissAdBannerAnimated:YES];
         }];
         
         // Present the scene.
