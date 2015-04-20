@@ -195,7 +195,7 @@ static CGFloat const kPadButtonGap = 20.0;
     const CGFloat kMinStartupMovementDistance = distance * (_adsShown?(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad?0.3:0.45):0.2);
     const CGFloat kMaxStartupMovementDistance = distance * (_adsShown?0.7:0.5);
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffledLetters.count);
-    const CGFloat kStreamHeight = distance + 15.0; // + transparent space on bottom of stream's image
+    const CGFloat kStreamHeight = distance;
     
     CGFloat xOrigin = floor(kEdgeGap + ((shuffledLetters.count * kStreamWidth) - (shuffledLetters.count * kStreamWidth)) / 2.0);
     
@@ -212,7 +212,7 @@ static CGFloat const kPadButtonGap = 20.0;
         // setup distances and durations
         //
         streamNode.startupMovementDistance = [Random randomFloatBetween:kMinStartupMovementDistance and:kMaxStartupMovementDistance];
-        streamNode.normalMovementDistance = distance - streamNode.startupMovementDistance;
+        streamNode.normalMovementDistance = distance - streamNode.startupMovementDistance + 3.0; // + transparent space on bottom of stream's image
         
         streamNode.startupMovementDuration = kStreamStartupDuration;//(streamNode.startupMovementDistance / distance) * duration;
         streamNode.normalMovementDuration = kSolvingTime * (streamNode.normalMovementDistance / distance);//(streamNode.normalMovementDistance / distance) * duration;
@@ -565,10 +565,9 @@ static CGFloat const kPadButtonGap = 20.0;
     SKShapeNode *node = [SKShapeNode node];
     node.zPosition = 1;
     node.path = dashed;
-    node.fillColor = [UIColor blackColor];
-    node.strokeColor = [UIColor whiteColor];
+    node.fillColor = [UIColor clearColor];
+    node.strokeColor = [UIColor colorWithRed:1.0 green:1.0 blue:223.0/256.0 alpha:1.0];
     node.lineWidth = 0.5;
-    //node.glowWidth = 0.5;
     [self addChild:node];
     
     CGPathRelease(dashed);
