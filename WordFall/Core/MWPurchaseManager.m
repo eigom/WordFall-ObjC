@@ -97,38 +97,55 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
+    NSLog(@"paymentQueueRestoreCompletedTransactionsFinished...");
     
+    if (_restoreCompletion) {
+        _restoreCompletion();
+    }
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
 {
+    NSLog(@"restoreCompletedTransactionsFailedWithError...");
     
+    if (_restoreFailedCompletion) {
+        _restoreFailedCompletion(error);
+    }
 }
 
-- (void)provideContentForProductIdentifier:(NSString *)productIdentifier
+- (void)provideContent
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPurchasedKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if (_productPurchasedCompletion) {
-        _productPurchasedCompletion(_product, nil);
-    }
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction * transaction in transactions) {
-        switch (transaction.transactionState)
-        {
-            case SKPaymentTransactionStatePurchased:
-                [self completeTransaction:transaction];
+        NSLog(@"transaction state: %ldl", transaction.transactionState);
+        
+        if (_paymentTransactionUpdated) {
+            _paymentTransactionUpdated(transaction);
+        }
+        
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchasing:
+                //[self showTransactionAsInProgress:transaction deferred:NO];
+                break;
+            case SKPaymentTransactionStateDeferred:
+                //[self showTransactionAsInProgress:transaction deferred:YES];
                 break;
             case SKPaymentTransactionStateFailed:
                 [self failedTransaction:transaction];
                 break;
+            case SKPaymentTransactionStatePurchased:
+                [self completeTransaction:transaction];
+                break;
             case SKPaymentTransactionStateRestored:
                 [self restoreTransaction:transaction];
+                break;
             default:
+                NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
                 break;
         }
     };
@@ -138,7 +155,7 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 {
     NSLog(@"completeTransaction...");
     
-    [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
+    [self provideContent];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
@@ -146,7 +163,7 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 {
     NSLog(@"restoreTransaction...");
     
-    [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
+    [self provideContent];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
@@ -159,10 +176,6 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
     }
     
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
-    if (_productPurchasedCompletion) {
-        _productPurchasedCompletion(_product, transaction.error);
-    }
 }
 
 - (BOOL)isPurchased

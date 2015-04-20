@@ -15,6 +15,7 @@
     ADBannerView *bannerView;
     UITextView *definitionTextView;
     UIView *backgroundStrip;
+    UIView *progressView;
 }
 
 @end

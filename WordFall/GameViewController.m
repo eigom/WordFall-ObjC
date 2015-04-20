@@ -116,6 +116,60 @@
     }];
 }
 
+#pragma Progress
+
+- (void)presentProgressWithText:(NSString *)text
+{
+    if (progressView == nil) {
+        progressView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        progressView.backgroundColor = [UIColor blackColor];
+        progressView.alpha = 0.0;
+        [self.view addSubview:progressView];
+        
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        textLabel.backgroundColor = [UIColor clearColor];
+        textLabel.textColor = [UIColor whiteColor];
+        textLabel.font = [UIFont systemFontOfSize:15];
+        textLabel.text = text;
+        [textLabel sizeToFit];
+        textLabel.center = CGPointMake(CGRectGetMidX(progressView.frame), CGRectGetMidY(progressView.frame));
+        [progressView addSubview:textLabel];
+        
+        UILabel *dotLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        dotLabel.backgroundColor = [UIColor clearColor];
+        dotLabel.textColor = [UIColor whiteColor];
+        dotLabel.font = [UIFont systemFontOfSize:15];
+        dotLabel.text = @"●";
+        [dotLabel sizeToFit];
+        dotLabel.center = CGPointMake(textLabel.frame.origin.x-16.0, CGRectGetMidY(progressView.frame));
+        [progressView addSubview:dotLabel];
+        
+        [UIView animateWithDuration:0.4
+                              delay:0.0
+                            options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat
+                         animations:^{
+                             dotLabel.center = CGPointMake(textLabel.frame.origin.x-4.0, CGRectGetMidY(progressView.frame));
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+        
+        [UIView animateWithDuration:0.4 animations:^{
+            progressView.alpha = 0.8;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
+
+- (void)dismissProgress
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        progressView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        progressView = nil;
+    }];
+}
+
 #pragma view
 
 - (void)viewDidLoad
@@ -188,23 +242,12 @@
             [self dismissWordDefinitionWithDuration:duration];
         }];
         
-        [scene setWillPresentProgress:^(CFTimeInterval duration, CGFloat alpha) {
-            [UIView animateWithDuration:duration animations:^{
-                definitionTextView.alpha = 0.0;
-            } completion:^(BOOL finished) {
-                definitionTextView.hidden = YES;
-            }];
+        [scene setShouldPresentProgress:^(NSString *text) {
+            [self presentProgressWithText:text];
         }];
         
-        [scene setWillDismissProgress:^(CFTimeInterval duration) {
-            definitionTextView.alpha = 0.0;
-            definitionTextView.hidden = NO;
-            
-            [UIView animateWithDuration:duration animations:^{
-                definitionTextView.alpha = 1.0;
-            } completion:^(BOOL finished) {
-                
-            }];
+        [scene setShouldDismissProgress:^() {
+            [self dismissProgress];
         }];
         
         // Present the scene.

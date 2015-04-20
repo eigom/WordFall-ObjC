@@ -103,7 +103,6 @@
 		1AA8D5261AD71A7C00CF1842 /* solve_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5221AD71A7C00CF1842 /* solve_iphone.png */; };
 		1AA8D5271AD71A7C00CF1842 /* solve_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5231AD71A7C00CF1842 /* solve_iphone@2x.png */; };
 		1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */; };
-		1AA945BE1AC88D9A00006FEF /* MWProgressNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,8 +252,6 @@
 		1AA8D5231AD71A7C00CF1842 /* solve_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solve_iphone@2x.png"; sourceTree = "<group>"; };
 		1AA945B91AC886A700006FEF /* SKProduct+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Extensions.h"; sourceTree = "<group>"; };
 		1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Extensions.m"; sourceTree = "<group>"; };
-		1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWProgressNode.h; sourceTree = "<group>"; };
-		1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWProgressNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,8 +292,6 @@
 				1AA33E4C1AC1FB56002B29B5 /* MWPurchaseNode.m */,
 				1AA33E4E1AC1FB69002B29B5 /* MWSolveWordNode.h */,
 				1AA33E4F1AC1FB69002B29B5 /* MWSolveWordNode.m */,
-				1AA945BC1AC88D9A00006FEF /* MWProgressNode.h */,
-				1AA945BD1AC88D9A00006FEF /* MWProgressNode.m */,
 				1AA8D4FB1AD5559500CF1842 /* MWSoundNode.h */,
 				1AA8D4FC1AD5559500CF1842 /* MWSoundNode.m */,
 			);
@@ -744,7 +739,6 @@
 				1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */,
 				1A6E2F251A84BC3500725FCF /* MWObject.m in Sources */,
 				1AA07A9D1A762BA400722BEB /* GameViewController.m in Sources */,
-				1AA945BE1AC88D9A00006FEF /* MWProgressNode.m in Sources */,
 				1AA33E501AC1FB69002B29B5 /* MWSolveWordNode.m in Sources */,
 				1A6E2F1B1A84BA4100725FCF /* FMDatabaseQueue.m in Sources */,
 				1AA0B3221A850A6A0040FCE6 /* MWWordManager.m in Sources */,

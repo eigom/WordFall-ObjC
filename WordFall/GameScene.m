@@ -15,7 +15,6 @@
 #import "MWNextWordNode.h"
 #import "MWPurchaseNode.h"
 #import "MWSolveWordNode.h"
-#import "MWProgressNode.h"
 #import "MWSoundNode.h"
 #import "Random.h"
 #import "MWPurchaseManager.h"
@@ -310,13 +309,6 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)presentDefinitionWithDuration:(CFTimeInterval)duration
 {
-    /*if (![self definitionNode].isDefinitionPresented) {
-        MWDefinitionNode *definitionNode = [[MWDefinitionNode alloc] initWithFrame:CGRectMake(0.0, solutionAreaFrame.origin.y+solutionAreaFrame.size.height, self.frame.size.width, self.frame.size.height - maxStreamDistance)];
-        definitionNode.name = kDefinitionNodeName;
-        [self addChild:definitionNode];
-        
-        [[self definitionNode] presentDefinitionOfWord:word.solutionWord withDuration:duration];
-    }*/
     if (_shouldPresentWordDefinition) {
         _shouldPresentWordDefinition(word, duration);
     }
@@ -324,7 +316,6 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)dismissDefinitionWithDuration:(CFTimeInterval)duration
 {
-    //[[self definitionNode] dismissWithDuration:duration];
     if (_shouldDismissWordDefinition) {
         _shouldDismissWordDefinition(duration);
     }
@@ -356,31 +347,20 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)presentProgressWithText:(NSString *)text
 {
-    MWProgressNode *progressNode = [[MWProgressNode alloc] initWithFrame:self.frame];
-    progressNode.name = kProgressNodeName;
-    [progressNode setWillPresentProgress:^(CFTimeInterval duration, CGFloat alpha){
-        if (_willPresentProgress) {
-            _willPresentProgress(duration, alpha);
-        }
-    }];
-    [progressNode setWillDismissProgress:^(CFTimeInterval duration){
-        if (_willDismissProgress) {
-            _willDismissProgress(duration);
-        }
-    }];
-    [self addChild:progressNode];
+    NSLog(@"presentProgressWithText");
     
-    [progressNode presentWithText:text];
+    if (_shouldPresentProgress) {
+        _shouldPresentProgress(text);
+    }
 }
 
 - (void)dismissProgress
 {
-    [[self progressNode] dismiss];
-}
-
-- (MWProgressNode *)progressNode
-{
-    return (MWProgressNode *)[self childNodeWithName:kProgressNodeName];
+    NSLog(@"dismissProgress");
+    
+    if (_shouldDismissProgress) {
+        _shouldDismissProgress();
+    }
 }
 
 #pragma Scene
@@ -450,10 +430,11 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [self presentProgressWithText:@"Making purchase..."];
+        //[self presentProgressWithText:@"Making purchase..."];
         [[MWPurchaseManager sharedManager] buy];
     } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
-        [self presentProgressWithText:@"Restoring purchase..."];
+        //[self presentProgressWithText:@"Restoring purchase..."];
+        [self presentProgressWithText:@"Processing..."];
         [[MWPurchaseManager sharedManager] restore];
     } else {
         [self scene].paused = NO;
@@ -613,19 +594,52 @@ static CGFloat const kPadButtonGap = 20.0;
         [self addSolveNode];
     }
     
-    [[MWPurchaseManager sharedManager] setProductPurchasedCompletion:^(SKProduct *product, NSError *error) {
+    [[MWPurchaseManager sharedManager] setPaymentTransactionUpdated:^(SKPaymentTransaction *transaction) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchasing:
+                [self presentProgressWithText:@"Purchase..."];
+                break;
+            case SKPaymentTransactionStateDeferred:
+                [self presentProgressWithText:@"Restore..."];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [self dismissProgress];
+                [self scene].paused = NO;
+                
+                if (transaction.error.code != SKErrorPaymentCancelled) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase" message:transaction.error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                    [alert show];
+                }
+                break;
+            case SKPaymentTransactionStatePurchased:
+                [[self purchaseNode] remove];
+                [self addSolveNode];
+                [self dismissProgress];
+                [self scene].paused = NO;
+                break;
+            case SKPaymentTransactionStateRestored:
+                [[self purchaseNode] remove];
+                [self addSolveNode];
+                [self dismissProgress];
+                [self scene].paused = NO;
+                break;
+            default:
+                NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
+                break;
+        }
+    }];
+    
+    [[MWPurchaseManager sharedManager] setRestoreCompletion:^() {
+        [self dismissProgress];
+        [self scene].paused = NO;
+    }];
+    
+    [[MWPurchaseManager sharedManager] setRestoreFailedCompletion:^(NSError *error) {
         [self dismissProgress];
         [self scene].paused = NO;
         
-        if (error) {
-            if (error.code != SKErrorPaymentCancelled){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unlock auto-solve" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-                [alert show];
-            }
-        } else {
-            [[self purchaseNode] remove];
-            [self addSolveNode];
-        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
     }];
     
     //

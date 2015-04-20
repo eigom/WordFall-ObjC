@@ -10,7 +10,9 @@
 #import <StoreKit/StoreKit.h>
 
 typedef void (^MWPurchaseManagerRequestProductsCompletion)(BOOL success, SKProduct *product);
-typedef void (^MWPurchaseManagerProductPurchasedCompletion)(SKProduct *product, NSError *error);
+typedef void (^MWPurchaseManagerPaymentTransactionUpdatedCompletion)(SKPaymentTransaction *transaction);
+typedef void (^MWPurchaseManagerRestoreCompletion)();
+typedef void (^MWPurchaseManagerRestoreFailedCompletion)(NSError *error);
 
 @interface MWPurchaseManager : MWManager <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
 @private
@@ -21,7 +23,9 @@ typedef void (^MWPurchaseManagerProductPurchasedCompletion)(SKProduct *product, 
 @property (nonatomic, readonly) SKProduct *product;
 @property (nonatomic, readonly) BOOL isLoading;
 @property (nonatomic, readonly) BOOL isPurchased;
-@property (nonatomic, copy) MWPurchaseManagerProductPurchasedCompletion productPurchasedCompletion;
+@property (nonatomic, copy) MWPurchaseManagerPaymentTransactionUpdatedCompletion paymentTransactionUpdated;
+@property (nonatomic, copy) MWPurchaseManagerRestoreCompletion restoreCompletion;
+@property (nonatomic, copy) MWPurchaseManagerRestoreFailedCompletion restoreFailedCompletion;
 
 + (MWPurchaseManager *)sharedManager;
 
