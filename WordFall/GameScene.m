@@ -500,7 +500,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
     } else {
-        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap]-4.0, solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap]-4.0, solutionAreaFrame.origin.y+2.0, [MWNextWordNode width], solutionAreaFrame.size.height);
     }
     
     MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:frame];
@@ -520,7 +520,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)addSoundNode
 {
-    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance-[MWSoundNode size].height, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
+    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance+4.0/*+[MWSoundNode size].height*/, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
     soundNode.name = kSoundNodeName;
     
     [soundNode setSoundToggled:^(BOOL soundEnabled){
