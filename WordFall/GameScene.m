@@ -113,7 +113,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (NSString *)initialText
 {
-    NSString *text = @"WordGuru";
+    NSString *text = @"Word●Guru";
     
     if (maxLetterCount == 8) {
         text = @"WordGuru";
@@ -143,10 +143,12 @@ static CGFloat const kPadButtonGap = 20.0;
     
     CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0);
     
+    CGFloat yFactor = 0.65;
+    
     NSString *bgImageName = [self initialStreamBackgroundImageName];
     
     for (NSString *letter in letters) {
-        CGFloat yOrigin = [Random randomFloatBetween:self.frame.size.height-distance*0.6 and:self.frame.size.height-distance*0.8];
+        CGFloat yOrigin = self.frame.size.height-distance*yFactor;
         
         //
         // position stream
