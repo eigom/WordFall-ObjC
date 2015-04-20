@@ -36,7 +36,7 @@ static const CGFloat kAlpha = 0.7;
         spriteNode.userInteractionEnabled = NO;
         spriteNode.name = kSpriteNodeName;
         spriteNode.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
-        spriteNode.alpha = kAlpha;
+        spriteNode.alpha = 0.0;
         [self addChild:spriteNode];
     }
     
@@ -63,6 +63,16 @@ static const CGFloat kAlpha = 0.7;
             return @"sound_off_iphone";
         }
     }
+}
+
+- (void)present
+{
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:kAlpha duration:0.4]];
+}
+
+- (void)dismiss
+{
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:0.0 duration:0.4]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

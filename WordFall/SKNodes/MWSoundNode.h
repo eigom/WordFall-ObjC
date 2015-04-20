@@ -23,4 +23,7 @@ typedef void (^MWSoundNodeSoundToggled)(BOOL soundEnabled);
 
 - (id)initWithFrame:(CGRect)frame soundEnabled:(BOOL)soundEnabled;
 
+- (void)present;
+- (void)dismiss;
+
 @end

@@ -62,6 +62,11 @@ static CGFloat const kPadButtonGap = 20.0;
     }
     
     //
+    // disable idle timer
+    //
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    
+    //
     // load product if needed
     //
     if (![MWPurchaseManager sharedManager].isPurchased) {
@@ -98,6 +103,11 @@ static CGFloat const kPadButtonGap = 20.0;
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self presentDefinitionWithDuration:kPlayInitDuration];
         [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
+        
+        //
+        // show sound button
+        //
+        [[self soundNode] present];
     }];
     
     //
@@ -122,6 +132,18 @@ static CGFloat const kPadButtonGap = 20.0;
     }
     
     return text;
+}
+
+- (void)pausePlay
+{
+    [self scene].paused = YES;
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+}
+
+- (void)resumePlay
+{
+    [self scene].paused = NO;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 #pragma Streams
@@ -212,6 +234,13 @@ static CGFloat const kPadButtonGap = 20.0;
                 [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration withSound:[[MWSoundManager sharedManager] revealLetterSound]];
                 
                 //
+                // check if selved
+                //
+                if (word.isSolved) {
+                    [UIApplication sharedApplication].idleTimerDisabled = NO;
+                }
+                
+                //
                 // remove stream
                 //
                 [node removeWithDuration:kRemoveStreamDuration];
@@ -231,11 +260,10 @@ static CGFloat const kPadButtonGap = 20.0;
             [[self solutionNode] revealLetter:[word wordLetterAtIndex:index] atIndex:index withDuration:kRevealLetterDuration withSound:[[MWSoundManager sharedManager] revealLetterSound]];
             
             //
-            // check if need to reveal definition
+            // check if selved
             //
-            if (word.shouldRevealDefinition) {
-                //[word keepFirstSolution]; // pick first partially matching word as solution
-                //[self presentDefinitionWithDuration:kPresentDefinitionDuration];
+            if (word.isSolved) {
+                [UIApplication sharedApplication].idleTimerDisabled = NO;
             }
             
             //
@@ -416,7 +444,7 @@ static CGFloat const kPadButtonGap = 20.0;
     purchaseNode.name = kPurchaseNodeName;
     [purchaseNode setNodeTouched:^(MWPurchaseNode *node){
         [node disableForDuration:1.0];
-        [self scene].paused = YES;
+        [self pausePlay];
         
         //
         // ask if want to purchase or restore
@@ -442,7 +470,7 @@ static CGFloat const kPadButtonGap = 20.0;
         [self presentProgressWithText:@"Processing..."];
         [[MWPurchaseManager sharedManager] restore];
     } else {
-        [self scene].paused = NO;
+        [self resumePlay];
     }
 }
 
@@ -609,7 +637,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 break;
             case SKPaymentTransactionStateFailed:
                 [self dismissProgress];
-                [self scene].paused = NO;
+                [self resumePlay];
                 
                 if (transaction.error.code != SKErrorPaymentCancelled) {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase" message:transaction.error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -620,13 +648,13 @@ static CGFloat const kPadButtonGap = 20.0;
                 [[self purchaseNode] remove];
                 [self addSolveNode];
                 [self dismissProgress];
-                [self scene].paused = NO;
+                [self resumePlay];
                 break;
             case SKPaymentTransactionStateRestored:
                 [[self purchaseNode] remove];
                 [self addSolveNode];
                 [self dismissProgress];
-                [self scene].paused = NO;
+                [self resumePlay];
                 break;
             default:
                 NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
@@ -636,12 +664,12 @@ static CGFloat const kPadButtonGap = 20.0;
     
     [[MWPurchaseManager sharedManager] setRestoreCompletion:^() {
         [self dismissProgress];
-        [self scene].paused = NO;
+        [self resumePlay];
     }];
     
     [[MWPurchaseManager sharedManager] setRestoreFailedCompletion:^(NSError *error) {
         [self dismissProgress];
-        [self scene].paused = NO;
+        [self resumePlay];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
