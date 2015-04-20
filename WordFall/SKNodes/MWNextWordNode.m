@@ -11,8 +11,8 @@
 static NSString * const kSpriteNodeName = @"sprite";
 static NSString * const kPhoneBackgroundImageName = @"next_iphone";
 static NSString * const kPadBackgroundImageName = @"next_ipad";
-static CGFloat const kPhoneWidth = 65.0;
-static CGFloat const kPadWidth = 80.0;
+static CGFloat const kPhoneWidth = 75.0;
+static CGFloat const kPadWidth = 90.0;
 
 @implementation MWNextWordNode
 
