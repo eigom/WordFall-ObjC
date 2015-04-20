@@ -127,7 +127,7 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction * transaction in transactions) {
-        NSLog(@"transaction state: %ldl", transaction.transactionState);
+        NSLog(@"transaction state: %dl", transaction.transactionState);
         
         if (_paymentTransactionUpdated) {
             _paymentTransactionUpdated(transaction);
@@ -184,7 +184,7 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 }
 
 - (BOOL)isPurchased
-{
+{   
     return ([[NSUserDefaults standardUserDefaults] objectForKey:kPurchasedKey] != nil);
 }
 

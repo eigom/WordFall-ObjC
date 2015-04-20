@@ -80,6 +80,17 @@
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 0.0;
     } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)removeAdBannerAnimated:(BOOL)animated
+{
+    [self gameScene].adsShown = NO;
+    
+    [UIView animateWithDuration:animated?1.0:0.0 animations:^{
+        bannerView.alpha = 0.0;
+    } completion:^(BOOL finished) {
         bannerView = nil;
     }];
 }
@@ -228,8 +239,6 @@
             if ([MWPurchaseManager sharedManager].isPurchased == NO) {
                 if (bannerView == nil) {
                     bannerView = [[ADBannerView alloc] initWithFrame:[self bannerFrame]];
-                    NSLog(@"banner %@", NSStringFromCGRect(bannerView.frame));
-                    NSLog(@"view %@", NSStringFromCGRect(self.view.frame));
                     bannerView.center = CGPointMake(CGRectGetMidX([self skView].bounds), bannerView.center.y);
                     bannerView.delegate = self;
                     [self.view addSubview:bannerView];
@@ -254,8 +263,8 @@
             [self dismissProgress];
         }];
         
-        [scene setShouldDismissAds:^() {
-            [self dismissAdBannerAnimated:YES];
+        [scene setShouldRemoveAds:^() {
+            [self removeAdBannerAnimated:YES];
         }];
         
         // Present the scene.

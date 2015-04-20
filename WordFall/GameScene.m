@@ -189,19 +189,19 @@ static CGFloat const kPadButtonGap = 20.0;
 {
     NSLog(@"%@", word.word);
     
-    NSArray *shuffeledLetters = [word shuffledLetters];
+    NSArray *shuffledLetters = [word shuffledLetters];
     
     const CGFloat kEdgeGap = 20.0;
-    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?0.4:0.2);
+    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad?0.3:0.45):0.2);
     const CGFloat kMaxStartupMovementDistance = distance * (_adsShown?0.7:0.5);
-    const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffeledLetters.count);
-    const CGFloat kStreamHeight = distance;
+    const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffledLetters.count);
+    const CGFloat kStreamHeight = distance + 15.0; // + transparent space on bottom of stream's image
     
-    CGFloat xOrigin = floor(kEdgeGap + ((shuffeledLetters.count * kStreamWidth) - (shuffeledLetters.count * kStreamWidth)) / 2.0);
+    CGFloat xOrigin = floor(kEdgeGap + ((shuffledLetters.count * kStreamWidth) - (shuffledLetters.count * kStreamWidth)) / 2.0);
     
     NSString *bgImageName = [self streamBackgroundImageName];
     
-    for (NSString *letter in shuffeledLetters) {
+    for (NSString *letter in shuffledLetters) {
         //
         // position stream on top of scene
         //
@@ -645,8 +645,8 @@ static CGFloat const kPadButtonGap = 20.0;
                 }
                 break;
             case SKPaymentTransactionStatePurchased:
-                if (_shouldDismissAds) {
-                    _shouldDismissAds();
+                if (_shouldRemoveAds) {
+                    _shouldRemoveAds();
                 }
                 
                 [[self purchaseNode] remove];

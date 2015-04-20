@@ -16,7 +16,7 @@ typedef void (^GameSceneShouldDismissWordDefinition)(CFTimeInterval duration);
 typedef void (^GameSceneShouldPresentProgress)(NSString *text);
 typedef void (^GameSceneShouldDismissProgress)();
 typedef void (^GameSceneWillBeginPlay)(void);
-typedef void (^GameSceneShouldDismissAds)(void);
+typedef void (^GameSceneShouldRemoveAds)(void);
 
 @interface GameScene : SKScene <UIAlertViewDelegate> {
 @private
@@ -34,7 +34,7 @@ typedef void (^GameSceneShouldDismissAds)(void);
 @property (nonatomic, copy) GameSceneShouldPresentProgress shouldPresentProgress;
 @property (nonatomic, copy) GameSceneShouldDismissProgress shouldDismissProgress;
 @property (nonatomic, copy) GameSceneWillBeginPlay willBeginPlay;
-@property (nonatomic, copy) GameSceneShouldDismissAds shouldDismissAds;
+@property (nonatomic, copy) GameSceneShouldRemoveAds shouldRemoveAds;
 
 - (void)pausePlay;
 - (void)resumePlay;
