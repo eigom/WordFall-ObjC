@@ -28,6 +28,7 @@ static CFTimeInterval const kPullbackStreamDuration = 1.5;
 static CFTimeInterval const kRemoveStreamDuration = 0.5;
 static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
+static CFTimeInterval const kSolveRemoveStreamDuration = 1.0;
 static CFTimeInterval const kSolveWordDuration = 0.15;
 static CFTimeInterval const kRevealLetterDuration = 0.2;
 
@@ -496,7 +497,7 @@ static CGFloat const kPadButtonGap = 20.0;
         if (!word.isSolved) {
             node.enabled = NO;
             
-            [self removeStreamsWithDuration:kSolveWordDuration];
+            [self removeStreamsWithDuration:kSolveRemoveStreamDuration];
             [[self solutionNode] revealWord:[word solutionWord].word withDuration:kSolveWordDuration withSound:[[MWSoundManager sharedManager] revealWordSound]];
         }
     }];
@@ -626,7 +627,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
     }
-    
+    [self addSolveNode];
     [[MWPurchaseManager sharedManager] setPaymentTransactionUpdated:^(SKPaymentTransaction *transaction) {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
