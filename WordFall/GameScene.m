@@ -627,7 +627,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if ([MWPurchaseManager sharedManager].isPurchased) {
         [self addSolveNode];
     }
-    [self addSolveNode];
+    
     [[MWPurchaseManager sharedManager] setPaymentTransactionUpdated:^(SKPaymentTransaction *transaction) {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
