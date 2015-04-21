@@ -64,8 +64,6 @@
 
 - (void)presentAdBannerAnimated:(BOOL)animated
 {
-    [self gameScene].adsShown = YES;
-    
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 1.0;
     } completion:^(BOOL finished) {
@@ -75,8 +73,6 @@
 
 - (void)dismissAdBannerAnimated:(BOOL)animated
 {
-    [self gameScene].adsShown = NO;
-    
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 0.0;
     } completion:^(BOOL finished) {
@@ -86,8 +82,6 @@
 
 - (void)removeAdBannerAnimated:(BOOL)animated
 {
-    [self gameScene].adsShown = NO;
-    
     [UIView animateWithDuration:animated?1.0:0.0 animations:^{
         bannerView.alpha = 0.0;
     } completion:^(BOOL finished) {
@@ -134,7 +128,7 @@
 {
     if (progressView == nil) {
         progressView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        progressView.userInteractionEnabled = YES;
+        progressView.userInteractionEnabled = NO;
         progressView.backgroundColor = [UIColor blackColor];
         progressView.alpha = 0.0;
         [self.view addSubview:progressView];
@@ -285,7 +279,7 @@
         //
         // definition view
         //
-        CGFloat width = [self skView].bounds.size.width * 0.7;
+        CGFloat width = [self skView].bounds.size.width * 0.75;
         CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
         definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight-10.0))];
         definitionTextView.editable = NO;

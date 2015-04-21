@@ -33,12 +33,12 @@ static const CGFloat kPadDefinitionSize = 22;
                                                                                   NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:typeString];
     
-    NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:@"a game where you tap falling letters  to form words and names"
+    NSAttributedString *definitionString = [[NSAttributedString alloc] initWithString:@"a word game where you tap falling letters to form words and names"
                                                                            attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                                                                                         NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text appendAttributedString:definitionString];
     
-    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:@"\n\nTap NEXT to begin..."
+    NSAttributedString *beginString = [[NSAttributedString alloc] initWithString:([[UIDevice currentDevice] userInterfaceIdiom]==UIUserInterfaceIdiomPhone? @"\n\nTap NEXT to begin...":@"\n\n\nTap NEXT to begin...")
                                                                            attributes:@{NSFontAttributeName : [UIFont fontWithName:kDefinitionFont size:[MWDefinition definitionSize]],
                                                                                         NSForegroundColorAttributeName : [UIColor yellowColor]}];
     [text appendAttributedString:beginString];

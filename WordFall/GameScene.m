@@ -190,10 +190,11 @@ static CGFloat const kPadButtonGap = 20.0;
     NSLog(@"%@", word.word);
     
     NSArray *shuffledLetters = [word shuffledLetters];
+    BOOL adsShown = ![MWPurchaseManager sharedManager].isPurchased;
     
     const CGFloat kEdgeGap = 20.0;
-    const CGFloat kMinStartupMovementDistance = distance * (_adsShown?(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad?0.3:0.45):0.2);
-    const CGFloat kMaxStartupMovementDistance = distance * (_adsShown?0.7:0.5);
+    const CGFloat kMinStartupMovementDistance = distance * (adsShown?(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad?0.3:0.45):0.2);
+    const CGFloat kMaxStartupMovementDistance = distance * (adsShown?0.7:0.5);
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffledLetters.count);
     const CGFloat kStreamHeight = distance;
     
@@ -467,7 +468,7 @@ static CGFloat const kPadButtonGap = 20.0;
             [alertView show];
         }
     } else if (buttonIndex == alertView.firstOtherButtonIndex+1) {
-        [self presentProgressWithText:@"Processing..."];
+        [self presentProgressWithText:@"Restoring..."];
         [[MWPurchaseManager sharedManager] restore];
     } else {
         [self resumePlay];
@@ -629,10 +630,10 @@ static CGFloat const kPadButtonGap = 20.0;
     [[MWPurchaseManager sharedManager] setPaymentTransactionUpdated:^(SKPaymentTransaction *transaction) {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
-                [self presentProgressWithText:@"Purchase..."];
+                [self presentProgressWithText:@"Processing..."];
                 break;
             case SKPaymentTransactionStateDeferred:
-                [self presentProgressWithText:@"Restore..."];
+                [self presentProgressWithText:@"Processing..."];
                 break;
             case SKPaymentTransactionStateFailed:
                 [self dismissProgress];
@@ -654,6 +655,10 @@ static CGFloat const kPadButtonGap = 20.0;
                 [self resumePlay];
                 break;
             case SKPaymentTransactionStateRestored:
+                if (_shouldRemoveAds) {
+                    _shouldRemoveAds();
+                }
+                
                 [[self purchaseNode] remove];
                 [self addSolveNode];
                 [self dismissProgress];

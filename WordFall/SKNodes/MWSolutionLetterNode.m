@@ -72,9 +72,16 @@ static const CGFloat kPadFontSize = 28;
 
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration
 {
+    [self setLetter:letter withDuration:duration delay:0.0];
+}
+
+- (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration delay:(CFTimeInterval)delay
+{
     _letter = letter;
     
     SKSpriteNode *backgroundNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
+    
+    SKAction *waitDelay = [SKAction waitForDuration:delay];
     
     SKAction *addLetter = [SKAction runBlock:^{
         //
@@ -122,9 +129,9 @@ static const CGFloat kPadFontSize = 28;
     }];
     
     if (duration > 0.0) {
-        [self runAction:[SKAction sequence:@[scaleOut, addLetter, wait, scaleIn]]];
+        [self runAction:[SKAction sequence:@[waitDelay, scaleOut, addLetter, wait, scaleIn]]];
     } else {
-        [self runAction:[SKAction sequence:@[addLetter, scaleIn]]];
+        [self runAction:[SKAction sequence:@[waitDelay, addLetter, scaleIn]]];
     }
 }
 

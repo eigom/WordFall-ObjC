@@ -19,6 +19,7 @@
 - (id)initWithFrame:(CGRect)frame;
 
 - (void)setVisible:(BOOL)visible withDuration:(CFTimeInterval)duration;
+- (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration delay:(CFTimeInterval)delay;
 - (void)setLetter:(NSString *)letter withDuration:(CFTimeInterval)duration;
 - (void)clearLetterWithDuration:(CFTimeInterval)duration;
 

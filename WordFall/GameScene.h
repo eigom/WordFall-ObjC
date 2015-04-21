@@ -26,7 +26,6 @@ typedef void (^GameSceneShouldRemoveAds)(void);
     CGRect solutionAreaFrame;
 }
 
-@property (nonatomic, assign) BOOL adsShown;
 @property (nonatomic, readonly) CGFloat definitionAreaYOrigin;
 @property (nonatomic, readonly) CGFloat definitionAreaHeight;
 @property (nonatomic, copy) GameSceneShouldPresentWordDefinition shouldPresentWordDefinition;

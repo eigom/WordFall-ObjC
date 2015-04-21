@@ -87,12 +87,15 @@
 
 - (void)revealWord:(NSString *)word withDuration:(CFTimeInterval)duration withSound:(SKAction *)soundAction
 {
+    CFTimeInterval delay = 0.0;
+    
     for (int i = 0; i < word.length; i++) {
         MWSolutionLetterNode *node = [visibleLetterNodes objectAtIndex:i];
         
         if (node.letter == nil) {
             NSString *letter = [word substringWithRange:NSMakeRange(i, 1)];
-            [node setLetter:letter withDuration:duration];
+            [node setLetter:letter withDuration:duration delay:delay];
+            delay += 0.08;
         }
     }
     
