@@ -28,7 +28,7 @@ static CFTimeInterval const kPullbackStreamDuration = 1.5;
 static CFTimeInterval const kRemoveStreamDuration = 0.5;
 static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
-static CFTimeInterval const kSolveWordDuration = 0.2;
+static CFTimeInterval const kSolveWordDuration = 0.15;
 static CFTimeInterval const kRevealLetterDuration = 0.2;
 
 static NSUInteger const kPhoneSolutionLetterSize = 38.0;
