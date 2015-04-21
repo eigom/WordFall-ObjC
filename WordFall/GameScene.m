@@ -45,7 +45,7 @@ static NSString * const kSoundNodeName = @"sound";
 
 static const NSUInteger kNumOfStreamBackgrounds = 5;
 
-static CGFloat const kPhoneButtonGap = 10.0;
+static CGFloat const kPhoneButtonGap = 5.0;
 static CGFloat const kPadButtonGap = 20.0;
 
 @implementation GameScene
@@ -123,7 +123,7 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (NSString *)initialText
 {
-    NSString *text = @"Word●Guru";
+    NSString *text = @"WordGuru";
     
     if (maxLetterCount == 8) {
         text = @"WordGuru";
@@ -515,7 +515,7 @@ static CGFloat const kPadButtonGap = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
     } else {
-        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap]-4.0, solutionAreaFrame.origin.y+2.0, [MWNextWordNode width], solutionAreaFrame.size.height);
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y+2.0, [MWNextWordNode width], solutionAreaFrame.size.height);
     }
     
     MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:frame];
@@ -718,7 +718,7 @@ static CGFloat const kPadButtonGap = 20.0;
         // check if iPhone 4S
         //
         if ([[UIScreen mainScreen] bounds].size.height == 480.0) {
-            return 2.0;
+            return 4.0;
         } else {
             return kPhoneButtonGap;
         }

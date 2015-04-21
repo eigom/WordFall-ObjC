@@ -283,6 +283,7 @@
         CGFloat xOrigin = ([self skView].bounds.size.width - width) / 2.0;
         definitionTextView = [[UITextView alloc] initWithFrame:CGRectIntegral(CGRectMake(xOrigin, [self gameScene].definitionAreaYOrigin, width, [self gameScene].definitionAreaHeight-10.0))];
         definitionTextView.editable = NO;
+        definitionTextView.selectable = NO;
         definitionTextView.attributedText = [MWDefinition wordGuruText];
         definitionTextView.showsHorizontalScrollIndicator = NO;
         definitionTextView.showsVerticalScrollIndicator = NO;
