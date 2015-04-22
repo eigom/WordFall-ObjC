@@ -17,7 +17,7 @@ static NSString * const kMovementActionKey = @"movementAction";
 static NSString * const kFont = @"Copperplate";
 
 static const CGFloat kPhoneFontSize = 18;
-static const CGFloat kPadFontSize = 26;
+static const CGFloat kPadFontSize = 30;
 
 @implementation MWStreamNode
 
@@ -75,7 +75,7 @@ static const CGFloat kPadFontSize = 26;
     SKSpriteNode *bgNode = (SKSpriteNode *)[self childNodeWithName:kBackgroundNodeName];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return CGPointMake(CGRectGetMidX(bgNode.frame)-3.0, CGRectGetMidY(bgNode.frame)-1.0);
+        return CGPointMake(CGRectGetMidX(bgNode.frame)-1.0, CGRectGetMidY(bgNode.frame)-4.0);
     } else {
         return CGPointMake(CGRectGetMidX(bgNode.frame)-2.0, CGRectGetMidY(bgNode.frame)-0.0);
     }

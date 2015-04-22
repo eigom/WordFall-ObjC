@@ -67,12 +67,12 @@ static const CGFloat kAlpha = 1.0;
 
 - (void)present
 {
-    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:kAlpha duration:0.4]];
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:kAlpha duration:0.6]];
 }
 
 - (void)dismiss
 {
-    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:0.0 duration:0.4]];
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:0.0 duration:0.6]];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
