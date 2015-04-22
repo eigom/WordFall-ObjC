@@ -166,7 +166,7 @@ static CGFloat const kPadButtonGap = 20.0;
     
     CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0);
     
-    CGFloat yFactor = 0.51;
+    CGFloat yFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 0.51:0.61;
     
     NSString *bgImageName = [self initialStreamBackgroundImageName];
     
