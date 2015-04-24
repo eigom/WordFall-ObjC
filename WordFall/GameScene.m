@@ -617,7 +617,7 @@ static CGFloat const kPadButtonGap = 20.0;
     CGFloat leftButtonAreaWidth = [self buttonGap] + [MWSolveWordNode width] + [self buttonGap];
     CGFloat rightButtonAreaWidth = [self buttonGap] + [MWNextWordNode width] + [self buttonGap];
     CGFloat solutionAreaWidth = floor((self.frame.size.width - leftButtonAreaWidth-rightButtonAreaWidth) / [self solutionLetterSize]) * [self solutionLetterSize];
-    CGFloat solutionAreaOriginX = leftButtonAreaWidth + (self.frame.size.width - rightButtonAreaWidth - leftButtonAreaWidth - solutionAreaWidth) / 2.0;
+    CGFloat solutionAreaOriginX = leftButtonAreaWidth + (self.frame.size.width - rightButtonAreaWidth - leftButtonAreaWidth - solutionAreaWidth) / 2.0 + 2.0;
     CGFloat solutionAreaOriginY = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone? 10.0 : 20.0;
     solutionAreaFrame = CGRectMake(solutionAreaOriginX, solutionAreaOriginY, solutionAreaWidth, [self solutionLetterSize]);
     
