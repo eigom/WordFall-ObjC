@@ -12,7 +12,7 @@ static NSString * const kSpriteNodeName = @"sprite";
 static CGFloat const kPhoneHeight = 30.0;
 static CGFloat const kPadHeight = 46.0;
 
-static const CGFloat kAlpha = 1.0;
+static const CGFloat kAlpha = 0.4;
 
 @implementation MWSoundNode
 
@@ -67,7 +67,7 @@ static const CGFloat kAlpha = 1.0;
 
 - (void)present
 {
-    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:kAlpha duration:0.6]];
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:kAlpha duration:1.0]];
 }
 
 - (void)dismiss

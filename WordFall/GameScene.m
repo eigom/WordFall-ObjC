@@ -21,7 +21,8 @@
 #import "MWSoundManager.h"
 #import "SKProduct+Extensions.h"
 
-static CFTimeInterval const kSolvingTime = 200.0;
+static CFTimeInterval const kSolvingTime = 160.0;
+static CFTimeInterval const kSolvingTimeWithAds = 200.0;
 static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
@@ -103,7 +104,7 @@ static CGFloat const kPadButtonGap = 20.0;
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self presentDefinitionWithDuration:kPlayInitDuration];
-        [self startStreamsWithDuration:kSolvingTime forDistance:maxStreamDistance];
+        [self startStreamsForDistance:maxStreamDistance];
         
         //
         // show sound button
@@ -186,7 +187,7 @@ static CGFloat const kPadButtonGap = 20.0;
     }
 }
 
-- (void)startStreamsWithDuration:(CFTimeInterval)duration forDistance:(CGFloat)distance
+- (void)startStreamsForDistance:(CGFloat)distance
 {
     NSLog(@"%@", word.word);
     
@@ -202,6 +203,7 @@ static CGFloat const kPadButtonGap = 20.0;
     CGFloat xOrigin = floor(kEdgeGap + ((shuffledLetters.count * kStreamWidth) - (shuffledLetters.count * kStreamWidth)) / 2.0);
     
     NSString *bgImageName = [self streamBackgroundImageName];
+    CFTimeInterval solvingTime = adsShown? kSolvingTimeWithAds : kSolvingTime;
     
     for (NSString *letter in shuffledLetters) {
         //
@@ -217,7 +219,7 @@ static CGFloat const kPadButtonGap = 20.0;
         streamNode.normalMovementDistance = distance - streamNode.startupMovementDistance + 3.0; // + transparent space on bottom of stream's image
         
         streamNode.startupMovementDuration = kStreamStartupDuration;//(streamNode.startupMovementDistance / distance) * duration;
-        streamNode.normalMovementDuration = kSolvingTime * (streamNode.normalMovementDistance / distance);//(streamNode.normalMovementDistance / distance) * duration;
+        streamNode.normalMovementDuration = solvingTime * (streamNode.normalMovementDistance / distance);//(streamNode.normalMovementDistance / distance) * duration;
         
         //
         // handle stream touch
@@ -536,7 +538,15 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (void)addSoundNode
 {
-    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance+4.0/*+[MWSoundNode size].height*/, [MWSoundNode size].width, [MWSoundNode size].height) soundEnabled:[MWSoundManager sharedManager].soundEnabled];
+    CGRect frame;
+    
+    if ([MWPurchaseManager sharedManager].isPurchased) {
+        frame = CGRectMake(self.frame.size.width-[MWSoundNode size].width-5.0, self.frame.size.height-[MWSoundNode size].height-5.0, [MWSoundNode size].width, [MWSoundNode size].height);
+    } else {
+        frame = CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance+4.0, [MWSoundNode size].width, [MWSoundNode size].height);
+    }
+    
+    MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:frame soundEnabled:[MWSoundManager sharedManager].soundEnabled];
     soundNode.name = kSoundNodeName;
     
     [soundNode setSoundToggled:^(BOOL soundEnabled){
@@ -544,6 +554,11 @@ static CGFloat const kPadButtonGap = 20.0;
     }];
     
     [self addChild:soundNode];
+}
+
+- (void)removeSoundNode
+{
+    [[self soundNode] removeFromParent];
 }
 
 - (MWSoundNode *)soundNode
@@ -652,6 +667,8 @@ static CGFloat const kPadButtonGap = 20.0;
                 
                 [[self purchaseNode] remove];
                 [self addSolveNode];
+                [self removeSoundNode];
+                [self addSoundNode];
                 [self dismissProgress];
                 [self resumePlay];
                 break;
@@ -662,6 +679,8 @@ static CGFloat const kPadButtonGap = 20.0;
                 
                 [[self purchaseNode] remove];
                 [self addSolveNode];
+                [self removeSoundNode];
+                [self addSoundNode];
                 [self dismissProgress];
                 [self resumePlay];
                 break;
