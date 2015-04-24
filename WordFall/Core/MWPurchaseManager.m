@@ -33,6 +33,7 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 - (id)init
 {
     if ((self = [super init])) {
+        _isPurchased = ([[NSUserDefaults standardUserDefaults] objectForKey:kPurchasedKey] != nil);
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     }
     
@@ -120,6 +121,8 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 
 - (void)provideContent
 {
+    _isPurchased = YES;
+    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPurchasedKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -127,10 +130,6 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction * transaction in transactions) {
-        if (_paymentTransactionUpdated) {
-            _paymentTransactionUpdated(transaction);
-        }
-        
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
                 //[self showTransactionAsInProgress:transaction deferred:NO];
@@ -150,6 +149,10 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
             default:
                 NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
                 break;
+        }
+        
+        if (_paymentTransactionUpdated) {
+            _paymentTransactionUpdated(transaction);
         }
     };
 }
@@ -179,11 +182,6 @@ static NSString * const kProductIdentifier = @"autosolve.and.removeads";
     }
     
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-}
-
-- (BOOL)isPurchased
-{   
-    return ([[NSUserDefaults standardUserDefaults] objectForKey:kPurchasedKey] != nil);
 }
 
 - (void)dealloc

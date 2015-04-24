@@ -15,7 +15,6 @@
 		1A5A6C4D1AE43D55005F3903 /* auto-solve_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C4A1AE43D55005F3903 /* auto-solve_iphone@2x.png */; };
 		1A5A6C541AE6D77C005F3903 /* stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C531AE6D77C005F3903 /* stream.mp3 */; };
 		1A5A6C561AE6D82A005F3903 /* stream1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C551AE6D82A005F3903 /* stream1.wav */; };
-		1A5A6C581AE7D3D3005F3903 /* reveal.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C571AE7D3D3005F3903 /* reveal.wav */; };
 		1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */; };
 		1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F101A84BA4100725FCF /* FMDatabaseAdditions.m */; };
 		1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F121A84BA4100725FCF /* FMDatabasePool.m */; };
@@ -129,7 +128,6 @@
 		1A5A6C4A1AE43D55005F3903 /* auto-solve_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto-solve_iphone@2x.png"; sourceTree = "<group>"; };
 		1A5A6C531AE6D77C005F3903 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
 		1A5A6C551AE6D82A005F3903 /* stream1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = stream1.wav; sourceTree = "<group>"; };
-		1A5A6C571AE7D3D3005F3903 /* reveal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = reveal.wav; sourceTree = "<group>"; };
 		1A6E2F0D1A84BA4100725FCF /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		1A6E2F0F1A84BA4100725FCF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 		1A5A6C4E1AE6D5B3005F3903 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				1A5A6C571AE7D3D3005F3903 /* reveal.wav */,
 				1A5A6C551AE6D82A005F3903 /* stream1.wav */,
 				1A5A6C531AE6D77C005F3903 /* stream.mp3 */,
 			);
@@ -679,7 +676,6 @@
 				1A5A6C4B1AE43D55005F3903 /* auto-solve_ipad.png in Resources */,
 				1AA8D4E41AD021E900CF1842 /* letterbox_iphone.png in Resources */,
 				1AA8D4DD1ACF44AA00CF1842 /* stream-4_ipad@2x.png in Resources */,
-				1A5A6C581AE7D3D3005F3903 /* reveal.wav in Resources */,
 				1AA8D4DE1ACF44AA00CF1842 /* stream-4_iphone.png in Resources */,
 				1AA07AA51A762BA400722BEB /* LaunchScreen.xib in Resources */,
 				1AA07AA21A762BA400722BEB /* Images.xcassets in Resources */,

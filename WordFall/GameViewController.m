@@ -151,9 +151,9 @@
         dotLabel.center = CGPointMake(textLabel.frame.origin.x-16.0, CGRectGetMidY(progressView.frame));
         [progressView addSubview:dotLabel];
         
-        [UIView animateWithDuration:0.4
+        [UIView animateWithDuration:0.5
                               delay:0.0
-                            options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat
+                            options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              dotLabel.center = CGPointMake(textLabel.frame.origin.x-4.0, CGRectGetMidY(progressView.frame));
                          } completion:^(BOOL finished) {
