@@ -66,7 +66,7 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // disable idle timer
     //
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [self disableIdleTimer];
     
     //
     // load product if needed
@@ -139,14 +139,31 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)pausePlay
 {
     [self scene].paused = YES;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [self enableIdleTimer];
 }
 
 - (void)resumePlay
 {
     [self scene].paused = NO;
+    [self disableIdleTimer];
+}
+
+- (void)disableIdleTimer
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(enableIdleTimer_) object:nil];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
+
+- (void)enableIdleTimer
+{
+    [self performSelector:@selector(enableIdleTimer_) withObject:nil afterDelay:10];
+}
+
+- (void)enableIdleTimer_
+{
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+}
+
 
 #pragma Streams
 
@@ -241,7 +258,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 // check if selved
                 //
                 if (word.isSolved) {
-                    [UIApplication sharedApplication].idleTimerDisabled = NO;
+                    [self enableIdleTimer];
                 }
                 
                 //
@@ -267,7 +284,7 @@ static CGFloat const kPadButtonGap = 20.0;
             // check if selved
             //
             if (word.isSolved) {
-                [UIApplication sharedApplication].idleTimerDisabled = NO;
+                [self enableIdleTimer];
             }
             
             //
