@@ -125,12 +125,12 @@ static CGFloat const kPadButtonGap = 20.0;
 
 - (NSString *)initialText
 {
-    NSString *text = @"WordGuru";
+    NSString *text = @"WordFall";
     
     if (maxLetterCount == 8) {
-        text = @"WordGuru";
+        text = @"WordFall";
     } else if (maxLetterCount < 8) {
-        text = @"Guru";
+        text = @"Fall";
     }
     
     return text;
