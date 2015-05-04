@@ -586,8 +586,8 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
-    CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 4.0); // stream image has shadow on bottom so add small constant
-    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 4.0);
+    CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
+    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 3.0);
     [path moveToPoint:point1];
     [path addLineToPoint:point2];
     
