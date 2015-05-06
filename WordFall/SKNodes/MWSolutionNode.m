@@ -94,8 +94,8 @@
         
         if (node.letter == nil) {
             NSString *letter = [word substringWithRange:NSMakeRange(i, 1)];
-            [node setLetter:letter withDuration:duration delay:delay];
-            delay += (duration * 2.0);
+            [node setLetter:letter withDuration:duration/1.5 delay:delay];
+            delay += (duration * 0.5);
         }
     }
     
