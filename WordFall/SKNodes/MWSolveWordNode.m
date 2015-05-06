@@ -35,6 +35,7 @@ static CGFloat const kPadWidth = 90.0;
         spriteNode.userInteractionEnabled = NO;
         spriteNode.name = kSpriteNodeName;
         spriteNode.position = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+        spriteNode.alpha = 0.0;
         [self addChild:spriteNode];
     }
     
@@ -48,6 +49,11 @@ static CGFloat const kPadWidth = 90.0;
     } else {
         return kPhoneBackgroundImageName;
     }
+}
+
+- (void)present
+{
+    [[self childNodeWithName:kSpriteNodeName] runAction:[SKAction fadeAlphaTo:1.0 duration:1.0]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

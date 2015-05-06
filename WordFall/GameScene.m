@@ -110,6 +110,14 @@ static CGFloat const kPadButtonGap = 20.0;
         // show sound button
         //
         [[self soundNode] present];
+        
+        //
+        // solve button
+        //
+        if ([MWPurchaseManager sharedManager].isPurchased && [self solveNode] == nil) {
+            [self addSolveNode];
+            [[self solveNode] present];
+        }
     }];
     
     //
@@ -660,12 +668,6 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     [self addRevealLineNode];
     
-    //
-    // purchase/solve node
-    //
-    if ([MWPurchaseManager sharedManager].isPurchased) {
-        [self addSolveNode];
-    }
     
     [[MWPurchaseManager sharedManager] setPaymentTransactionUpdated:^(SKPaymentTransaction *transaction) {
         switch (transaction.transactionState) {
