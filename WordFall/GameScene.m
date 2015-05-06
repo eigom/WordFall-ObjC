@@ -26,7 +26,7 @@ static CFTimeInterval const kSolvingTimeWithAds = 200.0;
 static CFTimeInterval const kPlayInitDuration = 1.0;
 static CFTimeInterval const kStreamStartupDuration = 1.0;
 static CFTimeInterval const kPullbackStreamDuration = 1.5;
-static CFTimeInterval const kRemoveStreamDuration = 0.5;
+static CFTimeInterval const kRemoveStreamDuration = 0.2;
 static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
 static CFTimeInterval const kSolveRemoveStreamDuration = 1.0;
@@ -198,7 +198,7 @@ static CGFloat const kPadButtonGap = 20.0;
         streamNode.name = kStreamNodeName;
         [self addChild:streamNode];
         
-        [streamNode startFallWithSound:nil];
+        [streamNode startFall];
         
         xOrigin = xOrigin + kStreamWidth;
     }
@@ -295,9 +295,16 @@ static CGFloat const kPadButtonGap = 20.0;
         
         [self addChild:streamNode];
         
-        [streamNode startFallWithSound:[[MWSoundManager sharedManager] streamSound]];
+        [streamNode startFall];
         
         xOrigin = xOrigin + kStreamWidth;
+    }
+    
+    //
+    // play sound
+    //
+    if ([[MWSoundManager sharedManager] streamSound]) {
+        [self runAction:[SKAction sequence:@[[SKAction waitForDuration:0.4], [[MWSoundManager sharedManager] streamSound]]]];
     }
 }
 

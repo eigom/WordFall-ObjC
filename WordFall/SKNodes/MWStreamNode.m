@@ -81,7 +81,30 @@ static const CGFloat kPadFontSize = 30;
     }
 }
 
-- (void)startFallWithSound:(SKAction *)soundAction
+- (void)startFall
+{
+    NSMutableArray *actions = [NSMutableArray array];
+    
+    SKAction *startupMovement = [SKAction moveBy:CGVectorMake(0.0, -_startupMovementDistance) duration:_startupMovementDuration];
+    startupMovement.timingMode = SKActionTimingEaseOut;
+    
+    SKAction *normalMovement = [SKAction moveBy:CGVectorMake(0.0, -_normalMovementDistance) duration:_normalMovementDuration];
+    normalMovement.timingMode = SKActionTimingLinear;
+    
+    SKAction *endReached = [SKAction runBlock:^{
+        if (_streamEndReached) {
+            _streamEndReached(self);
+        }
+    }];
+    
+    [actions addObject:startupMovement];
+    [actions addObject:normalMovement];
+    [actions addObject:endReached];
+    
+    [self runAction:[SKAction sequence:actions] withKey:kMovementActionKey];
+}
+
+/*- (void)startFallWithSound:(SKAction *)soundAction
 {
     NSMutableArray *actions = [NSMutableArray array];
     
@@ -106,7 +129,7 @@ static const CGFloat kPadFontSize = 30;
     [actions addObject:endReached];
     
     [self runAction:[SKAction sequence:actions] withKey:kMovementActionKey];
-}
+}*/
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

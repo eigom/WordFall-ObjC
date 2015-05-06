@@ -31,7 +31,8 @@ typedef void (^MWStreamTouched)(MWStreamNode *stream);
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame bgImageName:(NSString *)bgImageName;
 
-- (void)startFallWithSound:(SKAction *)soundAction;
+//- (void)startFallWithSound:(SKAction *)soundAction;
+- (void)startFall;
 - (void)pullbackWithDuration:(CFTimeInterval)duration;
 - (void)removeWithDuration:(CFTimeInterval)duration;
 

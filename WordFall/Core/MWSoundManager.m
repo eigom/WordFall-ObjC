@@ -11,8 +11,8 @@
 static NSString * const kSoundEnabledKey = @"kSoundEnabledKey";
 
 static NSString * const kStreamSoundFilename = @"stream.mp3";
-static NSString * const kRevealLetterSoundFilename = @"reveal.mp3";
-static NSString * const kRevealWordSoundFilename = @"reveal.mp3";
+static NSString * const kRevealLetterSoundFilename = @"reveal-letter.mp3";
+static NSString * const kRevealWordSoundFilename = @"reveal-word.mp3";
 
 @implementation MWSoundManager
 
@@ -36,7 +36,7 @@ static NSString * const kRevealWordSoundFilename = @"reveal.mp3";
         if (enabled) {
             _soundEnabled = [enabled isEqualToString:@"1"];
         } else {
-            _soundEnabled = NO; // default
+            _soundEnabled = YES; // default
         }
     }
     
