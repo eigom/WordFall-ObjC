@@ -693,6 +693,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 
                 [[self purchaseNode] remove];
                 [self addSolveNode];
+                [[self solveNode] present];
                 [self removeSoundNode];
                 [self addSoundNode];
                 [[self soundNode] present];
@@ -706,6 +707,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 
                 [[self purchaseNode] remove];
                 [self addSolveNode];
+                [[self solveNode] present];
                 [self removeSoundNode];
                 [self addSoundNode];
                 [[self soundNode] present];
