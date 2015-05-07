@@ -31,6 +31,10 @@ static NSString * const kRevealWordSoundFilename = @"reveal-word.mp3";
 - (id)init
 {
     if ((self = [super init])) {
+        streamSound = [SKAction playSoundFileNamed:kStreamSoundFilename waitForCompletion:NO];
+        revealLetterSound = [SKAction playSoundFileNamed:kRevealLetterSoundFilename waitForCompletion:NO];
+        revealWordSound = [SKAction playSoundFileNamed:kRevealWordSoundFilename waitForCompletion:NO];
+        
         NSString *enabled = [[NSUserDefaults standardUserDefaults] objectForKey:kSoundEnabledKey];
         
         if (enabled) {
@@ -46,7 +50,7 @@ static NSString * const kRevealWordSoundFilename = @"reveal-word.mp3";
 - (SKAction *)streamSound
 {
     if (_soundEnabled) {
-        return [SKAction playSoundFileNamed:kStreamSoundFilename waitForCompletion:NO];
+        return streamSound;
     } else {
         return nil;
     }
@@ -55,7 +59,7 @@ static NSString * const kRevealWordSoundFilename = @"reveal-word.mp3";
 - (SKAction *)revealLetterSound
 {
     if (_soundEnabled) {
-        return [SKAction playSoundFileNamed:kRevealLetterSoundFilename waitForCompletion:NO];
+        return revealLetterSound;
     } else {
         return nil;
     }
@@ -64,7 +68,7 @@ static NSString * const kRevealWordSoundFilename = @"reveal-word.mp3";
 - (SKAction *)revealWordSound
 {
     if (_soundEnabled) {
-        return [SKAction playSoundFileNamed:kRevealWordSoundFilename waitForCompletion:NO];
+        return revealWordSound;
     } else {
         return nil;
     }

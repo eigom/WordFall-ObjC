@@ -9,7 +9,12 @@
 #import "MWManager.h"
 #import <SpriteKit/SpriteKit.h>
 
-@interface MWSoundManager : MWManager
+@interface MWSoundManager : MWManager {
+@private
+    SKAction *streamSound;
+    SKAction *revealLetterSound;
+    SKAction *revealWordSound;
+}
 
 + (MWSoundManager *)sharedManager;
 
