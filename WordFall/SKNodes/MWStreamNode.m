@@ -19,6 +19,8 @@ static NSString * const kFont = @"Copperplate";
 static const CGFloat kPhoneFontSize = 18;
 static const CGFloat kPadFontSize = 30;
 
+static const NSInteger kTrailingNodeCount = 5;
+
 @implementation MWStreamNode
 
 - (id)initWithLetter:(NSString *)letter inFrame:(CGRect)frame bgImageName:(NSString *)bgImageName
@@ -56,6 +58,21 @@ static const CGFloat kPadFontSize = 30;
         dropShadow.position = CGPointMake(label.position.x + 1.0, label.position.y - 1.0);
         
         [self addChild:dropShadow];
+        
+        //
+        // trailing nodes
+        //
+        const CGFloat kMinAlpha = 0.1;
+        const CGFloat kMaxAlpha = 0.6;
+        const CGFloat kAlphaInc = (kMaxAlpha - kMinAlpha) / kTrailingNodeCount;
+        
+        for (int i = 0; i < kTrailingNodeCount; i++) {
+            SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:bgImageName];
+            node.position = CGPointMake(bgNode.position.x, bgNode.position.y+((bgNode.frame.size.height-6.0)*i));
+            node.alpha = kMaxAlpha - (i * kAlphaInc);
+            node.zPosition = bgNode.zPosition;
+            [self addChild:node];
+        }
     }
     
     return self;
