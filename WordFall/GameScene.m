@@ -31,7 +31,7 @@ static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
 static CFTimeInterval const kSolveRemoveStreamDuration = 1.0;
 static CFTimeInterval const kSolveWordDuration = 0.15;
-static CFTimeInterval const kRevealLetterDuration = 0.2;
+static CFTimeInterval const kRevealLetterDuration = 0.3;
 
 static NSUInteger const kPhoneSolutionLetterSize = 38.0;
 static NSUInteger const kPadSolutionLetterSize = 50.0;
@@ -192,7 +192,7 @@ static CGFloat const kPadButtonGap = 20.0;
     
     CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0);
     
-    CGFloat yFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 0.51:0.61;
+    CGFloat yFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 0.88:0.87;
     
     NSString *bgImageName = [self initialStreamBackgroundImageName];
     
@@ -312,7 +312,7 @@ static CGFloat const kPadButtonGap = 20.0;
     // play sound
     //
     if ([[MWSoundManager sharedManager] streamSound]) {
-        [self runAction:[SKAction sequence:@[[SKAction waitForDuration:0.4], [[MWSoundManager sharedManager] streamSound]]]];
+        [self runAction:[SKAction sequence:@[[SKAction waitForDuration:0.5], [[MWSoundManager sharedManager] streamSound]]]];
     }
 }
 

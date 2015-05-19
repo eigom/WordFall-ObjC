@@ -19,7 +19,7 @@ static NSString * const kFont = @"Copperplate";
 static const CGFloat kPhoneFontSize = 18;
 static const CGFloat kPadFontSize = 30;
 
-static const NSInteger kTrailingNodeCount = 5;
+static const NSInteger kTrailingNodeCount = 3;
 
 @implementation MWStreamNode
 
@@ -62,13 +62,19 @@ static const NSInteger kTrailingNodeCount = 5;
         //
         // trailing nodes
         //
-        const CGFloat kMinAlpha = 0.1;
-        const CGFloat kMaxAlpha = 0.6;
-        const CGFloat kAlphaInc = (kMaxAlpha - kMinAlpha) / kTrailingNodeCount;
+        const CGFloat kMinAlpha = 0.15;
+        const CGFloat kMaxAlpha = 0.4;
+        const CGFloat kAlphaInc = (kMaxAlpha - kMinAlpha) / (kTrailingNodeCount - 1);
         
         for (int i = 0; i < kTrailingNodeCount; i++) {
             SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:bgImageName];
-            node.position = CGPointMake(bgNode.position.x, bgNode.position.y+((bgNode.frame.size.height-6.0)*i));
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                node.position = CGPointMake(bgNode.position.x, bgNode.position.y+((bgNode.frame.size.height-8.0)*(i+1)));
+            } else {
+                node.position = CGPointMake(bgNode.position.x, bgNode.position.y+((bgNode.frame.size.height-7.0)*(i+1)));
+            }
+            
             node.alpha = kMaxAlpha - (i * kAlphaInc);
             node.zPosition = bgNode.zPosition;
             [self addChild:node];
