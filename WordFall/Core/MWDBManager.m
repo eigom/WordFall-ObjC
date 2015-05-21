@@ -60,17 +60,23 @@ static NSString * const kFullDBName = @"words.sqlite";
     return self;
 }
 
-- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength
+- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength limitToLength:(BOOL)limitToLength
 {
     __block MWWord *word = nil;
     
     [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length <= ? order by length desc limit 1", [NSNumber numberWithUnsignedInteger:maxLength]];
+        FMResultSet *maxIDrs = [db executeQuery:@"select word_id from word_length_max_id where length == ?", [NSNumber numberWithUnsignedInteger:maxLength]];
+        FMResultSet *minIDrs = [db executeQuery:@"select word_id from word_length_max_id where length == ?", [NSNumber numberWithUnsignedInteger:maxLength-1]];
         
         if ([maxIDrs next]) {
             NSInteger maxWordID = [maxIDrs intForColumn:@"word_id"];
+            NSInteger minWordID = 0;
             
-            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:arc4random_uniform((u_int32_t)maxWordID)];
+            if (limitToLength && [minIDrs next]) {
+                minWordID = [minIDrs intForColumn:@"word_id"] + 1; // ID of first word with length of maxLength
+            }
+            
+            NSNumber *wordID = [NSNumber numberWithUnsignedInteger:minWordID + arc4random_uniform((u_int32_t)(maxWordID-minWordID))];
             
             FMResultSet *rs = [db executeQuery:@"select * from word where id = ?", wordID];
             

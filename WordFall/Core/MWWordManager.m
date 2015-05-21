@@ -12,6 +12,8 @@
 #import "MWDefinitions.h"
 #import "MWDBManager.h"
 
+static NSString * const kWordLengthKey = @"kWordLengthKey";
+
 @implementation MWWordManager
 
 + (MWWordManager *)sharedManager
@@ -29,15 +31,35 @@
 - (id)init
 {
     if ((self = [super init])) {
+        _wordLength = -1; // all words
         
+        NSNumber *wordLength = [[NSUserDefaults standardUserDefaults] objectForKey:kWordLengthKey];
+        
+        if (wordLength) {
+            _wordLength = [wordLength integerValue];
+        }
     }
     
     return self;
 }
 
-- (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength
+- (MWWord *)nextWord
 {
-    return [[MWDBManager sharedManager] wordWithMaxLength:maxLength];
+    if (_wordLength == -1) {
+        return [[MWDBManager sharedManager] wordWithMaxLength:_maxWordLength limitToLength:NO];
+    } else {
+        return [[MWDBManager sharedManager] wordWithMaxLength:_wordLength limitToLength:YES];
+    }
+}
+
+- (void)setWordLength:(NSInteger)wordLength
+{
+    if (wordLength <= _maxWordLength) {
+        _wordLength = wordLength;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:wordLength] forKey:kWordLengthKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end

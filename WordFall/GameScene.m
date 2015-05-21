@@ -100,7 +100,7 @@ static CGFloat const kPadButtonGap = 20.0;
     // setup scene with new word
     //
     SKAction *setupWithNextWord = [SKAction runBlock:^{
-        word = [[MWWordManager sharedManager] nextWordWithMaxLenght:maxLetterCount];
+        word = [[MWWordManager sharedManager] nextWord];
         
         [self setupSolutionWithDuration:kSetupSolutionDuration];
         [self presentDefinitionWithDuration:kPlayInitDuration];
@@ -657,6 +657,7 @@ static CGFloat const kPadButtonGap = 20.0;
     // max word lengths that can fit on screen
     //
     maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize];
+    [[MWWordManager sharedManager] setMaxWordLength:maxLetterCount];
     
     //
     // add solution area

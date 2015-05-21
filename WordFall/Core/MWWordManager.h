@@ -16,8 +16,11 @@
     MWWord *currentWord;
 }
 
+@property (nonatomic, assign) NSInteger maxWordLength;
+@property (nonatomic, assign) NSInteger wordLength;
+
 + (MWWordManager *)sharedManager;
 
-- (MWWord *)nextWordWithMaxLenght:(NSUInteger)maxLength;
+- (MWWord *)nextWord;
 
 @end

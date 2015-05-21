@@ -19,6 +19,6 @@
 + (MWDBManager *)sharedManager;
 + (void)copyToDocumentsIfNeeded;
 
-- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength;
+- (MWWord *)wordWithMaxLength:(NSUInteger)maxLength limitToLength:(BOOL)limitToLength;
 
 @end
