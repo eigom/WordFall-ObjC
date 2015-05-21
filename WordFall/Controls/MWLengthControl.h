@@ -6,14 +6,13 @@
 //  Copyright (c) 2015 eigo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface MWLengthControl : NSObject
+@interface MWLengthControl : UIView
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, assign) NSInteger minValue;
-@property (nonatomic, assign) NSInteger maxValue;
 @property (nonatomic, assign) NSInteger value;
-@property (nonatomic, assign) BOOL isOff;
+@property (nonatomic, readonly) BOOL isOff;
+
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title minValue:(NSInteger)minValue maxValue:(NSInteger)maxValue isOff:(BOOL)isOff;
 
 @end

@@ -11,6 +11,7 @@
 #import "MWDefinition.h"
 #import "MWDefinitions.h"
 #import "MWWord.h"
+#import "MWLengthControl.h"
 #import "MWPurchaseManager.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -294,6 +295,12 @@
         definitionTextView.layer.shadowRadius = 0.5f;
         [[self skView] addSubview:definitionTextView];
     }
+    
+    //
+    // word length control
+    //
+    MWLengthControl *lengthControl = [[MWLengthControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, [self skView].bounds.size.height) title:@"WORD LENGTH" minValue:3 maxValue:[self gameScene].maxLetterCount isOff:NO];
+    [[self skView] addSubview:lengthControl];
 }
 
 - (SKView *)skView

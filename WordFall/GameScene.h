@@ -28,6 +28,7 @@ typedef void (^GameSceneShouldRemoveAds)(void);
 
 @property (nonatomic, readonly) CGFloat definitionAreaYOrigin;
 @property (nonatomic, readonly) CGFloat definitionAreaHeight;
+@property (nonatomic, readonly) NSUInteger maxLetterCount;
 @property (nonatomic, copy) GameSceneShouldPresentWordDefinition shouldPresentWordDefinition;
 @property (nonatomic, copy) GameSceneShouldDismissWordDefinition shouldDismissWordDefinition;
 @property (nonatomic, copy) GameSceneShouldPresentProgress shouldPresentProgress;
