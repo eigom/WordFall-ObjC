@@ -34,6 +34,7 @@
 		1A5A6C7D1AF6C5BB005F3903 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C6B1AF6C5BB005F3903 /* iTunesArtwork@2x.png */; };
 		1A5A6C801AFA3FD7005F3903 /* reveal-letter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C7E1AFA3FD7005F3903 /* reveal-letter.mp3 */; };
 		1A5A6C811AFA3FD7005F3903 /* reveal-word.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A6C7F1AFA3FD7005F3903 /* reveal-word.mp3 */; };
+		1A5A6C851B0E1D15005F3903 /* MWLengthControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A6C841B0E1D15005F3903 /* MWLengthControl.m */; };
 		1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */; };
 		1A6E2F191A84BA4100725FCF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F101A84BA4100725FCF /* FMDatabaseAdditions.m */; };
 		1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6E2F121A84BA4100725FCF /* FMDatabasePool.m */; };
@@ -166,6 +167,8 @@
 		1A5A6C6B1AF6C5BB005F3903 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		1A5A6C7E1AFA3FD7005F3903 /* reveal-letter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "reveal-letter.mp3"; sourceTree = "<group>"; };
 		1A5A6C7F1AFA3FD7005F3903 /* reveal-word.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "reveal-word.mp3"; sourceTree = "<group>"; };
+		1A5A6C831B0E1D15005F3903 /* MWLengthControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLengthControl.h; sourceTree = "<group>"; };
+		1A5A6C841B0E1D15005F3903 /* MWLengthControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWLengthControl.m; sourceTree = "<group>"; };
 		1A6E2F0D1A84BA4100725FCF /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		1A6E2F0E1A84BA4100725FCF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		1A6E2F0F1A84BA4100725FCF /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -375,6 +378,15 @@
 			path = Icon;
 			sourceTree = "<group>";
 		};
+		1A5A6C821B0E1CC3005F3903 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				1A5A6C831B0E1D15005F3903 /* MWLengthControl.h */,
+				1A5A6C841B0E1D15005F3903 /* MWLengthControl.m */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		1A6E2F0B1A84BA1100725FCF /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +484,7 @@
 				1A6E2F211A84BBF200725FCF /* Core */,
 				1A6E2F221A84BBF800725FCF /* Objects */,
 				1A4AB29B1A8A0888008B9F6E /* SKNodes */,
+				1A5A6C821B0E1CC3005F3903 /* Controls */,
 				1A6E2F0B1A84BA1100725FCF /* External */,
 				1AA807A11AC5FABF00A0DBC1 /* Extensions */,
 				1AA8C7EC1AC0961F00B10E49 /* Util */,
@@ -854,6 +867,7 @@
 				1A6E2F181A84BA4100725FCF /* FMDatabase.m in Sources */,
 				1A6E2F1A1A84BA4100725FCF /* FMDatabasePool.m in Sources */,
 				1A4AB2A11A8A0E8B008B9F6E /* MWSolutionNode.m in Sources */,
+				1A5A6C851B0E1D15005F3903 /* MWLengthControl.m in Sources */,
 				1A4AB29E1A8A0E17008B9F6E /* MWStreamNode.m in Sources */,
 				1AA8C7F21AC0CE8100B10E49 /* MWNextWordNode.m in Sources */,
 				1A6E2F281A84BC5A00725FCF /* MWDBManager.m in Sources */,
