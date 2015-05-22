@@ -52,6 +52,8 @@ static CGFloat const kPadButtonGap = 20.0;
 
 @implementation GameScene
 
+@synthesize maxLetterCount;
+
 #pragma Game
 
 - (void)playWithNextWord

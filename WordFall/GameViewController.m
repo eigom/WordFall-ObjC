@@ -13,6 +13,7 @@
 #import "MWWord.h"
 #import "MWLengthControl.h"
 #import "MWPurchaseManager.h"
+#import "MWWordManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SKScene (Unarchive)
@@ -299,7 +300,10 @@
     //
     // word length control
     //
-    MWLengthControl *lengthControl = [[MWLengthControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, [self skView].bounds.size.height) title:@"WORD LENGTH" minValue:3 maxValue:[self gameScene].maxLetterCount isOff:NO];
+    MWLengthControl *lengthControl = [[MWLengthControl alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, [self skView].bounds.size.height) title:@"WORD LENGTH" minValue:3 maxValue:[self gameScene].maxLetterCount value:[MWWordManager sharedManager].wordLength];
+    [lengthControl setLengthSelected:^(NSInteger length) {
+        [[MWWordManager sharedManager] setWordLength:length];
+    }];
     [[self skView] addSubview:lengthControl];
 }
 

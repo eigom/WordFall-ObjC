@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^MWLengthControlLengthSelected)(NSInteger length);
+
 @interface MWLengthControl : UIView
 
-@property (nonatomic, assign) NSInteger value;
-@property (nonatomic, readonly) BOOL isOff;
+@property (nonatomic, assign) NSInteger length;
+@property (nonatomic, copy) MWLengthControlLengthSelected lengthSelected;
 
-- (id)initWithFrame:(CGRect)frame title:(NSString *)title minValue:(NSInteger)minValue maxValue:(NSInteger)maxValue isOff:(BOOL)isOff;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title minValue:(NSInteger)minValue maxValue:(NSInteger)maxValue value:(NSInteger)value;
 
 @end
