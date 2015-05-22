@@ -9,6 +9,9 @@
 #import "MWLengthControl.h"
 #import <QuartzCore/QuartzCore.h>
 
+static const CGFloat kActiveAlpha = 1.0;
+static const CGFloat kInactiveAlpha = 0.7;
+
 @implementation MWLengthControl
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title minValue:(NSInteger)minValue maxValue:(NSInteger)maxValue value:(NSInteger)value
@@ -25,6 +28,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:12.0];
         titleLabel.numberOfLines = title.length;
+        titleLabel.alpha = kInactiveAlpha;
         
         NSMutableString *titleText = [[NSMutableString alloc] init];
         
@@ -50,6 +54,8 @@
         const CGFloat kButtonHeight = 20.0;
         const CGFloat kButtonGap = 5.0;
         
+        buttons = [[NSMutableArray alloc] init];
+        
         UIView *buttonView = [[UIView alloc] init];
         buttonView.backgroundColor = [UIColor clearColor];
         
@@ -60,8 +66,8 @@
             [button setTitle:[NSString stringWithFormat:@"%d", i] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
             button.tag = i;
-            button.titleLabel.font = [UIFont systemFontOfSize:12];
             [buttonView addSubview:button];
+            [buttons addObject:button];
             
             buttonViewHeight = buttonViewHeight + button.frame.size.height;
             buttonViewHeight = buttonViewHeight + kButtonGap;
@@ -72,8 +78,8 @@
         [button setTitle:@"All" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = -1;
-        button.titleLabel.font = [UIFont systemFontOfSize:12];
         [buttonView addSubview:button];
+        [buttons addObject:button];
         
         buttonViewHeight = buttonViewHeight + button.frame.size.height;
         
@@ -94,12 +100,24 @@
 {
     _length = length;
     
-    
+    for (UIButton *button in buttons) {
+        if (button.tag == length) {
+            button.alpha = kActiveAlpha;
+            button.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+            [button setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+        } else {
+            button.alpha = kInactiveAlpha;
+            button.titleLabel.font = [UIFont systemFontOfSize:12];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 
 - (void)buttonPressed:(UIButton *)button
 {
+    [self setLength:button.tag];
+    
     if (_lengthSelected) {
         _lengthSelected(button.tag);
     }

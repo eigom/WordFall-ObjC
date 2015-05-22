@@ -10,10 +10,13 @@
 #import <SpriteKit/SpriteKit.h>
 #import <iAd/iAd.h>
 
+@class MWLengthControl;
+
 @interface GameViewController : UIViewController <ADBannerViewDelegate> {
 @private
     ADBannerView *bannerView;
     UITextView *definitionTextView;
+    MWLengthControl *lengthControl;
     UIView *backgroundStrip;
     UIView *progressView;
 }

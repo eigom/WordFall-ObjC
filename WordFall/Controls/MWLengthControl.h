@@ -10,7 +10,10 @@
 
 typedef void (^MWLengthControlLengthSelected)(NSInteger length);
 
-@interface MWLengthControl : UIView
+@interface MWLengthControl : UIView {
+@private
+    NSMutableArray *buttons;
+}
 
 @property (nonatomic, assign) NSInteger length;
 @property (nonatomic, copy) MWLengthControlLengthSelected lengthSelected;
