@@ -12,7 +12,9 @@
 #import "MWDefinitions.h"
 #import "MWWord.h"
 #import "MWLengthControl.h"
+#import "MWSoundControl.h"
 #import "MWPurchaseManager.h"
+#import "MWSoundManager.h"
 #import "MWWordManager.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -306,6 +308,17 @@
             [[MWWordManager sharedManager] setWordLength:length];
         }];
         [[self skView] addSubview:lengthControl];
+    }
+    
+    //
+    // sound control
+    //
+    if (soundControl == nil) {
+        soundControl = [[MWSoundControl alloc] initWithFrame:CGRectMake([self skView].bounds.size.width-32.0, 0.0, 40.0, [self skView].bounds.size.height) title:@"SOUND" isOn:[MWSoundManager sharedManager].soundEnabled];
+        [soundControl setStateChanged:^(BOOL isOn) {
+            [[MWSoundManager sharedManager] setSoundEnabled:isOn];
+        }];
+        [[self skView] addSubview:soundControl];
     }
 }
 

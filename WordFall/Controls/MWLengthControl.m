@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static const CGFloat kActiveAlpha = 1.0;
-static const CGFloat kInactiveAlpha = 0.7;
+static const CGFloat kInactiveAlpha = 0.5;
 
 @implementation MWLengthControl
 
@@ -24,7 +24,9 @@ static const CGFloat kInactiveAlpha = 0.7;
         //
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textColor = [UIColor yellowColor];
+        titleLabel.shadowColor = [UIColor blackColor];
+        titleLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:12.0];
         titleLabel.numberOfLines = title.length;
@@ -52,7 +54,7 @@ static const CGFloat kInactiveAlpha = 0.7;
         //
         const CGFloat kButtonWidth = 25.0;
         const CGFloat kButtonHeight = 20.0;
-        const CGFloat kButtonGap = 5.0;
+        const CGFloat kButtonGap = 4.0;
         
         buttons = [[NSMutableArray alloc] init];
         
@@ -60,9 +62,9 @@ static const CGFloat kInactiveAlpha = 0.7;
         
         CGFloat buttonViewHeight = 0.0;
         
-        for (int i = minValue; i <= maxValue; i++) {
+        for (NSInteger i = minValue; i <= maxValue; i++) {
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0.0, buttonViewHeight, kButtonWidth, kButtonHeight)];
-            [button setTitle:[NSString stringWithFormat:@"%d", i] forState:UIControlStateNormal];
+            [button setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
             button.tag = i;
             [buttonView addSubview:button];

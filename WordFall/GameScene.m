@@ -571,7 +571,7 @@ static CGFloat const kPadButtonGap = 20.0;
 }
 
 - (void)addSoundNode
-{
+{return;
     CGRect frame;
     
     if ([MWPurchaseManager sharedManager].isPurchased) {
@@ -579,6 +579,8 @@ static CGFloat const kPadButtonGap = 20.0;
     } else {
         frame = CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance+4.0, [MWSoundNode size].width, [MWSoundNode size].height);
     }
+    
+    frame = CGRectMake(self.frame.size.width-[MWSoundNode size].width, self.frame.size.height-maxStreamDistance-[MWSoundNode size].height/2.0, [MWSoundNode size].width, [MWSoundNode size].height);
     
     MWSoundNode *soundNode = [[MWSoundNode alloc] initWithFrame:frame soundEnabled:[MWSoundManager sharedManager].soundEnabled];
     soundNode.name = kSoundNodeName;
@@ -603,8 +605,10 @@ static CGFloat const kPadButtonGap = 20.0;
 - (void)addRevealLineNode
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
-    CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
-    CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 3.0);
+    //CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
+    //CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 3.0);
+    CGPoint point1 = CGPointMake(40.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
+    CGPoint point2 = CGPointMake(self.frame.size.width - 36.0, self.frame.size.height - maxStreamDistance + 3.0);
     [path moveToPoint:point1];
     [path addLineToPoint:point2];
     
@@ -658,7 +662,7 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // max word lengths that can fit on screen
     //
-    maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize];
+    maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize] - 1; // subtract 1 to make room fo controls
     [[MWWordManager sharedManager] setMaxWordLength:maxLetterCount];
     
     //

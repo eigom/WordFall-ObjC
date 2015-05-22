@@ -11,12 +11,14 @@
 #import <iAd/iAd.h>
 
 @class MWLengthControl;
+@class MWSoundControl;
 
 @interface GameViewController : UIViewController <ADBannerViewDelegate> {
 @private
     ADBannerView *bannerView;
     UITextView *definitionTextView;
     MWLengthControl *lengthControl;
+    MWSoundControl *soundControl;
     UIView *backgroundStrip;
     UIView *progressView;
 }
