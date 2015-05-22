@@ -50,14 +50,13 @@ static const CGFloat kInactiveAlpha = 0.7;
         //
         // buttons
         //
-        const CGFloat kButtonWidth = 30.0;
+        const CGFloat kButtonWidth = 25.0;
         const CGFloat kButtonHeight = 20.0;
         const CGFloat kButtonGap = 5.0;
         
         buttons = [[NSMutableArray alloc] init];
         
         UIView *buttonView = [[UIView alloc] init];
-        buttonView.backgroundColor = [UIColor clearColor];
         
         CGFloat buttonViewHeight = 0.0;
         
@@ -85,6 +84,8 @@ static const CGFloat kInactiveAlpha = 0.7;
         
         buttonView.frame = CGRectMake(0.0, 0.0, kButtonWidth, buttonViewHeight);
         buttonView.center = CGPointMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+buttonView.frame.size.width/2.0, self.frame.size.height/2.0);
+        buttonView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+        buttonView.layer.cornerRadius = buttonView.frame.size.width/2.0;
         [self addSubview:buttonView];
         
         //
