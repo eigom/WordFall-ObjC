@@ -31,7 +31,7 @@ static CFTimeInterval const kSetupSolutionDuration = 0.2;
 static CFTimeInterval const kClearSolutionDuration = 0.4;
 static CFTimeInterval const kSolveRemoveStreamDuration = 1.0;
 static CFTimeInterval const kSolveWordDuration = 0.15;
-static CFTimeInterval const kRevealLetterDuration = 0.3;
+static CFTimeInterval const kRevealLetterDuration = 0.2;
 
 static NSUInteger const kPhoneSolutionLetterSize = 38.0;
 static NSUInteger const kPadSolutionLetterSize = 50.0;
@@ -192,7 +192,7 @@ static CGFloat const kPadButtonGap = 20.0;
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / letters.count);
     const CGFloat kStreamHeight = distance;
     
-    CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0);
+    CGFloat xOrigin = floor(kEdgeGap + ((letters.count * kStreamWidth) - (letters.count * kStreamWidth)) / 2.0) + 7.0;
     
     CGFloat yFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 0.88:0.87;
     
@@ -227,7 +227,7 @@ static CGFloat const kPadButtonGap = 20.0;
     const CGFloat kStreamWidth = floor((self.frame.size.width - 2 * kEdgeGap) / shuffledLetters.count);
     const CGFloat kStreamHeight = distance;
     
-    CGFloat xOrigin = floor(kEdgeGap + ((shuffledLetters.count * kStreamWidth) - (shuffledLetters.count * kStreamWidth)) / 2.0);
+    CGFloat xOrigin = floor(kEdgeGap + ((shuffledLetters.count * kStreamWidth) - (shuffledLetters.count * kStreamWidth)) / 2.0) + 8.0;
     
     NSString *bgImageName = [self streamBackgroundImageName];
     CFTimeInterval solvingTime = adsShown? kSolvingTimeWithAds : kSolvingTime;
@@ -570,8 +570,8 @@ static CGFloat const kPadButtonGap = 20.0;
     return (MWNextWordNode *)[self childNodeWithName:kNextNodeName];
 }
 
-- (void)addSoundNode
-{return;
+/*- (void)addSoundNode
+{
     CGRect frame;
     
     if ([MWPurchaseManager sharedManager].isPurchased) {
@@ -590,7 +590,7 @@ static CGFloat const kPadButtonGap = 20.0;
     }];
     
     [self addChild:soundNode];
-}
+}*/
 
 - (void)removeSoundNode
 {
@@ -702,7 +702,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 [self addSolveNode];
                 [[self solveNode] present];
                 [self removeSoundNode];
-                [self addSoundNode];
+                //[self addSoundNode];
                 [[self soundNode] present];
                 [self dismissProgress];
                 [self resumePlay];
@@ -716,7 +716,7 @@ static CGFloat const kPadButtonGap = 20.0;
                 [self addSolveNode];
                 [[self solveNode] present];
                 [self removeSoundNode];
-                [self addSoundNode];
+                //[self addSoundNode];
                 [[self soundNode] present];
                 [self dismissProgress];
                 [self resumePlay];
@@ -743,7 +743,7 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // sound On/Off
     //
-    [self addSoundNode];
+    //[self addSoundNode];
     
     //
     // next word

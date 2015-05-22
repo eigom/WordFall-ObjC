@@ -314,7 +314,7 @@
     // sound control
     //
     if (soundControl == nil) {
-        soundControl = [[MWSoundControl alloc] initWithFrame:CGRectMake([self skView].bounds.size.width-32.0, 0.0, 40.0, [self skView].bounds.size.height) title:@"SOUND" isOn:[MWSoundManager sharedManager].soundEnabled];
+        soundControl = [[MWSoundControl alloc] initWithFrame:CGRectMake([self skView].bounds.size.width-34.0, 0.0, 40.0, [self skView].bounds.size.height) title:@"SOUND" isOn:[MWSoundManager sharedManager].soundEnabled];
         [soundControl setStateChanged:^(BOOL isOn) {
             [[MWSoundManager sharedManager] setSoundEnabled:isOn];
         }];
