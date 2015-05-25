@@ -25,8 +25,7 @@ static const NSInteger kOffButtonTag = 1;
         // buttons
         //
         const CGFloat kButtonWidth = 24.0;
-        const CGFloat kButtonHeight = 20.0;
-        const CGFloat kButtonGap = 4.0;
+        const CGFloat kButtonHeight = 30.0;
         
         UIView *buttonView = [[UIView alloc] init];
         
@@ -40,7 +39,6 @@ static const NSInteger kOffButtonTag = 1;
         [buttonView addSubview:onButton];
         
         buttonViewHeight = buttonViewHeight + onButton.frame.size.height;
-        buttonViewHeight = buttonViewHeight + kButtonGap;
         
         // OFF button
         offButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, buttonViewHeight, kButtonWidth, kButtonHeight)];

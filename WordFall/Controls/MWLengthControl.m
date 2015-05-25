@@ -53,8 +53,7 @@ static const CGFloat kInactiveAlpha = 0.5;
         // buttons
         //
         const CGFloat kButtonWidth = 25.0;
-        const CGFloat kButtonHeight = 20.0;
-        const CGFloat kButtonGap = 4.0;
+        const CGFloat kButtonHeight = 30.0;
         
         buttons = [[NSMutableArray alloc] init];
         
@@ -71,7 +70,6 @@ static const CGFloat kInactiveAlpha = 0.5;
             [buttons addObject:button];
             
             buttonViewHeight = buttonViewHeight + button.frame.size.height;
-            buttonViewHeight = buttonViewHeight + kButtonGap;
         }
         
         // ALL button

@@ -607,8 +607,23 @@ static CGFloat const kPadButtonGap = 20.0;
     UIBezierPath *path=[UIBezierPath bezierPath];
     //CGPoint point1 = CGPointMake(1.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
     //CGPoint point2 = CGPointMake(self.frame.size.width, self.frame.size.height - maxStreamDistance + 3.0);
-    CGPoint point1 = CGPointMake(40.0, self.frame.size.height - maxStreamDistance + 3.0); // stream image has shadow on bottom so add small constant
-    CGPoint point2 = CGPointMake(self.frame.size.width - 36.0, self.frame.size.height - maxStreamDistance + 3.0);
+    
+    CGFloat x1, y1, x2, y2;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        x1 = 40.0;
+        y1 = self.frame.size.height - maxStreamDistance + 3.0; // stream image has shadow on bottom so add small constant
+        x2 = self.frame.size.width - 36.0;
+        y2 = self.frame.size.height - maxStreamDistance + 3.0;
+    } else {
+        x1 = 42.0;
+        y1 = self.frame.size.height - maxStreamDistance + 3.0; // stream image has shadow on bottom so add small constant
+        x2 = self.frame.size.width - 38.0;
+        y2 = self.frame.size.height - maxStreamDistance + 3.0;
+    }
+    
+    CGPoint point1 = CGPointMake(x1, y1);
+    CGPoint point2 = CGPointMake(x2, y2);
     [path moveToPoint:point1];
     [path addLineToPoint:point2];
     
