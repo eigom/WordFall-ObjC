@@ -677,7 +677,7 @@ static CGFloat const kPadButtonGap = 20.0;
     //
     // max word lengths that can fit on screen
     //
-    maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize] - 1; // subtract 1 to make room fo controls
+    maxLetterCount = solutionAreaFrame.size.width / [self solutionLetterSize];
     [[MWWordManager sharedManager] setMaxWordLength:maxLetterCount];
     
     //

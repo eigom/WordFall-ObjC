@@ -52,8 +52,13 @@ static const CGFloat kInactiveAlpha = 0.5;
         //
         // buttons
         //
-        const CGFloat kButtonWidth = 25.0;
-        const CGFloat kButtonHeight = 30.0;
+        CGFloat kButtonWidth = 25.0;
+        CGFloat kButtonHeight = 25.0;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            kButtonWidth = 25.0;
+            kButtonHeight = 30.0;
+        }
         
         buttons = [[NSMutableArray alloc] init];
         
