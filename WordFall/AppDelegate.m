@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MWDBManager.h"
 #import "MWPurchaseManager.h"
+#import <AdBuddiz/AdBuddiz.h>
 
 @interface AppDelegate ()
 
@@ -42,6 +43,13 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [AdBuddiz setPublisherKey:@"dd3df535-25ae-4da9-8673-cd348c312530"];
+#ifdef DEBUG
+    [AdBuddiz setTestModeActive];
+    [AdBuddiz setLogLevel:ABLogLevelInfo];
+#endif
+    [AdBuddiz cacheAds];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

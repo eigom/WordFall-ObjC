@@ -33,6 +33,8 @@ static CFTimeInterval const kSolveRemoveStreamDuration = 1.0;
 static CFTimeInterval const kSolveWordDuration = 0.15;
 static CFTimeInterval const kRevealLetterDuration = 0.2;
 
+static NSInteger const kShowAdWordCount = 6;
+
 static NSUInteger const kPhoneSolutionLetterSize = 38.0;
 static NSUInteger const kPadSolutionLetterSize = 50.0;
 
@@ -545,31 +547,6 @@ static CGFloat const kPadButtonGap = 20.0;
     return (MWSolveWordNode *)[self childNodeWithName:kSolveNodeName];
 }
 
-- (void)addNextWordNode
-{
-    CGRect frame = CGRectZero;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
-    } else {
-        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y+2.0, [MWNextWordNode width], solutionAreaFrame.size.height);
-    }
-    
-    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:frame];
-    nextWordNode.name = kNextNodeName;
-    [nextWordNode setNodeTouched:^(MWNextWordNode *node){
-        //[node disableForDuration:kPlayInitDuration+1.0];
-        node.enabled = NO;
-        [self playWithNextWord];
-    }];
-    [self addChild:nextWordNode];
-}
-
-- (MWNextWordNode *)nextNode
-{
-    return (MWNextWordNode *)[self childNodeWithName:kNextNodeName];
-}
-
 /*- (void)addSoundNode
 {
     CGRect frame;
@@ -641,6 +618,61 @@ static CGFloat const kPadButtonGap = 20.0;
     [self addChild:node];
     
     CGPathRelease(dashed);
+}
+
+- (void)addNextWordNode
+{
+    CGRect frame = CGRectZero;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y, [MWNextWordNode width], solutionAreaFrame.size.height);
+    } else {
+        frame = CGRectMake(self.frame.size.width-[MWNextWordNode width]-[self buttonGap], solutionAreaFrame.origin.y+2.0, [MWNextWordNode width], solutionAreaFrame.size.height);
+    }
+    
+    MWNextWordNode *nextWordNode = [[MWNextWordNode alloc] initWithFrame:frame];
+    nextWordNode.name = kNextNodeName;
+    [nextWordNode setNodeTouched:^(MWNextWordNode *node){
+        showAdCounter++;
+        
+        //
+        // show ad or proceed with next word
+        //
+        if (showAdCounter >= kShowAdWordCount && ![MWPurchaseManager sharedManager].isPurchased && [AdBuddiz isReadyToShowAd]) {
+            [AdBuddiz setDelegate:self];
+            [AdBuddiz showAd];
+        } else {
+            node.enabled = NO;
+            [self playWithNextWord];
+        }
+    }];
+    [self addChild:nextWordNode];
+}
+
+- (MWNextWordNode *)nextNode
+{
+    return (MWNextWordNode *)[self childNodeWithName:kNextNodeName];
+}
+
+#pragma AdBuddiz
+
+- (void)didShowAd
+{
+    
+}
+
+- (void)didHideAd
+{
+    showAdCounter = 0;
+    
+    [self playWithNextWord];
+}
+
+- (void)didFailToShowAd:(AdBuddizError)error
+{
+    showAdCounter = 0;
+    
+    [self playWithNextWord];
 }
 
 - (CGFloat)solutionLetterSize

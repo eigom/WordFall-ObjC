@@ -126,6 +126,9 @@
 		1AA8D5261AD71A7C00CF1842 /* solve_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5221AD71A7C00CF1842 /* solve_iphone.png */; };
 		1AA8D5271AD71A7C00CF1842 /* solve_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8D5231AD71A7C00CF1842 /* solve_iphone@2x.png */; };
 		1AA945BB1AC886A700006FEF /* SKProduct+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */; };
+		1AE1AA9D1B262E05004B4173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE1AA9C1B262E05004B4173 /* SystemConfiguration.framework */; };
+		1AE1AA9F1B262E14004B4173 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE1AA9E1B262E14004B4173 /* AdSupport.framework */; };
+		1AE1AAA11B26350A004B4173 /* AdBuddiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE1AAA01B26350A004B4173 /* AdBuddiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +303,9 @@
 		1AA8D5231AD71A7C00CF1842 /* solve_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solve_iphone@2x.png"; sourceTree = "<group>"; };
 		1AA945B91AC886A700006FEF /* SKProduct+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Extensions.h"; sourceTree = "<group>"; };
 		1AA945BA1AC886A700006FEF /* SKProduct+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Extensions.m"; sourceTree = "<group>"; };
+		1AE1AA9C1B262E05004B4173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1AE1AA9E1B262E14004B4173 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1AE1AAA01B26350A004B4173 /* AdBuddiz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdBuddiz.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,7 +313,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE1AA9F1B262E14004B4173 /* AdSupport.framework in Frameworks */,
+				1AE1AA9D1B262E05004B4173 /* SystemConfiguration.framework in Frameworks */,
 				1AA0F31B1AC98C76000AF252 /* iAd.framework in Frameworks */,
+				1AE1AAA11B26350A004B4173 /* AdBuddiz.framework in Frameworks */,
 				1AA807A01AC59A1300A0DBC1 /* StoreKit.framework in Frameworks */,
 				1A6E2F201A84BABD00725FCF /* libsqlite3.dylib in Frameworks */,
 			);
@@ -421,6 +430,9 @@
 		1A6E2F1F1A84BA7800725FCF /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1AE1AAA01B26350A004B4173 /* AdBuddiz.framework */,
+				1AE1AA9E1B262E14004B4173 /* AdSupport.framework */,
+				1AE1AA9C1B262E05004B4173 /* SystemConfiguration.framework */,
 				1AA0F31A1AC98C76000AF252 /* iAd.framework */,
 				1AA8079F1AC59A1300A0DBC1 /* StoreKit.framework */,
 				1A6E2F1D1A84BA6700725FCF /* libsqlite3.dylib */,
@@ -1012,6 +1024,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WordFall/External/AdBuddiz",
+					"$(PROJECT_DIR)/WordFall",
+				);
 				INFOPLIST_FILE = WordFall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1026,6 +1043,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WordFall/External/AdBuddiz",
+					"$(PROJECT_DIR)/WordFall",
+				);
 				INFOPLIST_FILE = WordFall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

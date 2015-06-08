@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AdBuddiz/AdBuddiz.h>
 
 @class MWWord;
 @class MWSolutionNode;
@@ -18,12 +19,13 @@ typedef void (^GameSceneShouldDismissProgress)();
 typedef void (^GameSceneWillBeginPlay)(void);
 typedef void (^GameSceneShouldRemoveAds)(void);
 
-@interface GameScene : SKScene <UIAlertViewDelegate> {
+@interface GameScene : SKScene <UIAlertViewDelegate, AdBuddizDelegate> {
 @private
     MWWord *word;
     CGFloat maxStreamDistance;
     NSUInteger maxLetterCount;
     CGRect solutionAreaFrame;
+    NSInteger showAdCounter;
 }
 
 @property (nonatomic, readonly) CGFloat definitionAreaYOrigin;
